@@ -81,5 +81,24 @@ a {
   }
 
 footer {
+    padding-left: 5%;
+    padding-right: 5%;
     text-align: center;
+}
+
+iframe {
+    max-width: 75% !important;
+    height: 240px !important;
+}
+
+#arrow {
+    position: relative;
+    animation: arrow-animation 1s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
+
+@keyframes arrow-animation {
+    from {left: -2px;}
+    to {left: 0px;}
 }
