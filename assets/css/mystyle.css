@@ -28,30 +28,30 @@ nav a {
     width: 80%;
     margin: 0 auto;
 }
-.portfolio {
+#portfolio {
     padding: 2em 0;
     border-bottom: 1px solid darkcyan;
 }
-.portfolio:last-child {
+#portfolio:last-child {
     border: none;
 }
-.section h2 {
+#my-work-heading {
     margin-top: 0;
 }
 .portfolio-item {
     margin-bottom: 1em;
 }
-.contact {
+#contact {
     text-align: center;
 }
 
-.about {
+#about {
     text-align: center;
     padding: 2em 0;
     border-bottom: 1px solid darkcyan;
 }
 
-.about, .contact, .portfolio {
+#about, #contact, #portfolio {
     color: black;
 }
 
@@ -101,4 +101,13 @@ iframe {
 @keyframes arrow-animation {
     from {left: -2px;}
     to {left: 0px;}
+}
+
+#purpose-p {
+    font-weight: 800;
+}
+
+#welcome-portfolio {
+    text-align: center;
+    font-weight: 600;
 }
