@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-AU">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,61 +11,99 @@
     <title>Eric Armando Recinos' Portfolio</title>
     <link rel="stylesheet" href="assets/css/mystyle.css">
 </head>
+
 <body>
     <header>
-        <h1>Eric Armando Recinos' Portfolio</h1>
-        <p>Hobbyist &nbsp;&bull;&nbsp; Computer-literate &nbsp;&bull;&nbsp; Growth-oriented &nbsp;&bull;&nbsp; Goal-oriented</p><br>
         <nav>
-            <a href="#about">About</a>
-            <a href="#portfolio">Portfolio</a>
-            <a href="#contact">Contact</a>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
         </nav>
-    </header>
-
-    <div class="container">
-        <section id="about">
-            <h2>About Me</h2>
-            <p>Hello! I'm Eric, a hobbyist who's very much interested in how things work with technology. 
-                I have a passion for creating wacky software/hardware projects.
+        <div id="head-doc">
+            <h1>Eric Armando Recinos' Portfolio</h1>
             <br>
-            I am a beginner, keen to learn more about web design and programming.</p>
-            <p id="welcome-portfolio">Welcome to my portfolio!</p>
-        </section>
+            <ul id="self-des">
+                <li>Hobbyist - </li>
+                <li>Computer-literate - </li>
+                <li>Growth-oriented - </li>
+                <li>Goal-oriented</li>
+            </ul>
+        </div>
+    </header>
+    <div id="main-doc">
+        <div class="container">
+            <section id="about">
+                <h2>About Me</h2>
+                <p>Hello! I'm Eric, a hobbyist who's very much interested in how things work with technology.
+                    I have a passion for creating wacky software/hardware projects.
+                    <br>
+                    <br>
+                    I am a beginner, keen to learn more about web design and programming.
+                    <br>
+                    <br>
+                    Slowly learning but also consistant!
+                    <br>
+                </p>
+                <p id="welcome-portfolio">Welcome to my portfolio!</p>
+            </section>
+            <br>
+            <section id="portfolio">
+                <h2 id="my-work-heading">My Work</h2>
+                <br>
+                <div class="portfolio-item">
+                    <h3>This portfolio</h3>
+                    <br>
+                    <p>This portfolio website. This project involves with HTML and CSS. Soon to learn, Javascript!</p>
+                    <p>Made this portfolio responsive and adjusted for mobile devices.</p>
+                </div>
+                <div class="portfolio-item">
+                    <h3>Scripted questions and responses</h3>
+                    <br>
+                    <p>This project is a simple script where the computer asks for the users; name, age and gender;
+                        Gives a response with those variables uniquely on the terminal. This project was written in C.
+                    </p>
+                </div>
+                <div class="portfolio-item">
+                    <h3>Self watering plant</h3>
+                    <br>
+                    <p>This project was for CS50x online course, the device would check if the soil is dry
+                        then
+                        will pump water to the plant and will stop until the soil is moist.<br>
+                        It repeats itself endlessly... until the battery dies! This project was written in C++ with an
+                        arduino, pump and a breadboard.</p>
+                        <br>
+                    <iframe src="https://www.youtube.com/embed/Eh3bcqfWor0" crossorigin=""></iframe>
+                </div>
+                <div class="portfolio-item">
+                    <h3>W.I.P</h3>
+                    <br>
+                    <p>More to come.</p>
+                </div>
+            </section>
 
-        <section id="portfolio" class="portfolio">
-            <h2 id="my-work-heading">My Work</h2>
-            <div class="portfolio-item">
-                <h3>This portfolio</h3>
-                <p>This portfolio website. This project involves with HTML and CSS. Soon to learn, Javascript!</p>
-            </div>
-            <div class="portfolio-item">
-                <h3>Scripted questions and responses</h3>
-                <p>This project is a simple script where the computer asks for the users; name, age and gender; 
-                    Gives a response with those variables uniquely on the terminal. This project was written in C.</p>
-            </div>
-            <div class="portfolio-item">
-                <h3>Self watering plant</h3>
-                <p>This project was for Harvard's CS50x online course, the device would check if the soil is dry then will pump water to the plant and will stop until the soil is moist.<br>
-                    It repeats itself endlessly... until the battery dies! This project was written in C++ with an arduino, pump and a breadboard.</p>
-                <iframe src="https://www.youtube.com/embed/Eh3bcqfWor0" crossorigin=""></iframe>
-            </div>
-            <div class="portfolio-item">
-                <h3>W.I.P</h3>
-                <p>More to come.</p>
-            </div>
-        </section>
+            <section id="contact">
+                <h2>Contact Me</h2>
+                <br>
+                <p>If you would like to get in touch, please email me &nbsp;<span class="icon solid fa-arrow-right"
+                        id="arrow"></span>
+                    &nbsp;
+                    <a href="mailto:web-admin@ericrecinos.dev" class="icon solid fa-envelope"><span
+                            class="label">Email</span></a>.
+                </p>
+                <br>
+            </section>
+        </div>
 
-        <section id="contact">
-            <h2>Contact Me</h2>
-            <p>If you would like to get in touch, please email me &nbsp;<span class="icon solid fa-arrow-right" id="arrow"></span>
-                &nbsp; 
-                <a href="mailto:web-admin@ericrecinos.dev" class="icon solid fa-envelope"><span class="label">Email</span></a>.</p>
-        </section>
+        <footer>
+            <p id="purpose-p">The purpose of this portfolio, is to show my coding journey! c:</p>
+            <br>
+            <p>Updated: 12/08/24</p>
+        </footer>
     </div>
-
-    <footer>
-        <p id="purpose-p">The purpose of this portfolio, is to show my coding journey! c:</p>
-    </footer>
-
 </body>
+
+<script src="portfolio.js"></script>
+
 </html>

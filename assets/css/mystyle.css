@@ -1,33 +1,64 @@
 @import url("fontawesome-all.min.css");
 
-body {
-    font-family: Arial, sans-serif;
+*{
     margin: 0;
     padding: 0;
-    color: #333;
-    background-color: beige;
 }
+
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: lightcyan;
+}
+
 header {
     background-color: darkcyan;
     color: lightgray;
     text-align: center;
-    padding: 1em 0;
+    padding: 25px 0px;
 }
-header h1 {
-    margin: 0;
-}
+
 nav {
-    margin: 1em 0;
+    position: absolute;
+    margin: 120px 35% 0px 46%;    
 }
+
 nav a {
-    margin: 0 1em;
     color: lightgray;
     text-decoration: none;
 }
-.container {
-    width: 80%;
-    margin: 0 auto;
+
+nav ul li{
+    list-style: none;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
 }
+
+a {
+    text-decoration: none;
+  }
+
+footer {
+    padding-left: 5%;
+    padding-right: 5%;
+    text-align: center;
+}
+
+iframe {
+    max-width: 75% !important;
+    min-width: 25% !important;
+    height: 240px !important;
+}
+
+#head-doc{
+    margin: 0px 0px 50px 0px;
+}
+
+#self-des li{
+    display: inline;
+}
+
 #portfolio {
     padding: 2em 0;
     border-bottom: 1px solid darkcyan;
@@ -38,9 +69,7 @@ nav a {
 #my-work-heading {
     margin-top: 0;
 }
-.portfolio-item {
-    margin-bottom: 1em;
-}
+
 #contact {
     text-align: center;
 }
@@ -51,8 +80,38 @@ nav a {
     border-bottom: 1px solid darkcyan;
 }
 
+#about h2 {
+    margin: 13px 0px;;
+}
+
 #about, #contact, #portfolio {
     color: black;
+}
+
+#arrow {
+    position: relative;
+    animation: arrow-animation 1s;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
+
+#purpose-p {
+    font-weight: 800;
+}
+
+#welcome-portfolio {
+    text-align: center;
+    font-weight: 600;
+    margin: 13px 0px;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.portfolio-item {
+    margin-bottom: 1em;
 }
 
 .icon::before{
@@ -76,38 +135,46 @@ nav a {
     font: inherit;
 }
 
-a {
-    text-decoration: none;
-  }
-
-footer {
-    padding-left: 5%;
-    padding-right: 5%;
-    text-align: center;
-}
-
-iframe {
-    max-width: 75% !important;
-    height: 240px !important;
-}
-
-#arrow {
-    position: relative;
-    animation: arrow-animation 1s;
-    animation-direction: alternate;
-    animation-iteration-count: infinite;
-}
-
 @keyframes arrow-animation {
     from {left: -2px;}
     to {left: 0px;}
 }
 
-#purpose-p {
-    font-weight: 800;
-}
+@media screen and (max-width:1288px){
 
-#welcome-portfolio {
-    text-align: center;
-    font-weight: 600;
+    header{
+        padding: 7px 0px;
+    }
+
+    nav{
+        position: fixed;
+        float: right;
+        margin: -25px 1200px 7680px 0px;
+        padding: 100px 0px 7680px 0px;
+        font-size: 18px;
+        text-align: center;
+        background-color: darkcyan;
+    }
+
+    nav ul li{
+        margin-bottom: 50px;
+        padding: 5px 5px;
+        list-style: none;
+        border-style: solid;
+        border-radius: 10px;
+
+    }
+
+    nav ul li:active{
+        color: blue;
+    }
+
+    #head-doc, #main-doc{
+        margin-left: 50px;
+        padding: 0px 0px 0px 50px;
+    }
+
+    #self-des li{
+        list-style: square outside;
+    }
 }
