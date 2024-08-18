@@ -148,17 +148,21 @@ iframe {
 
     nav{
         position: fixed;
-        float: right;
-        margin: -25px 1200px 7680px 0px;
-        padding: 100px 0px 7680px 0px;
+        bottom: 0;
+        margin: 0px -250px;
+        padding: 5px 80px;
+        display: inline;
         font-size: 18px;
         text-align: center;
         background-color: darkcyan;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
     }
 
     nav ul li{
-        margin-bottom: 50px;
-        padding: 5px 5px;
+        margin: 0px 0px;
+        padding: 5px 25px;
+        display: inline-block;
         list-style: none;
         border-style: solid;
         border-radius: 10px;
@@ -170,8 +174,8 @@ iframe {
     }
 
     #head-doc, #main-doc{
-        margin-left: 50px;
-        padding: 0px 0px 0px 50px;
+        margin-left: 0px;
+        padding: 0px 0px 0px 0px;
     }
 
     #self-des li{
