@@ -1,192 +1,171 @@
-@import url("fontawesome-all.min.css");
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-*{
-    margin: 0;
-    padding: 0;
-}
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f9f9f9;
+            padding: 0 20px;
+        }
 
-body {
-    font-family: Arial, sans-serif;
-    color: #333;
-    background-color: lightcyan;
-}
+        h1, h2 {
+            color: #2c3e50;
+        }
 
-header {
-    background-color: darkcyan;
-    color: lightgray;
-    text-align: center;
-    padding: 25px 0px;
-}
+        #my-portfolio-h1{
+            color: #3498db;
+        }
 
-nav {
-    position: absolute;
-    margin: 120px 35% 0px 46%;    
-}
+        a {
+            text-decoration: none;
+            color: #3498db;
+        }
 
-nav a {
-    color: lightgray;
-    text-decoration: none;
-}
+        ul {
+            list-style: none;
+        }
 
-nav ul li{
-    list-style: none;
-    display: inline-block;
-    margin-left: auto;
-    margin-right: auto;
-}
+        /* Header */
+        header {
+            background: #2c3e50;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
 
-a {
-    text-decoration: none;
-  }
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
 
-footer {
-    padding-left: 5%;
-    padding-right: 5%;
-    text-align: center;
-}
+        header nav {
+            margin-top: 10px;
+        }
 
-iframe {
-    max-width: 75% !important;
-    min-width: 25% !important;
-    height: 240px !important;
-}
+        header nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
 
-#head-doc{
-    margin: 0px 0px 50px 0px;
-}
+        header nav ul li {
+            font-weight: 600;
+        }
 
-#self-des li{
-    display: inline;
-}
+        /* Hero Section */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: #fff;
+            border-radius: 0px 0px 12px 12px;
+            margin-bottom: 20px;
+        }
 
-#portfolio {
-    padding: 2em 0;
-    border-bottom: 1px solid darkcyan;
-}
-#portfolio:last-child {
-    border: none;
-}
-#my-work-heading {
-    margin-top: 0;
-}
+        .hero h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
 
-#contact {
-    text-align: center;
-}
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
 
-#about {
-    text-align: center;
-    padding: 2em 0;
-    border-bottom: 1px solid darkcyan;
-}
+        .hero a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #fff;
+            color: #3498db;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
 
-#about h2 {
-    margin: 13px 0px;;
-}
+        .hero a:hover {
+            background: #ecf0f1;
+        }
 
-#about, #contact, #portfolio {
-    color: black;
-}
+        /* About Section */
+        .about {
+            text-align: center;
+            padding: 40px 0;
+        }
 
-#arrow {
-    position: relative;
-    animation: arrow-animation 1s;
-    animation-direction: alternate;
-    animation-iteration-count: infinite;
-}
+        .about p {
+            max-width: 600px;
+            margin: 0 auto;
+            margin-top: 10px;
+            line-height: 1.8;
+        }
 
-#purpose-p {
-    font-weight: 800;
-}
+        /* Projects Section */
+        .projects {
+            padding: 40px 0;
+        }
 
-#welcome-portfolio {
-    text-align: center;
-    font-weight: 600;
-    margin: 13px 0px;
-}
+        .projects h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-.container {
-    width: 80%;
-    margin: 0 auto;
-}
+        .projects .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
 
-.portfolio-item {
-    margin-bottom: 1em;
-}
+        .project {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: transform 0.3s;
+        }
 
-.icon::before{
-    font-family: 'Font Awesome 5 Free';
-    color: black;
-}
+        .project:hover {
+            transform: translateY(-10px);
+        }
 
-.icon > .label {
-    display: none;
-}
+        .project h3 {
+            margin-bottom: 10px;
+        }
 
-.icon.solid:before {
-    font-weight: 900;
-}
+        .project p {
+            margin-bottom: 10px;
+        }
 
-.icon.brands::before{
-    font-family: 'Font 5 Awesome Brands';
-}
+        .project a {
+            font-weight: 600;
+        }
 
-.label {
-    font: inherit;
-}
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
 
-@keyframes arrow-animation {
-    from {left: -2px;}
-    to {left: 0px;}
-}
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
 
-@media screen and (max-width:1288px){
+            .hero h2 {
+                font-size: 1.8rem;
+            }
 
-    header{
-        padding: 7px 0px;
-    }
-
-    nav{
-        position: fixed;
-        bottom: 0;
-        margin-left: 5%;
-        margin-right: 5%;
-        padding: 5px 2%;
-        display: block;
-        font-size: 18px;
-        text-align: center;
-        background-color: darkcyan;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-    }
-
-    nav ul li{
-        margin: 0px 0px;
-        padding: 5px 25px;
-        display: inline-block;
-        list-style: none;
-        border-style: solid;
-        border-radius: 10px;
-
-    }
-
-    nav ul li:active{
-        color: blue;
-    }
-
-    #head-doc, #main-doc{
-        margin-left: 0px;
-        padding: 0px 0px 0px 0px;
-    }
-
-    #self-des li{
-        list-style: square outside;
-    }
-}
-
-@media screen and (min-width:1288px){
-    nav {
-        position: absolute;
-        margin: 120px 35% 0px 46%;    
-    }
-}
+            .hero p {
+                font-size: 1rem;
+            }
+        }

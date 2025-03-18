@@ -1,109 +1,51 @@
 <!DOCTYPE html>
-<html lang="en-AU">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="referrer" content="origin">
-    <meta name="description" content="This is a test website for Eric's portfolio">
-    <meta name="keywords" content="portfolio, hobby, trying out, test, beginners portfolio">
-    <meta name="author" content="Eric Armando Recinos">
-    <title>Eric Armando Recinos' Portfolio</title>
+    <title>Eric's Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/mystyle.css">
 </head>
-
 <body>
     <header>
-        <nav id="navTag">
+        <h1 id="my-portfolio-h1">Eric Recinos Portfolio</h1>
+        <nav>
             <ul>
                 <li><a href="#about">About</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
-        <div id="head-doc">
-            <h1>Eric Armando Recinos' Portfolio</h1>
-            <br>
-            <ul id="self-des">
-                <li>Hobbyist - </li>
-                <li>Computer-literate - </li>
-                <li>Growth-oriented - </li>
-                <li>Goal-oriented</li>
-            </ul>
-        </div>
     </header>
-    <div id="main-doc">
-        <div class="container">
-            <section id="about">
-                <h2>About Me</h2>
-                <p>Hello! I'm Eric, a hobbyist who's very much interested in how things work with technology.
-                    I have a passion for creating wacky software/hardware projects.
-                    <br>
-                    <br>
-                    I am a beginner, keen to learn more about web design and programming.
-                    <br>
-                    <br>
-                    Slowly learning but also consistant!
-                    <br>
-                </p>
-                <p id="welcome-portfolio">Welcome to my portfolio!</p>
-            </section>
-            <br>
-            <section id="portfolio">
-                <h2 id="my-work-heading">My Work</h2>
-                <br>
-                <div class="portfolio-item">
-                    <h3>This portfolio</h3>
-                    <br>
-                    <p>This portfolio website. This project involves with HTML and CSS. Soon to learn, Javascript!</p>
-                    <p>Made this portfolio responsive and adjusted for mobile devices.</p>
-                </div>
-                <div class="portfolio-item">
-                    <h3>Scripted questions and responses</h3>
-                    <br>
-                    <p>This project is a simple script where the computer asks for the users; name, age and gender;
-                        Gives a response with those variables uniquely on the terminal. This project was written in C.
-                    </p>
-                </div>
-                <div class="portfolio-item">
-                    <h3>Self watering plant</h3>
-                    <br>
-                    <p>This project was for CS50x online course, the device would check if the soil is dry
-                        then
-                        will pump water to the plant and will stop until the soil is moist.<br>
-                        It repeats itself endlessly... until the battery dies! This project was written in C++ with an
-                        arduino, pump and a breadboard.</p>
-                        <br>
-                    <iframe src="https://www.youtube.com/embed/Eh3bcqfWor0" crossorigin=""></iframe>
-                </div>
-                <div class="portfolio-item">
-                    <h3>W.I.P</h3>
-                    <br>
-                    <p>More to come.</p>
-                </div>
-            </section>
 
-            <section id="contact">
-                <h2>Contact Me</h2>
-                <br>
-                <p>If you would like to get in touch, please email me &nbsp;<span class="icon solid fa-arrow-right"
-                        id="arrow"></span>
-                    &nbsp;
-                    <a href="mailto:web-admin@ericrecinos.dev" class="icon solid fa-envelope"><span
-                            class="label">Email</span></a>.
-                </p>
-                <br>
-            </section>
+    <section class="hero">
+        <h2>Welcome to My Portfolio</h2>
+        <p>I'm passionate about building things and showcasing my skills. Explore my projects and get to know me better!</p>
+        <a href="#projects">View My Work</a>
+    </section>
+
+    <section class="about" id="about">
+        <h2>About Me</h2>
+        <p>I am a creative individual with a knack for problem-solving and putting things together. My skills range from HTML to crafting innovative solutions for real world challenges.</p>
+        <p>Ready to use my skills and leverage using A.I for the speed of development.</p>
+    </section>
+
+    <section class="projects" id="projects">
+        <h2>Projects</h2>
+        <div class="project-grid">
+            <div class="project">
+                <h3>W.I.P - Group Video for Personal Trainer Project</h3>
+                <p>A timer specifically made for group sessions.</p>
+                <p>How to use: Add time slots and input the time. Then select videos for each stations, showing instructions to the group.</p>
+                <a href="ACPT-Group/ACPT-Group-App.html">View Details</a>
+            </div>
         </div>
+    </section>
 
-        <footer>
-            <p id="purpose-p">The purpose of this portfolio, is to show my coding journey! c:</p>
-            <br>
-            <p>Updated: 19/08/24</p>
-        </footer>
-    </div>
+    <footer id="contact">
+        <p>Updated: 18/08/25</p>
+        <p>Contact me: <a href="mailto:web-admin@ericrecinos.dev">Email Eric</a></p>
+    </footer>
 </body>
-
-<script src="portfolio.js"></script>
-
 </html>

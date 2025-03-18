@@ -8,6 +8,8 @@ var navTag = document.getElementById("navTag");
 
 var headDoc = document.getElementById("head-doc");
 
+var clickedButton = document.getElementById("button");
+
 function isInViewport(element) {
     // Get the bounding client rectangle position in the viewport
     var bounding = element.getBoundingClientRect();
@@ -37,4 +39,5 @@ window.addEventListener('scroll', function (event){
         navTag.style.display = 'block';
     }
 }, false)
+
 

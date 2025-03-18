@@ -1,0 +1,1195 @@
+*{
+    margin: 0px;
+}
+
+/* For landscape */
+@media screen and (min-width: 1400px) {
+
+body{
+    margin: auto auto;
+    width: 1430px;
+    height: 800px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    padding: 0px;
+    background-color: #000000;
+    color: #ffffff;
+}
+
+h1, h2, h3 {
+    text-align: center;
+}
+
+p{
+    margin-top: 0px;
+    font-weight: 600;
+}
+
+input, select{
+    font-weight: 600;
+    text-align: center;
+}
+
+img{
+    height: 140px;
+    width: 150px;
+    position: absolute;
+    margin-top: 0px;
+    margin-left: 50px;
+}
+
+.session-container {
+    position: relative;
+    margin-top: -525px;
+    margin-left: 836px;
+    width: 600px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.timer-container{
+    background-color: gold;
+    color: black;
+    padding: 50px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+    width: 720px;
+}
+
+.timer-container p{
+    margin-top: -6px;
+    margin-bottom: 13px;
+    text-align: center;
+    font-weight: 900;
+}
+
+.timer-container #p-repeats{
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.group {
+    background-color: gold;
+    color: black;
+    margin-bottom: 0px;
+    padding: 4px;
+    border-radius: 50px;
+    box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
+    width: 340px;
+}
+
+#customize-page .group{
+    background-color: gold;
+    color: black;
+    margin-bottom: 10px;
+    padding: 16px 2px;
+    border-radius: 3px;
+    box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
+    margin-left: 2px;
+    width: 254px;
+}
+
+#customize-page .group h2{
+    padding: 16px 2px;
+}
+
+.group h3{
+    margin: 0px;
+}
+
+#p-repeats{
+    margin-left: 0%;
+    margin-top: 10px;
+    margin-bottom: -50px;
+}
+
+#X-p{
+    margin: 0px 0px;
+    margin-left: 0px;
+}
+
+#add-timer{
+    margin-left: 46%;
+    background-color: #98c661;
+    color: #000000;
+    border-color: #86912c;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+#add-station h1{
+    background-color: gold;
+    color: black;
+    margin-bottom: 20px;
+    padding: 10px 40px;
+    border-radius: 5px;
+    font-size: 70px;
+    text-align: center;
+}
+
+#button-remove{
+    background-color: gold;
+    color: black;
+    margin-bottom: 20px;
+    padding: 10px 45px;
+    border-radius: 5px;
+    font-size: 70px;
+    text-align: center;
+    border-color: gold;
+}
+
+#button-add-station{
+    background-color: gold;
+    color: black;
+    margin-bottom: 20px;
+    padding: 10px 40px;
+    border-radius: 5px;
+    font-size: 70px;
+    text-align: center;
+    border-color: gold;
+}
+
+#timeSlider{
+    width: 353px;
+    height: 21px;
+    margin-left: -3.5px;
+
+    appearance: none;
+    background-color: transparent;
+
+    position: absolute;
+    margin-top: -30px;
+    }
+
+input[type="range"]::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    appearance: none;
+    height: 13px;
+    width: 8px;
+    background: url('arrowdown.png');
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+}
+
+
+#note-p{
+    font-weight: 600;
+    margin-bottom: -28px;
+    margin-top: 29px;
+}
+
+#box-timer{
+    margin-left: 570px;
+    margin-right: 318px;
+}
+
+#container-time{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: stretch;
+    box-sizing: border-box;
+    position: absolute;
+    margin-top: -12px;
+}
+
+#time-bar{
+    border: none #ffffff 1px;
+    border-radius: 5px;
+    height: 6px;
+    max-height: 6px;
+    min-height: 6px;
+    width: 345px;
+    max-width: 345px;
+    min-width: 345px;
+    display: flex;
+    align-content: normal;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    contain: content;
+    table-layout: fixed;
+}
+
+
+
+#arrow{
+    margin-left: -4px !important;
+    margin-right: 0;
+    transition: left 0.1s linear;
+}
+
+#arrow-container{
+    
+    max-width: 345px;
+    min-width: 345px;
+    padding-left: 0px;
+}
+
+#arrow-text{
+    margin: auto;
+    font-size: 27px;
+    width: 345px;
+    max-width: 345px;
+    padding-left: 0px;
+}
+
+#arrow-img{
+    position: relative;
+    margin-left: 0px;
+    height: 18px;
+    width: 8px;
+}
+
+#green-bar{
+    border: solid green;
+}
+
+#darkmagenta-bar{
+    border: solid DarkMagenta;
+}
+
+#gold-bar{
+    border: solid gold;
+}
+
+#orange-bar{
+    border: solid orange;
+}
+
+
+#DodgerBlue-bar{
+    border: solid DodgerBlue;
+}
+
+#red-bar{
+    border: solid red;
+}
+
+button {
+    display: block;
+    margin-top: 10px;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.exercise{
+    margin: 0px auto;
+    margin-left: 15%;
+    margin-bottom: 5px;
+}
+
+.exercise button{
+    display: inline;
+    margin: 1px;
+    padding: 1px;    
+}
+
+#video-container-1, #video-container-2, #video-container-3,
+#video-container-4{
+    margin-top: 0px;
+    display: flex;
+    justify-content: space-around;
+}
+
+#video-container-3,
+#video-container-4{
+    margin-bottom: -10px;
+}
+
+#videos-note{
+    text-align: center;
+}
+
+.timer-container h2{
+    margin-bottom: 25px;
+}
+
+video {
+    max-width: 360px;
+    min-width: 334px;
+    max-height: 270px;
+    min-height: 240px;
+    margin-left: auto;
+    margin-right: auto;
+    border-left: 3px solid #000000;
+    border-right: 3px solid #000000;
+    border-bottom: 3px solid #000000;
+    background-color: #000000;
+
+}
+
+#remove-exercise p{
+    text-align: center;
+}
+
+#add-station p{
+    text-align: center;
+}
+
+.color-coded{
+    background-color: #ffffff;
+    font-size: large;
+}
+
+#warmup-container .exercise:first-child select{
+    background-color: orange;
+    font-size: large;
+}
+
+#warmup-container p, #cooldown-container p{
+    display: inline;
+}
+
+#cooldown-container .exercise:last-child select{
+    background-color: DodgerBlue;
+    font-size: large;
+}
+
+#color-not-selected{
+    text-align: center;
+}
+
+#color-green{
+    text-align: center;
+    background-color: green;
+}
+
+#color-orange{
+    text-align: center;
+    background-color: orange;
+}
+
+#color-dodgerblue{
+    text-align: center;
+    background-color: DodgerBlue;
+}
+
+#color-red{
+    text-align: center;
+    background-color: red;
+}
+
+#color-gold{
+    text-align: center;
+    background-color: gold;
+}
+
+#color-darkmagenta{
+    text-align: center;
+    background-color: DarkMagenta;
+}
+
+#duration-repeat{
+    margin-left: 46%;
+    text-align: center;
+    width: 71px;
+    margin-top: 6px;
+    margin-bottom: 30px;
+    font-size: large;
+}
+
+.duration-minutes, .duration-seconds{
+    font-size: large;
+    width: 150px;
+}
+
+
+#start-workout{
+    padding: 20px 150px;
+    font-size: 50px;
+    background-color: #02a041;
+    border-radius: 25px;
+    font-weight: 700;
+    border-color: darkgreen;
+}
+
+#add-station-group{
+    margin-left: 835px;
+    margin-top: 0px;
+    position: relative;
+    width: 600px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    
+}
+
+#station-add-container{
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+    position: absolute;
+    margin-top: 0px;
+    margin-left: 895px;
+    width: 500px;
+}
+
+#go-container{
+    position: absolute;
+    margin-top: 160px;
+    margin-left: 925px;
+}
+
+#go-container h3{
+    position: absolute;
+    margin-top: 125px;
+    margin-left: 70px;
+}
+
+#workout-page {
+    display: none;
+    color: #ffffff;
+}
+
+#session-h3{
+    margin-top: -40px;
+    margin-left: 70px;
+}
+
+#stations-container{
+    background-color: gold;
+    padding-bottom: 20px;
+    border-radius: 20px;
+    margin-top: 2px;
+    margin-right: 14px;
+    padding-left: 20px;
+    width: 1420px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 0px;
+    justify-content: center;
+}
+
+/* To do Fix stations */
+
+#current-exercise-timer{
+    margin-top: 30px;
+    margin-left: 250px;
+    margin-right: 250px;
+    margin-bottom: -2.6px;
+    border-radius: 25px 25px 0px 0px;
+    background-color: gold;
+}
+
+#controls-selections{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+#group1-current-exercise, #group2-current-exercise, 
+#group3-current-exercise, #group4-current-exercise,
+#group5-current-exercise, #group6-current-exercise,
+#group7-current-exercise, #group8-current-exercise{
+    text-align: center;
+    font-size: 32px;
+    font-weight: bolder;
+    border-radius: 0px 0px 30px 30px;
+    margin: 0px;
+    margin-left: 0px;
+    margin-right: auto;
+    max-width: 336px;
+    margin-top: -4px;
+    margin-bottom: 10px;
+    padding: 4px 50px;
+    background-color: #000000;
+    color: white;
+    box-shadow: 0 7px rgba(0, 0, 0, 0.1);
+}
+
+#group1-timer, #group2-timer{
+    text-align: center;
+    font-size: 40px;
+    font-weight: bolder;
+    padding: 10px;
+    color: #000000;
+    border-radius: 25px 25px 0px 0px;
+}
+
+#return-home, #pause-play{
+    background-color: gold;
+    color: black;
+    padding: 10px 40px;
+    border-radius: 5px;
+    font-size: 20px;
+    text-align: center;
+    font-weight: 700;
+}
+
+#workout-page-h1{
+    font-size: 60px;
+    margin-top: 30px;
+    margin-bottom: 0px;
+}
+
+.group #group1{
+    border-radius: 50px 0px 0px 0px;
+}
+
+.group #group2{
+    border-radius: 0px 50px 0px 0px;
+}
+
+h3 {
+    margin-bottom: 10px;
+}
+
+.group h3{
+    font-size: 45px;
+    margin-left: 0px;
+    margin-right: auto;
+    max-width: 430px;
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.1);
+    border-radius: 7px 7px 0px 0px;
+    border-top: 3px solid black;
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+    background-color: black;
+    color: white;
+}
+
+#exercise-timer{
+    margin-left: 0%;
+}
+
+#none-p{
+    margin-left: 0%;
+}
+
+#load-container{
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+#save-session-as, #load-button, #delete-button, #refresh-button, #rotate-button, #rotate-back-button{
+    display: inline;
+    padding: 3px;
+    background-color: gold;
+    color: black;
+    border-radius: 5px;
+    text-align: center;
+    border-color: gold;
+    font-weight: 600;
+}
+
+#rotate-button{
+    position: absolute;
+    background-color: orange;
+    border-color: orange;
+    visibility: hidden;
+}
+
+#rotate-back-button{
+    position: absolute;
+    background-color: orange;
+    border-color: orange;
+    margin-left: 65px;
+    visibility: hidden;
+}
+
+#delete-button{
+    margin-left: 50px;
+    background-color: red;
+    border-color: red;
+}
+
+#refresh-button{
+    margin-left: 50px;
+}
+
+#load-button{
+    background-color: greenyellow;
+    border-color: greenyellow;
+}
+
+}
+
+/* For portrait */
+@media screen and (max-width: 1399px) {
+    body{
+        margin: auto auto;
+        width: 1064px;
+        height: 1920px;
+        font-family: 'Courier New', Courier, monospace;
+    }
+    
+    body {
+        font-family: Arial, sans-serif;
+        padding: 0px;
+        background-color: #000000;
+        color: #ffffff;
+    }
+    
+    h1, h2, h3 {
+        text-align: center;
+    }
+    
+    p{
+        margin-top: 0px;
+        font-weight: 600;
+    }
+    
+    input, select{
+        font-weight: 600;
+        text-align: center;
+    }
+    
+    img{
+        height: 140px;
+        width: 150px;
+        position: absolute;
+        margin-top: 0px;
+        margin-left: 50px;
+    }
+    
+    .session-container {
+        display: flex;
+        justify-content: space-evenly;
+        margin-bottom: 20px;
+    }
+    
+    .timer-container{
+        background-color: gold;
+        color: black;
+        padding: 50px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin-bottom: 40px;
+    }
+    
+    .timer-container p{
+        margin-top: -6px;
+        margin-bottom: 13px;
+        text-align: center;
+        font-weight: 900;
+    }
+    
+    .timer-container #p-repeats{
+        font-weight: 700;
+        margin-bottom: 2px;
+    }
+    
+    .group {
+        background-color: gold;
+        color: black;
+        margin-bottom: 0px;
+        padding: 4px;
+        border-radius: 50px;
+        box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
+    }
+    
+    #customize-page .group{
+        background-color: gold;
+        color: black;
+        margin-bottom: 0px;
+        padding: 16px 2px;
+        border-radius: 3px;
+        box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
+        margin-left: 2px;
+    }
+    
+    #customize-page .group h2{
+        padding: 16px 2px;
+    }
+    
+    .group h3{
+        margin: 0px;
+    }
+    
+    #p-repeats{
+        margin-left: 0%;
+        margin-top: 10px;
+        margin-bottom: -50px;
+    }
+    
+    #X-p{
+        margin: 0px 0px;
+        margin-left: 0px;
+    }
+    
+    #add-timer{
+        margin-left: 46%;
+        background-color: #98c661;
+        color: #000000;
+        border-color: #86912c;
+        border-radius: 12px;
+        font-weight: 600;
+    }
+    
+    #add-station h1{
+        background-color: gold;
+        color: black;
+        margin-bottom: 20px;
+        padding: 10px 40px;
+        border-radius: 5px;
+        font-size: 70px;
+        text-align: center;
+    }
+    
+    #button-remove{
+        background-color: gold;
+        color: black;
+        margin-bottom: 20px;
+        padding: 10px 45px;
+        border-radius: 5px;
+        font-size: 70px;
+        text-align: center;
+        border-color: gold;
+    }
+    
+    #button-add-station{
+        background-color: gold;
+        color: black;
+        margin-bottom: 20px;
+        padding: 10px 40px;
+        border-radius: 5px;
+        font-size: 70px;
+        text-align: center;
+        border-color: gold;
+    }
+
+    #timeSlider{
+        width: 353px;
+        height: 21px;
+        margin-left: -3.5px;
+
+        appearance: none;
+        background-color: transparent;
+
+        position: absolute;
+        margin-top: -30px;
+        }
+
+    input[type="range"]::-webkit-slider-thumb{
+        -webkit-appearance: none;
+        appearance: none;
+        height: 13px;
+        width: 8px;
+        background: url('arrowdown.png');
+        background-size: contain;
+        border: none;
+        cursor: pointer;
+    }
+    
+    #note-p{
+        font-weight: 600;
+        margin-bottom: -28px;
+        margin-top: 29px;
+    }
+    
+    #box-timer{
+        margin-left: 400px;
+        margin-right: 318px;
+    }
+    
+    #container-time{
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: stretch;
+        box-sizing: border-box;
+        position: absolute;
+        margin-top: -12px;
+    }
+    
+    #time-bar{
+        border: none #ffffff 1px;
+        border-radius: 5px;
+        height: 6px;
+        max-height: 6px;
+        min-height: 6px;
+        width: 345px;
+        max-width: 345px;
+        min-width: 345px;
+        display: flex;
+        align-content: normal;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: normal;
+        align-items: stretch;
+        contain: content;
+        table-layout: fixed;
+    }
+    
+    
+    
+    #arrow{
+        margin-left: -4px !important;
+        margin-right: 0;
+        transition: left 0.1s linear;
+    }
+    
+    #arrow-container{
+        
+        max-width: 345px;
+        min-width: 345px;
+        padding-left: 0px;
+    }
+    
+    #arrow-text{
+        margin: auto;
+        font-size: 27px;
+        width: 345px;
+        max-width: 345px;
+        padding-left: 0px;
+    }
+    
+    #arrow-img{
+        position: relative;
+        margin-left: 0px;
+        height: 18px;
+        width: 8px;
+    }
+    
+    #green-bar{
+        border: solid green;
+    }
+    
+    #darkmagenta-bar{
+        border: solid DarkMagenta;
+    }
+    
+    #gold-bar{
+        border: solid gold;
+    }
+    
+    #orange-bar{
+        border: solid orange;
+    }
+    
+    
+    #DodgerBlue-bar{
+        border: solid DodgerBlue;
+    }
+    
+    #red-bar{
+        border: solid red;
+    }
+    
+    button {
+        display: block;
+        margin-top: 10px;
+        padding: 10px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .exercise{
+        margin: 0px auto;
+        margin-left: 25%;
+        margin-bottom: 5px;
+    }
+    
+    .exercise button{
+        display: inline;
+        margin: 1px;
+        padding: 1px;    
+    }
+    
+    #video-container-1, #video-container-2, #video-container-3,
+    #video-container-4{
+        margin-top: 0px;
+        display: flex;
+        justify-content: space-around;
+    }
+    
+    #video-container-3,
+    #video-container-4{
+        margin-bottom: -10px;
+    }
+    
+    #videos-note{
+        text-align: center;
+    }
+    
+    .timer-container h2{
+        margin-bottom: 25px;
+    }
+    
+    video {
+        width: 90%;
+        max-width: 472px;
+        min-width: 430px;
+        max-height: 270px;
+        min-height: 240px;
+        margin-left: auto;
+        margin-right: auto;
+        border-left: 3px solid #000000;
+        border-right: 3px solid #000000;
+        border-bottom: 3px solid #000000;
+        background-color: #000000;
+    
+    }
+    
+    #remove-exercise p{
+        text-align: center;
+    }
+    
+    #add-station p{
+        text-align: center;
+    }
+    
+    .color-coded{
+        background-color: #ffffff;
+        font-size: large;
+    }
+    
+    #warmup-container .exercise:first-child select{
+        background-color: orange;
+        font-size: large;
+    }
+    
+    #warmup-container p, #cooldown-container p{
+        display: inline;
+    }
+    
+    #cooldown-container .exercise:last-child select{
+        background-color: DodgerBlue;
+        font-size: large;
+    }
+    
+    #color-not-selected{
+        text-align: center;
+    }
+    
+    #color-green{
+        text-align: center;
+        background-color: green;
+    }
+    
+    #color-orange{
+        text-align: center;
+        background-color: orange;
+    }
+    
+    #color-dodgerblue{
+        text-align: center;
+        background-color: DodgerBlue;
+    }
+    
+    #color-red{
+        text-align: center;
+        background-color: red;
+    }
+    
+    #color-gold{
+        text-align: center;
+        background-color: gold;
+    }
+    
+    #color-darkmagenta{
+        text-align: center;
+        background-color: DarkMagenta;
+    }
+    
+    #duration-repeat{
+        margin-left: 46%;
+        text-align: center;
+        width: 71px;
+        margin-top: 6px;
+        margin-bottom: 30px;
+        font-size: large;
+    }
+    
+    .duration-minutes, .duration-seconds{
+        font-size: large;
+        width: 150px;
+    }
+    
+    
+    #start-workout{
+        padding: 20px 150px;
+        font-size: 50px;
+        background-color: #02a041;
+        border-radius: 25px;
+        font-weight: 700;
+        border-color: darkgreen;
+    }
+    
+    #add-station-group{
+        display: flex;
+        justify-content: space-evenly;
+        margin-bottom: 20px;
+    }
+    
+    #station-add-container{
+        display: flex;
+        justify-content: space-evenly;
+        margin-bottom: 20px;
+    }
+    
+    #workout-page {
+        display: none;
+        color: #ffffff;
+    }
+    
+    #session-h3{
+        margin-top: -40px;
+        margin-left: 70px;
+    }
+    
+    #stations-container{
+        background-color: gold;
+        padding-bottom: 20px;
+        border-radius: 20px;
+        margin-top: 2px;
+        margin-right: 14px;
+        padding-left: 20px;
+    }
+    
+    #current-exercise-timer{
+        margin-top: 30px;
+        margin-left: 250px;
+        margin-right: 250px;
+        margin-bottom: -2.6px;
+        border-radius: 25px 25px 0px 0px;
+        background-color: gold;
+    }
+    
+    #controls-selections{
+        margin-top: 10px;
+        display: flex;
+        flex-direction: row-reverse;
+    }
+    
+    #group1-current-exercise, #group2-current-exercise, 
+    #group3-current-exercise, #group4-current-exercise,
+    #group5-current-exercise, #group6-current-exercise,
+    #group7-current-exercise, #group8-current-exercise{
+        text-align: center;
+        font-size: 32px;
+        font-weight: bolder;
+        border-radius: 0px 0px 30px 30px;
+        margin: 0px;
+        margin-left: 0px;
+        margin-right: auto;
+        max-width: 336px;
+        margin-top: -4px;
+        margin-bottom: 10px;
+        padding: 4px 50px;
+        background-color: #000000;
+        color: white;
+        box-shadow: 0 7px rgba(0, 0, 0, 0.1);
+    }
+    
+    #group1-timer, #group2-timer{
+        text-align: center;
+        font-size: 40px;
+        font-weight: bolder;
+        padding: 10px;
+        color: #000000;
+        border-radius: 25px 25px 0px 0px;
+    }
+    
+    #return-home, #pause-play{
+        background-color: gold;
+        color: black;
+        padding: 10px 40px;
+        border-radius: 5px;
+        font-size: 20px;
+        text-align: center;
+        font-weight: 700;
+    }
+    
+    #workout-page-h1{
+        font-size: 60px;
+        margin-top: 30px;
+        margin-bottom: 0px;
+    }
+    
+    .group #group1{
+        border-radius: 50px 0px 0px 0px;
+    }
+    
+    .group #group2{
+        border-radius: 0px 50px 0px 0px;
+    }
+    
+    h3 {
+        margin-bottom: 10px;
+    }
+    
+    .group h3{
+        font-size: 45px;
+        margin-left: 0px;
+        margin-right: auto;
+        max-width: 430px;
+        box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.1);
+        border-radius: 7px 7px 0px 0px;
+        border-top: 3px solid black;
+        border-left: 3px solid black;
+        border-right: 3px solid black;
+        background-color: black;
+        color: white;
+    }
+    
+    #exercise-timer{
+        margin-left: 0%;
+    }
+    
+    #none-p{
+        margin-left: 0%;
+    }
+    
+    #load-container{
+        margin-top: 0px;
+        margin-bottom: 10px;
+    }
+    
+    #save-session-as, #load-button, #delete-button, #refresh-button, #rotate-button, #rotate-back-button{
+        display: inline;
+        padding: 3px;
+        background-color: gold;
+        color: black;
+        border-radius: 5px;
+        text-align: center;
+        border-color: gold;
+        font-weight: 600;
+    }
+    
+    #rotate-button{
+        position: absolute;
+        background-color: orange;
+        border-color: orange;
+        visibility: hidden;
+    }
+    
+    #rotate-back-button{
+        position: absolute;
+        background-color: orange;
+        border-color: orange;
+        margin-left: 65px;
+        visibility: hidden;
+    }
+    
+    #delete-button{
+        margin-left: 50px;
+        background-color: red;
+        border-color: red;
+    }
+    
+    #refresh-button{
+        margin-left: 50px;
+    }
+    
+    #load-button{
+        background-color: greenyellow;
+        border-color: greenyellow;
+    }    
+
+
+}
