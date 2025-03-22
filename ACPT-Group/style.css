@@ -157,7 +157,7 @@ img{
 #timeSlider{
     width: 353px;
     height: 21px;
-    margin-left: -3.5px;
+    margin-left: -3px;
 
     appearance: none;
     background-color: transparent;
@@ -763,7 +763,7 @@ h3 {
     #timeSlider{
         width: 353px;
         height: 21px;
-        margin-left: -3.5px;
+        margin-left: -3px;
 
         appearance: none;
         background-color: transparent;

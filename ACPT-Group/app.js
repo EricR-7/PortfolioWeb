@@ -73,6 +73,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentTime = 0;
     let exited = false;
 
+    let tmpRepeat = 0;
+    let stopTimerFunction = false;
+
     //Save for save function
     let exerciseTotalCells = 1; //For total amount for each minutes, seconds and color
     let addCellExerciseCount = 0; //For load function to load page
@@ -683,6 +686,7 @@ document.addEventListener('DOMContentLoaded', () => {
         beep.play();
         longBeep.play();
         longBeep.pause();
+        tmpRepeat = repeat;
         playNextExercise();
 
         //Check 4 stations video
@@ -1046,11 +1050,22 @@ document.addEventListener('DOMContentLoaded', () => {
             tmpTimer = userPaused(tmpTimer, timer, count, interval);
 
             //Add seek bar COPY FOR OTHER FUNCTIONS and pause function to work with
-            timeSlider.addEventListener("input", (e) => {
+            timeSlider.addEventListener("click", (e) => {
                 currentTime = parseInt(e.target.value, 10);
                 timer = updateTimerDisplay(totalDuration);
                 tmpTimer = updateTimerDisplay(totalDuration);
-                console.log('Timer is changed to: ', timer);
+                //console.log('Timer is changed to: ', timer);
+
+                let rect = timeSlider.getBoundingClientRect();
+                let clickX = e.clientX - rect.left; // Click position relative to seek bar
+                let seekBarWidth = rect.width;
+
+                let clickedTime = (clickX / seekBarWidth) * totalDuration; // Convert to time
+                stopTimerFunction = true;
+                jumpToExercise(clickedTime);
+
+                //group1CountTimer, sessionData.group1[currentExercise]
+
             });
 
             timer = tmpTimer;
@@ -1099,7 +1114,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //Single timer
     function startWorkoutTimer(groupText, group) {
-        console.log("Test:",);
         let totalGroup = 0;
         const Vminutes = parseInt(group.minutes) || 0;
         const Vseconds = parseInt(group.seconds) || 0;
@@ -1108,9 +1122,14 @@ document.addEventListener('DOMContentLoaded', () => {
         let timer = totalGroup, minutes, seconds;
         let tmpTimer = timer;
         let count = 0;
-
         let interval = setInterval(function () {
 
+            if (stopTimerFunction == true) {
+                clearInterval(interval);
+                timer = 0;
+                stopTimerFunction = false;
+            }
+            //pause event listener
             tmpTimer = userPaused(tmpTimer, timer, count, interval);
 
             timer = tmpTimer;
@@ -1146,7 +1165,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentExercise++;
                 playNextExercise();
             }
-
         }, 1000);
     }
 
@@ -1357,7 +1375,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let seconds = parseFloat(warmUp[i].seconds) || 0;
 
             let repeated = 1;
-            let combined = (parseFloat(minutes * 60) + (seconds % 60)) * repeated;
+            let combined = (parseFloat(minutes * 60) + parseFloat(seconds)) * repeated;
 
             let pixelOnePercent = maxPixel / 1000;
             let timerDivide = timer / 1000;
@@ -1406,8 +1424,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 counting = pixelOnePercent / timerDivide;
 
+                console.log('Filling Minutes Divs: ', minutes);
+                console.log('Filling Seconds Divs: ', seconds);
+
                 let repeated = 1;
-                let combined = (parseFloat(minutes * 60) + parseFloat(seconds % 60)) * repeated;
+                let combined = (parseFloat(minutes * 60) + parseFloat(seconds)) * repeated;
 
                 let paddingInc = (combined * counting) / exerciseTotalCells;
 
@@ -1442,7 +1463,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let repeated = 1;
 
-            let combined = (parseFloat(minutes * 60) + parseFloat(seconds % 60)) * repeated;
+            let combined = (parseFloat(minutes * 60) + parseFloat(seconds)) * repeated;
 
             let pixelOnePercent = maxPixel / 1000;
             let timerDivide = timer / 1000;
@@ -1506,6 +1527,64 @@ document.addEventListener('DOMContentLoaded', () => {
         return timer;
     }
 
+    function jumpToExercise(clickedTime) {
+
+        let tmpExercisePosition = sessionData.group1.length * tmpRepeat;
+        let sessionDataTemp = sessionData.group1.length;
+
+        let matchedIndex = 0;
+        let accumulatedTime = 0;
+        let temp = parseInt((clickedTime / (totalDuration / sessionDataTemp)) * tmpRepeat);
+        let tmpRepeatGlobal = repeatFirstCellCount;
+
+
+        for (let j = 0; j < tmpRepeat; j++) {
+            for (let i = 0; i < sessionData.group1.length; i++) {
+                accumulatedTime += ((sessionData.group1[i].minutes * 60) + sessionData.group1[i].seconds);
+                if (clickedTime <= accumulatedTime) {
+                    if (repeat > 1) {
+                        console.log("Pass repeated cell checker");
+                        matchedIndex = temp + 1; //Leave this alone
+                        break;
+                    }
+                    if (repeat == 1) {
+                        console.log("Pass repeated cell checker");
+                        //temp = parseInt((clickedTime / (totalDuration / sessionDataTemp)) * tmpRepeat);
+                        matchedIndex = temp; //Leave this alone
+                        break;
+                    }
+                    if (repeat <= 0) {
+                        console.log("Pass repeated removed");
+                        matchedIndex = temp; //Leave this alone
+                        break;
+                    }
+                    break;
+                }
+            }
+
+            if (matchedIndex >= sessionDataTemp) {
+                matchedIndex = parseInt((matchedIndex / tmpRepeat) - repeatFirstCellCount);
+            }
+        }
+
+        let divideDurRep = totalDuration / tmpRepeat;
+        let divideDurCT = totalDuration - clickedTime;
+
+        let totalRep = parseInt(divideDurCT / divideDurRep);
+
+        repeat = totalRep + 1;
+
+        console.log("Total reps: ", repeat);
+
+        //Fix time
+        console.log("Jumping to exercise index:", matchedIndex, "Repeating from: ", repeat, " Temp: ", temp);
+        currentExercise = matchedIndex - 1;
+        
+    }
+
+
+
+
 
 
 
@@ -1529,6 +1608,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateTotalTime();
         //When clicked home video set to default play
         isPaused = false;
+        timeSlider.value = 0;
         playPauseButton.textContent = 'Pause';
         //
         workoutPage.style.display = 'none';
