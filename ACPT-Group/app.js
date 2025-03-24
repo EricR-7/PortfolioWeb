@@ -1528,58 +1528,51 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function jumpToExercise(clickedTime) {
-
-        let tmpExercisePosition = sessionData.group1.length * tmpRepeat;
-        let sessionDataTemp = sessionData.group1.length;
-
-        let matchedIndex = 0;
+        let warmUpDiv = (sessionData.group1Single[current].minutes * 60) + sessionData.group1Single[current].seconds;
+        let coolDiv = (sessionData.group1Cool[current].minutes * 60) + sessionData.group1Cool[current].seconds;
+    
+        let sessionDataTemp = sessionData.group1.length; // Total exercises in a full cycle
+        let cycleDuration = totalDuration / tmpRepeat; // Duration of one full repeat cycle
+        let currentCycle = Math.floor(clickedTime / cycleDuration); // Find which repeat cycle was clicked
+    
+        let timeInCycle = clickedTime % cycleDuration; // Time within that specific cycle
         let accumulatedTime = 0;
-        let temp = parseInt((clickedTime / (totalDuration / sessionDataTemp)) * tmpRepeat);
-        let tmpRepeatGlobal = repeatFirstCellCount;
-
-
-        for (let j = 0; j < tmpRepeat; j++) {
-            for (let i = 0; i < sessionData.group1.length; i++) {
-                accumulatedTime += ((sessionData.group1[i].minutes * 60) + sessionData.group1[i].seconds);
-                if (clickedTime <= accumulatedTime) {
-                    if (repeat > 1) {
-                        console.log("Pass repeated cell checker");
-                        matchedIndex = temp + 1; //Leave this alone
-                        break;
-                    }
-                    if (repeat == 1) {
-                        console.log("Pass repeated cell checker");
-                        //temp = parseInt((clickedTime / (totalDuration / sessionDataTemp)) * tmpRepeat);
-                        matchedIndex = temp; //Leave this alone
-                        break;
-                    }
-                    if (repeat <= 0) {
-                        console.log("Pass repeated removed");
-                        matchedIndex = temp; //Leave this alone
-                        break;
-                    }
-                    break;
-                }
+        let matchedIndex = 0;
+    
+        // Find the exact exercise within the cycle
+        for (let i = 0; i < sessionDataTemp; i++) {
+            let exerciseDuration = (sessionData.group1[i].minutes * 60) + sessionData.group1[i].seconds;
+    
+            if (timeInCycle < accumulatedTime + (exerciseDuration / 2)) {
+                repeatFirstCellCount = 0;
+                matchedIndex = i;
+                break;
             }
-
-            if (matchedIndex >= sessionDataTemp) {
-                matchedIndex = parseInt((matchedIndex / tmpRepeat) - repeatFirstCellCount);
-            }
+    
+            accumulatedTime += exerciseDuration;
         }
 
-        let divideDurRep = totalDuration / tmpRepeat;
-        let divideDurCT = totalDuration - clickedTime;
+        accumulatedTime += warmUpDiv;
+        accumulatedTime += coolDiv;
 
-        let totalRep = parseInt(divideDurCT / divideDurRep);
 
-        repeat = totalRep + 1;
 
-        console.log("Total reps: ", repeat);
+        let tmpForCool = accumulatedTime - coolDiv;
 
-        //Fix time
-        console.log("Jumping to exercise index:", matchedIndex, "Repeating from: ", repeat, " Temp: ", temp);
-        currentExercise = matchedIndex - 1;
-        
+    
+        // **Ensure we don't skip on the first exercise of a repeat cycle**
+        if (matchedIndex === 0 && timeInCycle < accumulatedTime) {
+            matchedIndex = -1; // Prevents jumping to the next exercise too soon
+        } else {
+            matchedIndex = Math.max(matchedIndex - 1, - 1); // Standard correction
+        }
+    
+        // Adjust repeat count correctly when in the last cycle
+        repeat = Math.max(tmpRepeat - currentCycle, 1); 
+    
+        currentExercise = matchedIndex;
+    
+        console.log("Jumping to exercise index:", matchedIndex, "Remaining repeats: ", repeat);
     }
 
 
