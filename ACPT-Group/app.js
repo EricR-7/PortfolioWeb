@@ -75,6 +75,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let tmpRepeat = 0;
     let stopTimerFunction = false;
+    let stopWarmUpFunction = false;
+    let stopCoolFunction = false;
+    let insideDivs = false;
+    let triggerZero = false;
+
+    //Videos set to none
+    group1Video.src = '';
+    group2Video.src = '';
+    group3Video.src = '';
+    group4Video.src = '';
 
     //Save for save function
     let exerciseTotalCells = 1; //For total amount for each minutes, seconds and color
@@ -953,10 +963,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function togglePlayPause() {
         if (isPaused) {
-            group1Video.play();
-            group2Video.play();
-            group3Video.play();
-            group4Video.play();
+            if(group1Video.src){
+                group1Video.play();
+            }
+
+            if(group2Video.src){
+                group2Video.play();
+            }
+
+            if(group3Video.src){
+                group3Video.play();
+            }
+
+            if(group4Video.src){
+                group4Video.play();
+            }
             //5-6
             group5Play = document.getElementById('group-5-video');
             group6Play = document.getElementById('group-6-video');
@@ -1054,7 +1075,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentTime = parseInt(e.target.value, 10);
                 timer = updateTimerDisplay(totalDuration);
                 tmpTimer = updateTimerDisplay(totalDuration);
-                //console.log('Timer is changed to: ', timer);
 
                 let rect = timeSlider.getBoundingClientRect();
                 let clickX = e.clientX - rect.left; // Click position relative to seek bar
@@ -1062,9 +1082,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 let clickedTime = (clickX / seekBarWidth) * totalDuration; // Convert to time
                 stopTimerFunction = true;
+                
                 jumpToExercise(clickedTime);
-
-                //group1CountTimer, sessionData.group1[currentExercise]
 
             });
 
@@ -1148,9 +1167,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
             document.getElementById('return-home').addEventListener('click', () => {
+                document.getElementById('group1-timer').style.backgroundColor = "gold";
                 clearInterval(interval);
                 timer = 0;
                 currentTime = 0;
+                groupText.textContent = `00:00`;
                 beep.pause();
                 longBeep.pause();
                 console.log("Left workout page");
@@ -1182,10 +1203,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //Warmup timer function
     function startWarmup(groupText, group) {
+        groupText.textContent = `00:00`;
         let totalGroup = 0;
         const Vminutes = parseInt(group.minutes) || 0;
         const Vseconds = parseInt(group.seconds) || 0;
         totalGroup += Vminutes * 60 + Vseconds;
+        stopWarmUpFunction = false;
         if (Vseconds > 0 || Vminutes > 0) {
 
             let timer = totalGroup, minutes, seconds;
@@ -1214,6 +1237,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     clearInterval(interval);
                     timer = 0;
                     currentTime = 0;
+                    groupText.textContent = `00:00`;
                     beep.pause();
                     longBeep.pause();
                     console.log("Left workout page");
@@ -1223,11 +1247,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     longBeep.play();
                 }
 
+                if(stopWarmUpFunction == true){
+                    clearInterval(interval);
+                    timer = 0;
+                    stopWarmUpFunction = false;
+                    //playNextExercise();
+                }
+
                 if (--timer <= 0) {
                     clearInterval(interval);
                     repeatFirstCellCount = 0;
                     playNextExercise();
                 }
+
 
             }, 1000);
         }
@@ -1528,51 +1560,92 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function jumpToExercise(clickedTime) {
-        let warmUpDiv = (sessionData.group1Single[current].minutes * 60) + sessionData.group1Single[current].seconds;
-        let coolDiv = (sessionData.group1Cool[current].minutes * 60) + sessionData.group1Cool[current].seconds;
-    
+        let warmUpTime = (sessionData.group1Single[current].minutes * 60) + sessionData.group1Single[current].seconds;
+        let coolDownTime = (sessionData.group1Cool[current].minutes * 60) + sessionData.group1Cool[current].seconds;
+        let mainWorkoutTime = totalDuration - (warmUpTime + coolDownTime);
+
         let sessionDataTemp = sessionData.group1.length; // Total exercises in a full cycle
-        let cycleDuration = totalDuration / tmpRepeat; // Duration of one full repeat cycle
+        let cycleDuration = mainWorkoutTime / tmpRepeat;
         let currentCycle = Math.floor(clickedTime / cycleDuration); // Find which repeat cycle was clicked
-    
+
         let timeInCycle = clickedTime % cycleDuration; // Time within that specific cycle
         let accumulatedTime = 0;
         let matchedIndex = 0;
-    
-        // Find the exact exercise within the cycle
-        for (let i = 0; i < sessionDataTemp; i++) {
-            let exerciseDuration = (sessionData.group1[i].minutes * 60) + sessionData.group1[i].seconds;
-    
-            if (timeInCycle < accumulatedTime + (exerciseDuration / 2)) {
-                repeatFirstCellCount = 0;
-                matchedIndex = i;
-                break;
-            }
-    
-            accumulatedTime += exerciseDuration;
+        let newRepeat = 1;
+        let section = "main"; // Tracks which section we're in
+
+
+        //Check if user clicked within Warm-Up
+        if (clickedTime <= warmUpTime) {
+            repeatFirstCellCount = 1;
+            stopCoolFunction = true;
+            stopTimerFunction = true;
+            section = "warmup";
+            currentExercise = 0;
+            newRepeat = tmpRepeat;
+        }
+        //Check if user clicked within Cooldown
+        else if (clickedTime >= (warmUpTime + mainWorkoutTime)) {
+            stopCoolFunction = false;
+            stopWarmUpFunction = true;
+            stopTimerFunction = true;
+            currentExercise = 0;
+            repeatFirstCellCount = 0;
+            section = "cooldown";
+            repeat = 1;
+            endCooldown(group1CountTimer, sessionData.group1Cool[current]);
         }
 
-        accumulatedTime += warmUpDiv;
-        accumulatedTime += coolDiv;
-
-
-
-        let tmpForCool = accumulatedTime - coolDiv;
-
+        // Find the exact exercise within the cycle
+        else {
+            stopWarmUpFunction = true;;
+            insideDivs = true;
+            repeatFirstCellCount = 0;
+            stopCoolFunction = true;
+            let timeInMain = clickedTime - (warmUpTime);
+            let currentCycle = Math.floor(timeInMain / cycleDuration);
+            let timeInCycle = timeInMain % cycleDuration;
     
+            accumulatedTime = 0;
+    
+            for (let i = 0; i < sessionData.group1.length; i++) {
+                let exerciseDuration = (sessionData.group1[i].minutes * 60) + sessionData.group1[i].seconds;
+    
+                if (timeInCycle < accumulatedTime + (exerciseDuration / 2)) {
+                    matchedIndex = i;
+                    break;
+                }
+    
+                accumulatedTime += exerciseDuration;
+            }
+    
+            newRepeat = Math.max(tmpRepeat - currentCycle, 1);
+            currentExercise = matchedIndex;
+        }
+    
+
+        //accumulatedTime += warmUpTime;
+        //accumulatedTime += coolDownTime;
+
+
         // **Ensure we don't skip on the first exercise of a repeat cycle**
         if (matchedIndex === 0 && timeInCycle < accumulatedTime) {
             matchedIndex = -1; // Prevents jumping to the next exercise too soon
+            newRepeat = Math.max(newRepeat - 1, 1);
         } else {
             matchedIndex = Math.max(matchedIndex - 1, - 1); // Standard correction
         }
-    
+
+        if(isPaused == true){
+            matchedIndex = matchedIndex + 1;
+        }
         // Adjust repeat count correctly when in the last cycle
-        repeat = Math.max(tmpRepeat - currentCycle, 1); 
-    
+        repeat = newRepeat;
+
         currentExercise = matchedIndex;
-    
+
         console.log("Jumping to exercise index:", matchedIndex, "Remaining repeats: ", repeat);
+
     }
 
 

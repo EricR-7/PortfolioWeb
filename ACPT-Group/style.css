@@ -156,21 +156,21 @@ img{
 
 #timeSlider{
     width: 353px;
-    height: 21px;
+    height: 30px;
     margin-left: -3px;
 
     appearance: none;
     background-color: transparent;
 
     position: absolute;
-    margin-top: -30px;
+    margin-top: -36px;
     }
 
 input[type="range"]::-webkit-slider-thumb{
     -webkit-appearance: none;
     appearance: none;
-    height: 13px;
-    width: 8px;
+    height: 16px;
+    width: 10px;
     background: url('arrowdown.png');
     background-size: contain;
     border: none;
@@ -762,21 +762,21 @@ h3 {
 
     #timeSlider{
         width: 353px;
-        height: 21px;
+        height: 30px;
         margin-left: -3px;
 
         appearance: none;
         background-color: transparent;
 
         position: absolute;
-        margin-top: -30px;
+        margin-top: -36px;
         }
 
     input[type="range"]::-webkit-slider-thumb{
         -webkit-appearance: none;
         appearance: none;
-        height: 13px;
-        width: 8px;
+        height: 16px;
+        width: 10px;
         background: url('arrowdown.png');
         background-size: contain;
         border: none;
