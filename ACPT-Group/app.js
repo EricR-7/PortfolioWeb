@@ -1091,6 +1091,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 jumpToExercise(clickedTime);
 
+                if(isPaused == true){
+                    currentExercise++;
+                }
+
+                //isPaused == false;
+                //playPauseButton.textContent = 'Pause';
 
                 timeSlider.value = currentTime;
 
