@@ -827,6 +827,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (sessionData.group1[currentExercise]) {
                     //playVideo(group1Video, group1VideoFiles[currentExercise]);
                     startWorkoutTimer(group1CountTimer, sessionData.group1[currentExercise]);
+                    stopWarmUpFunction = false;
                 }
             } else if (repeat > 1) {
                 repeatWorkout(repeat);
@@ -1165,6 +1166,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 clearInterval(workoutTimer);
                 timer = 0;
                 stopTimerFunction = false;
+                if(repeatFirstCellCount == 0){
+                    currentExercise--;
+                }
             }
             //pause event listener
             tmpTimer = userPaused(tmpTimer, timer, count, workoutTimer);
@@ -1227,6 +1231,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const Vseconds = parseInt(group.seconds) || 0;
         totalGroup += Vminutes * 60 + Vseconds;
         stopWarmUpFunction = false;
+
         if (Vseconds > 0 || Vminutes > 0) {
 
             let timer = totalGroup, minutes, seconds;
@@ -1279,6 +1284,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     repeatFirstCellCount = 0;
                     playNextExercise();
                 }
+
+                timeSlider.addEventListener("click", (e) => {
+                    if(currentExercise == -1){
+                        let rect = timeSlider.getBoundingClientRect();
+                        let clickX = e.clientX - rect.left; // Click position relative to seek bar
+                        let seekBarWidth = rect.width;
+                        let clickedTime = (clickX / seekBarWidth) * totalDuration; // Convert to time
+                        jumpToExercise(clickedTime);
+                        currentExercise += 1;
+                        stopWarmUpFunction = true;
+                        console.log("Jumping from warm up to -1 patched!");
+                        return;
+                    }
+                    return;
+                });
 
 
             }, 1000);
@@ -1616,7 +1636,6 @@ document.addEventListener('DOMContentLoaded', () => {
         //Check if user clicked within Cooldown
         else if (clickedTime >= (warmUpTime + mainWorkoutTime)) {
             stopCoolFunction = false;
-            stopWarmUpFunction = true;
             stopTimerFunction = true;
             //currentExercise = 0;
             repeatFirstCellCount = 0;
@@ -1675,7 +1694,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Adjust repeat count correctly when in the last cycle
         repeat = newRepeat;
 
-        currentExercise = matchedIndex;
+        currentExercise = matchedIndex + 1;
 
         console.log("Playing:  singles : ", currentExercise);
 
