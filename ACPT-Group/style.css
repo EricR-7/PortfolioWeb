@@ -620,8 +620,8 @@ h3 {
 @media screen and (max-width: 1399px) {
     body{
         margin: auto auto;
-        width: 1064px;
-        height: 1920px;
+        width: 1063px;
+        height: 1500px;
         font-family: 'Courier New', Courier, monospace;
     }
     
