@@ -1,0 +1,160 @@
+[03-08-2025 02:48:48] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[03-08-2025 02:48:49] PayPal\Core\PayPalHttpConnection : INFO: Invalid or no certificate authority found - Retrying using bundled CA certs file
+PayPal\Core\PPHttpConnection: Connecting to https://api.sandbox.paypal.com/v1/oauth2/token
+PayPal\Core\PPHttpConnection: Payload grant_type=client_credentials
+PayPal\Core\PPHttpConnection: Adding header User-Agent: PayPalSDK/rest-sdk-php 0.6.0 (lang=PHP;v=8.3.1;bit=64;os=Windows_NT_6.2;machine=AMD64;openssl=3.0.12;curl=8.4.0)
+PayPal\Core\PPHttpConnection: Adding header Authorization: Basic QVMtQnNwcDNrRGRTZUNpeUMxNUVhcllqb2c1UmIzOTFVVmZZY2sxX0pHS3dpVFhrbWptNnZwb3JqN1JRbkZsaXZ5eDFJem93d0RNMUlTOW46RURBZk1PUnFiYWRlTGh1TGNQclRQUkpXdFQ5QmdHby1JcHNRbGhfajNFTVlBcFNRNTlfZi13cGJoMlJla1RTMHdnSmhNUF9kLWszakZMWnM=
+PayPal\Core\PPHttpConnection: Adding header Accept: */*
+PayPal\Core\PPHttpConnection: Invalid or no certificate authority found - Retrying using bundled CA certs file
+PayPal\Core\PPHttpConnection: Connecting to https://api.sandbox.paypal.com/v1/oauth2/token
+PayPal\Core\PPHttpConnection: Payload grant_type=client_credentials
+PayPal\Core\PPHttpConnection: Adding header User-Agent: PayPalSDK/rest-sdk-php 0.6.0 (lang=PHP;v=8.3.1;bit=64;os=Windows_NT_6.2;machine=AMD64;openssl=3.0.12;curl=8.4.0)
+PayPal\Core\PPHttpConnection: Adding header Authorization: Basic QVMtQnNwcDNrRGRTZUNpeUMxNUVhcllqb2c1UmIzOTFVVmZZY2sxX0pHS3dpVFhrbWptNnZwb3JqN1JRbkZsaXZ5eDFJem93d0RNMUlTOW46RURBZk1PUnFiYWRlTGh1TGNQclRQUkpXdFQ5QmdHby1JcHNRbGhfajNFTVlBcFNRNTlfZi13cGJoMlJla1RTMHdnSmhNUF9kLWszakZMWnM=
+PayPal\Core\PPHttpConnection: Adding header Accept: */*
+PayPal\Core\PPHttpConnection: Invalid or no certificate authority found - Retrying using bundled CA certs file
+PayPal\Core\PPHttpConnection: Connecting to https://api.sandbox.paypal.com/v1/oauth2/token
+PayPal\Core\PPHttpConnection: Payload grant_type=client_credentials
+PayPal\Core\PPHttpConnection: Adding header User-Agent: PayPalSDK/rest-sdk-php 0.6.0 (lang=PHP;v=8.3.1;bit=64;os=Windows_NT_6.2;machine=AMD64;openssl=3.0.12;curl=8.4.0)
+PayPal\Core\PPHttpConnection: Adding header Authorization: Basic QVMtQnNwcDNrRGRTZUNpeUMxNUVhcllqb2c1UmIzOTFVVmZZY2sxX0pHS3dpVFhrbWptNnZwb3JqN1JRbkZsaXZ5eDFJem93d0RNMUlTOW46RURBZk1PUnFiYWRlTGh1TGNQclRQUkpXdFQ5QmdHby1JcHNRbGhfajNFTVlBcFNRNTlfZi13cGJoMlJla1RTMHdnSmhNUF9kLWszakZMWnM=
+PayPal\Core\PPHttpConnection: Adding header Accept: */*
+PayPal\Core\PPHttpConnection: Invalid or no certificate authority found - Retrying using bundled CA certs file
+PayPal\Core\PPHttpConnection: Connecting to https://api.sandbox.paypal.com/v1/oauth2/token
+PayPal\Core\PPHttpConnection: Payload grant_type=client_credentials
+PayPal\Core\PPHttpConnection: Adding header User-Agent: PayPalSDK/rest-sdk-php 0.6.0 (lang=PHP;v=8.3.1;bit=64;os=Windows_NT_6.2;machine=AMD64;openssl=3.0.12;curl=8.4.0)
+PayPal\Core\PPHttpConnection: Adding header Authorization: Basic QVMtQnNwcDNrRGRTZUNpeUMxNUVhcllqb2c1UmIzOTFVVmZZY2sxX0pHS3dpVFhrbWptNnZwb3JqN1JRbkZsaXZ5eDFJem93d0RNMUlTOW46RURBZk1PUnFiYWRlTGh1TGNQclRQUkpXdFQ5QmdHby1JcHNRbGhfajNFTVlBcFNRNTlfZi13cGJoMlJla1RTMHdnSmhNUF9kLWszakZMWnM=
+PayPal\Core\PPHttpConnection: Adding header Accept: */*
+PayPal\Core\PPHttpConnection: Invalid or no certificate authority found - Retrying using bundled CA certs file
+PayPal\Core\PPHttpConnection: Connecting to https://api.sandbox.paypal.com/v1/oauth2/token
+PayPal\Core\PPHttpConnection: Payload grant_type=client_credentials
+PayPal\Core\PPHttpConnection: Adding header User-Agent: PayPalSDK/rest-sdk-php 0.6.0 (lang=PHP;v=8.3.1;bit=64;os=Windows_NT_6.2;machine=AMD64;openssl=3.0.12;curl=8.4.0)
+PayPal\Core\PPHttpConnection: Adding header Authorization: Basic QVMtQnNwcDNrRGRTZUNpeUMxNUVhcllqb2c1UmIzOTFVVmZZY2sxX0pHS3dpVFhrbWptNnZwb3JqN1JRbkZsaXZ5eDFJem93d0RNMUlTOW46RURBZk1PUnFiYWRlTGh1TGNQclRQUkpXdFQ5QmdHby1JcHNRbGhfajNFTVlBcFNRNTlfZi13cGJoMlJla1RTMHdnSmhNUF9kLWszakZMWnM=
+PayPal\Core\PPHttpConnection: Adding header Accept: */*
+PayPal\Core\PPHttpConnection: Invalid or no certificate authority found - Retrying using bundled CA certs file
+PayPal\Core\PPHttpConnection: Connecting to https://api.sandbox.paypal.com/v1/oauth2/token
+PayPal\Core\PPHttpConnection: Payload grant_type=client_credentials
+PayPal\Core\PPHttpConnection: Adding header User-Agent: PayPalSDK/rest-sdk-php 0.6.0 (lang=PHP;v=8.3.1;bit=64;os=Windows_NT_6.2;machine=AMD64;openssl=3.0.12;curl=8.4.0)
+PayPal\Core\PPHttpConnection: Adding header Authorization: Basic QVMtQnNwcDNrRGRTZUNpeUMxNUVhcllqb2c1UmIzOTFVVmZZY2sxX0pHS3dpVFhrbWptNnZwb3JqN1JRbkZsaXZ5eDFJem93d0RNMUlTOW46RURBZk1PUnFiYWRlTGh1TGNQclRQUkpXdFQ5QmdHby1JcHNRbGhfajNFTVlBcFNRNTlfZi13cGJoMlJla1RTMHdnSmhNUF9kLWszakZMWnM=
+PayPal\Core\PPHttpConnection: Adding header Accept: */*
+PayPal\Core\PPHttpConnection: Invalid or no certificate authority found - Retrying using bundled CA certs file
+PayPal\Core\PPHttpConnection: Connecting to https://api.sandbox.paypal.com/v1/oauth2/token
+PayPal\Core\PPHttpConnection: Payload grant_type=client_credentials
+PayPal\Core\PPHttpConnection: Adding header User-Agent: PayPalSDK/rest-sdk-php 0.6.0 (lang=PHP;v=8.3.1;bit=64;os=Windows_NT_6.2;machine=AMD64;openssl=3.0.12;curl=8.4.0)
+PayPal\Core\PPHttpConnection: Adding header Authorization: Basic QVMtQnNwcDNrRGRTZUNpeUMxNUVhcllqb2c1UmIzOTFVVmZZY2sxX0pHS3dpVFhrbWptNnZwb3JqN1JRbkZsaXZ5eDFJem93d0RNMUlTOW46RURBZk1PUnFiYWRlTGh1TGNQclRQUkpXdFQ5QmdHby1JcHNRbGhfajNFTVlBcFNRNTlfZi13cGJoMlJla1RTMHdnSmhNUF9kLWszakZMWnM=
+PayPal\Core\PPHttpConnection: Adding header Accept: */*
+PayPal\Core\PPHttpConnection: Invalid or no certificate authority found - Retrying using bundled CA certs file
+PayPal\Core\PPHttpConnection: Connecting to https://api.sandbox.paypal.com/v1/oauth2/token
+PayPal\Core\PPHttpConnection: Payload grant_type=client_credentials
+PayPal\Core\PPHttpConnection: Adding header User-Agent: PayPalSDK/rest-sdk-php 0.6.0 (lang=PHP;v=8.3.1;bit=64;os=Windows_NT_6.2;machine=AMD64;openssl=3.0.12;curl=8.4.0)
+PayPal\Core\PPHttpConnection: Adding header Authorization: Basic QVMtQnNwcDNrRGRTZUNpeUMxNUVhcllqb2c1UmIzOTFVVmZZY2sxX0pHS3dpVFhrbWptNnZwb3JqN1JRbkZsaXZ5eDFJem93d0RNMUlTOW46RURBZk1PUnFiYWRlTGh1TGNQclRQUkpXdFQ5QmdHby1JcHNRbGhfajNFTVlBcFNRNTlfZi13cGJoMlJla1RTMHdnSmhNUF9kLWszakZMWnM=
+PayPal\Core\PPHttpConnection: Adding header Accept: */*
+PayPal\Core\PPHttpConnection: Invalid or no certificate authority found - Retrying using bundled CA certs file
+PayPal\Core\PPHttpConnection: Connecting to https://api.sandbox.paypal.com/v1/oauth2/token
+PayPal\Core\PPHttpConnection: Payload grant_type=client_credentials
+PayPal\Core\PPHttpConnection: Adding header User-Agent: PayPalSDK/rest-sdk-php 0.6.0 (lang=PHP;v=8.3.1;bit=64;os=Windows_NT_6.2;machine=AMD64;openssl=3.0.12;curl=8.4.0)
+PayPal\Core\PPHttpConnection: Adding header Authorization: Basic QVMtQnNwcDNrRGRTZUNpeUMxNUVhcllqb2c1UmIzOTFVVmZZY2sxX0pHS3dpVFhrbWptNnZwb3JqN1JRbkZsaXZ5eDFJem93d0RNMUlTOW46RURBZk1PUnFiYWRlTGh1TGNQclRQUkpXdFQ5QmdHby1JcHNRbGhfajNFTVlBcFNRNTlfZi13cGJoMlJla1RTMHdnSmhNUF9kLWszakZMWnM=
+PayPal\Core\PPHttpConnection: Adding header Accept: */*
+PayPal\Core\PPHttpConnection: Invalid or no certificate authority found - Retrying using bundled CA certs file
+PayPal\Core\PPHttpConnection: Connecting to https://api.sandbox.paypal.com/v1/oauth2/token
+PayPal\Core\PPHttpConnection: Payload grant_type=client_credentials
+PayPal\Core\PPHttpConnection: Adding header User-Agent: PayPalSDK/rest-sdk-php 0.6.0 (lang=PHP;v=8.3.1;bit=64;os=Windows_NT_6.2;machine=AMD64;openssl=3.0.12;curl=8.4.0)
+PayPal\Core\PPHttpConnection: Adding header Authorization: Basic QVMtQnNwcDNrRGRTZUNpeUMxNUVhcllqb2c1UmIzOTFVVmZZY2sxX0pHS3dpVFhrbWptNnZwb3JqN1JRbkZsaXZ5eDFJem93d0RNMUlTOW46RURBZk1PUnFiYWRlTGh1TGNQclRQUkpXdFQ5QmdHby1JcHNRbGhfajNFTVlBcFNRNTlfZi13cGJoMlJla1RTMHdnSmhNUF9kLWszakZMWnM=
+PayPal\Core\PPHttpConnection: Adding header Accept: */*
+PayPal\Core\PPHttpConnection: Invalid or no certificate authority found - Retrying using bundled CA certs file
+PayPal\Core\PPHttpConnection: Connecting to https://api.sandbox.paypal.com/v1/oauth2/token
+PayPal\Core\PPHttpConnection: Payload grant_type=client_credentials
+PayPal\Core\PPHttpConnection: Adding header User-Agent: PayPalSDK/rest-sdk-php 0.6.0 (lang=PHP;v=8.3.1;bit=64;os=Windows_NT_6.2;machine=AMD64;openssl=3.0.12;curl=8.4.0)
+PayPal\Core\PPHttpConnection: Adding header Authorization: Basic QVMtQnNwcDNrRGRTZUNpeUMxNUVhcllqb2c1UmIzOTFVVmZZY2sxX0pHS3dpVFhrbWptNnZwb3JqN1JRbkZsaXZ5eDFJem93d0RNMUlTOW46RURBZk1PUnFiYWRlTGh1TGNQclRQUkpXdFQ5QmdHby1JcHNRbGhfajNFTVlBcFNRNTlfZi13cGJoMlJla1RTMHdnSmhNUF9kLWszakZMWnM=
+PayPal\Core\PPHttpConnection: Adding header Accept: */*
+PayPal\Core\PPHttpConnection: Invalid or no certificate authority found - Retrying using bundled CA certs file
+PayPal\Core\PPHttpConnection: Connecting to https://api.sandbox.paypal.com/v1/oauth2/token
+PayPal\Core\PPHttpConnection: Payload grant_type=client_credentials
+PayPal\Core\PPHttpConnection: Adding header User-Agent: PayPalSDK/rest-sdk-php 0.6.0 (lang=PHP;v=8.3.1;bit=64;os=Windows_NT_6.2;machine=AMD64;openssl=3.0.12;curl=8.4.0)
+PayPal\Core\PPHttpConnection: Adding header Authorization: Basic QVMtQnNwcDNrRGRTZUNpeUMxNUVhcllqb2c1UmIzOTFVVmZZY2sxX0pHS3dpVFhrbWptNnZwb3JqN1JRbkZsaXZ5eDFJem93d0RNMUlTOW46RURBZk1PUnFiYWRlTGh1TGNQclRQUkpXdFQ5QmdHby1JcHNRbGhfajNFTVlBcFNRNTlfZi13cGJoMlJla1RTMHdnSmhNUF9kLWszakZMWnM=
+PayPal\Core\PPHttpConnection: Adding header Accept: */*
+PayPal\Core\PPHttpConnection: Invalid or no certificate authority found - Retrying using bundled CA certs file
+PayPal\Core\PPHttpConnection: Connecting to https://api.sandbox.paypal.com/v1/oauth2/token
+PayPal\Core\PPHttpConnection: Payload grant_type=client_credentials
+PayPal\Core\PPHttpConnection: Adding header User-Agent: PayPalSDK/rest-sdk-php 0.6.0 (lang=PHP;v=8.3.1;bit=64;os=Windows_NT_6.2;machine=AMD64;openssl=3.0.12;curl=8.4.0)
+PayPal\Core\PPHttpConnection: Adding header Authorization: Basic QVMtQnNwcDNrRGRTZUNpeUMxNUVhcllqb2c1UmIzOTFVVmZZY2sxX0pHS3dpVFhrbWptNnZwb3JqN1JRbkZsaXZ5eDFJem93d0RNMUlTOW46RURBZk1PUnFiYWRlTGh1TGNQclRQUkpXdFQ5QmdHby1JcHNRbGhfajNFTVlBcFNRNTlfZi13cGJoMlJla1RTMHdnSmhNUF9kLWszakZMWnM=
+PayPal\Core\PPHttpConnection: Adding header Accept: */*
+PayPal\Core\PPHttpConnection: Invalid or no certificate authority found - Retrying using bundled CA certs file
+PayPal\Core\PPHttpConnection: Connecting to https://api.sandbox.paypal.com/v1/oauth2/token
+PayPal\Core\PPHttpConnection: Payload grant_type=client_credentials
+PayPal\Core\PPHttpConnection: Adding header User-Agent: PayPalSDK/rest-sdk-php 0.6.0 (lang=PHP;v=8.3.1;bit=64;os=Windows_NT_6.2;machine=AMD64;openssl=3.0.12;curl=8.4.0)
+PayPal\Core\PPHttpConnection: Adding header Authorization: Basic QVMtQnNwcDNrRGRTZUNpeUMxNUVhcllqb2c1UmIzOTFVVmZZY2sxX0pHS3dpVFhrbWptNnZwb3JqN1JRbkZsaXZ5eDFJem93d0RNMUlTOW46RURBZk1PUnFiYWRlTGh1TGNQclRQUkpXdFQ5QmdHby1JcHNRbGhfajNFTVlBcFNRNTlfZi13cGJoMlJla1RTMHdnSmhNUF9kLWszakZMWnM=
+PayPal\Core\PPHttpConnection: Adding header Accept: */*
+PayPal\Core\PPHttpConnection: Invalid or no certificate authority found - Retrying using bundled CA certs file
+PayPal\Core\PPHttpConnection: Connecting to https://api.sandbox.paypal.com/v1/oauth2/token
+PayPal\Core\PPHttpConnection: Payload grant_type=client_credentials
+PayPal\Core\PPHttpConnection: Adding header User-Agent: PayPalSDK/rest-sdk-php 0.6.0 (lang=PHP;v=8.3.1;bit=64;os=Windows_NT_6.2;machine=AMD64;openssl=3.0.12;curl=8.4.0)
+PayPal\Core\PPHttpConnection: Adding header Authorization: Basic QVMtQnNwcDNrRGRTZUNpeUMxNUVhcllqb2c1UmIzOTFVVmZZY2sxX0pHS3dpVFhrbWptNnZwb3JqN1JRbkZsaXZ5eDFJem93d0RNMUlTOW46RURBZk1PUnFiYWRlTGh1TGNQclRQUkpXdFQ5QmdHby1JcHNRbGhfajNFTVlBcFNRNTlfZi13cGJoMlJla1RTMHdnSmhNUF9kLWszakZMWnM=
+PayPal\Core\PPHttpConnection: Adding header Accept: */*
+PayPal\Core\PPHttpConnection: Invalid or no certificate authority found - Retrying using bundled CA certs file
+PayPal\Core\PPHttpConnection: Connecting to https://api.sandbox.paypal.com/v1/oauth2/token
+PayPal\Core\PPHttpConnection: Payload grant_type=client_credentials
+PayPal\Core\PPHttpConnection: Adding header User-Agent: PayPalSDK/rest-sdk-php 0.6.0 (lang=PHP;v=8.3.1;bit=64;os=Windows_NT_6.2;machine=AMD64;openssl=3.0.12;curl=8.4.0)
+PayPal\Core\PPHttpConnection: Adding header Authorization: Basic QVMtQnNwcDNrRGRTZUNpeUMxNUVhcllqb2c1UmIzOTFVVmZZY2sxX0pHS3dpVFhrbWptNnZwb3JqN1JRbkZsaXZ5eDFJem93d0RNMUlTOW46RURBZk1PUnFiYWRlTGh1TGNQclRQUkpXdFQ5QmdHby1JcHNRbGhfajNFTVlBcFNRNTlfZi13cGJoMlJla1RTMHdnSmhNUF9kLWszakZMWnM=
+PayPal\Core\PPHttpConnection: Adding header Accept: */*
+PayPal\Core\PPHttpConnection: Invalid or no certificate authority found - Retrying using bundled CA certs file
+PayPal\Core\PPHttpConnection: Connecting to https://api.sandbox.paypal.com/v1/oauth2/token
+PayPal\Core\PPHttpConnection: Payload grant_type=client_credentials
+PayPal\Core\PPHttpConnection: Adding header User-Agent: PayPalSDK/rest-sdk-php 0.6.0 (lang=PHP;v=8.3.1;bit=64;os=Windows_NT_6.2;machine=AMD64;openssl=3.0.12;curl=8.4.0)
+PayPal\Core\PPHttpConnection: Adding header Authorization: Basic QVMtQnNwcDNrRGRTZUNpeUMxNUVhcllqb2c1UmIzOTFVVmZZY2sxX0pHS3dpVFhrbWptNnZwb3JqN1JRbkZsaXZ5eDFJem93d0RNMUlTOW46RURBZk1PUnFiYWRlTGh1TGNQclRQUkpXdFQ5QmdHby1JcHNRbGhfajNFTVlBcFNRNTlfZi13cGJoMlJla1RTMHdnSmhNUF9kLWszakZMWnM=
+PayPal\Core\PPHttpConnection: Adding header Accept: */*
+PayPal\Core\PPHttpConnection: Invalid or no certificate authority found - Retrying using bundled CA certs file
+PayPal\Core\PPHttpConnection: Connecting to https://api.sandbox.paypal.com/v1/oauth2/token
+PayPal\Core\PPHttpConnection: Payload grant_type=client_credentials
+PayPal\Core\PPHttpConnection: Adding header User-Agent: PayPalSDK/rest-sdk-php 0.6.0 (lang=PHP;v=8.3.1;bit=64;os=Windows_NT_6.2;machine=AMD64;openssl=3.0.12;curl=8.4.0)
+PayPal\Core\PPHttpConnection: Adding header Authorization: Basic QVMtQnNwcDNrRGRTZUNpeUMxNUVhcllqb2c1UmIzOTFVVmZZY2sxX0pHS3dpVFhrbWptNnZwb3JqN1JRbkZsaXZ5eDFJem93d0RNMUlTOW46RURBZk1PUnFiYWRlTGh1TGNQclRQUkpXdFQ5QmdHby1JcHNRbGhfajNFTVlBcFNRNTlfZi13cGJoMlJla1RTMHdnSmhNUF9kLWszakZMWnM=
+PayPal\Core\PPHttpConnection: Adding header Accept: */*
+PayPal\Core\PPHttpConnection: Invalid or no certificate authority found - Retrying using bundled CA certs file
+PayPal\Core\PPHttpConnection: Connecting to https://api.sandbox.paypal.com/v1/oauth2/token
+PayPal\Core\PPHttpConnection: Payload grant_type=client_credentials
+PayPal\Core\PPHttpConnection: Adding header User-Agent: PayPalSDK/rest-sdk-php 0.6.0 (lang=PHP;v=8.3.1;bit=64;os=Windows_NT_6.2;machine=AMD64;openssl=3.0.12;curl=8.4.0)
+PayPal\Core\PPHttpConnection: Adding header Authorization: Basic QVMtQnNwcDNrRGRTZUNpeUMxNUVhcllqb2c1UmIzOTFVVmZZY2sxX0pHS3dpVFhrbWptNnZwb3JqN1JRbkZsaXZ5eDFJem93d0RNMUlTOW46RURBZk1PUnFiYWRlTGh1TGNQclRQUkpXdFQ5QmdHby1JcHNRbGhfajNFTVlBcFNRNTlfZi13cGJoMlJla1RTMHdnSmhNUF9kLWszakZMWnM=
+PayPal\Core\PPHttpConnection: Adding header Accept: */*
+PayPal\Core\PPHttpConnection: Invalid or no certificate authority found - Retrying using bundled CA certs file
+[03-08-2025 04:19:56] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[03-08-2025 04:19:56] PayPal\Core\PayPalHttpConnection : INFO: Invalid or no certificate authority found - Retrying using bundled CA certs file
+[03-08-2025 04:25:30] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[03-08-2025 04:25:30] PayPal\Core\PayPalHttpConnection : INFO: Invalid or no certificate authority found - Retrying using bundled CA certs file
+[03-08-2025 04:26:01] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[03-08-2025 04:26:01] PayPal\Core\PayPalHttpConnection : INFO: Invalid or no certificate authority found - Retrying using bundled CA certs file
+[03-08-2025 04:30:41] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[03-08-2025 04:30:41] PayPal\Core\PayPalHttpConnection : INFO: Invalid or no certificate authority found - Retrying using bundled CA certs file
+PayPal\Core\PPHttpConnection: Connecting to https://api.sandbox.paypal.com/v1/oauth2/token
+PayPal\Core\PPHttpConnection: Payload grant_type=client_credentials
+PayPal\Core\PPHttpConnection: Adding header User-Agent: PayPalSDK/rest-sdk-php 0.6.0 (lang=PHP;v=8.3.1;bit=64;os=Windows_NT_6.2;machine=AMD64;openssl=3.0.12;curl=8.4.0)
+PayPal\Core\PPHttpConnection: Adding header Authorization: Basic QVMtQnNwcDNrRGRTZUNpeUMxNUVhcllqb2c1UmIzOTFVVmZZY2sxX0pHS3dpVFhrbWptNnZwb3JqN1JRbkZsaXZ5eDFJem93d0RNMUlTOW46RURBZk1PUnFiYWRlTGh1TGNQclRQUkpXdFQ5QmdHby1JcHNRbGhfajNFTVlBcFNRNTlfZi13cGJoMlJla1RTMHdnSmhNUF9kLWszakZMWnM=
+PayPal\Core\PPHttpConnection: Adding header Accept: */*
+PayPal\Core\PPHttpConnection: Invalid or no certificate authority found - Retrying using bundled CA certs file
+PayPal\Core\PPHttpConnection: Connecting to https://api.sandbox.paypal.com/v1/oauth2/token
+PayPal\Core\PPHttpConnection: Payload grant_type=client_credentials
+PayPal\Core\PPHttpConnection: Adding header User-Agent: PayPalSDK/rest-sdk-php 0.6.0 (lang=PHP;v=8.3.1;bit=64;os=Windows_NT_6.2;machine=AMD64;openssl=3.0.12;curl=8.4.0)
+PayPal\Core\PPHttpConnection: Adding header Authorization: Basic QVMtQnNwcDNrRGRTZUNpeUMxNUVhcllqb2c1UmIzOTFVVmZZY2sxX0pHS3dpVFhrbWptNnZwb3JqN1JRbkZsaXZ5eDFJem93d0RNMUlTOW46RURBZk1PUnFiYWRlTGh1TGNQclRQUkpXdFQ5QmdHby1JcHNRbGhfajNFTVlBcFNRNTlfZi13cGJoMlJla1RTMHdnSmhNUF9kLWszakZMWnM=
+PayPal\Core\PPHttpConnection: Adding header Accept: */*
+PayPal\Core\PPHttpConnection: Invalid or no certificate authority found - Retrying using bundled CA certs file
+PayPal\Core\PPHttpConnection: Connecting to https://api.sandbox.paypal.com/v1/oauth2/token
+PayPal\Core\PPHttpConnection: Payload grant_type=client_credentials
+PayPal\Core\PPHttpConnection: Adding header User-Agent: PayPalSDK/rest-sdk-php 0.6.0 (lang=PHP;v=8.3.1;bit=64;os=Windows_NT_6.2;machine=AMD64;openssl=3.0.12;curl=8.4.0)
+PayPal\Core\PPHttpConnection: Adding header Authorization: Basic QVMtQnNwcDNrRGRTZUNpeUMxNUVhcllqb2c1UmIzOTFVVmZZY2sxX0pHS3dpVFhrbWptNnZwb3JqN1JRbkZsaXZ5eDFJem93d0RNMUlTOW46RURBZk1PUnFiYWRlTGh1TGNQclRQUkpXdFQ5QmdHby1JcHNRbGhfajNFTVlBcFNRNTlfZi13cGJoMlJla1RTMHdnSmhNUF9kLWszakZMWnM=
+PayPal\Core\PPHttpConnection: Adding header Accept: */*
+PayPal\Core\PPHttpConnection: Invalid or no certificate authority found - Retrying using bundled CA certs file
+PayPal\Core\PPHttpConnection: Connecting to https://api.sandbox.paypal.com/v1/oauth2/token
+PayPal\Core\PPHttpConnection: Payload grant_type=client_credentials
+PayPal\Core\PPHttpConnection: Adding header User-Agent: PayPalSDK/rest-sdk-php 0.6.0 (lang=PHP;v=8.3.1;bit=64;os=Windows_NT_6.2;machine=AMD64;openssl=3.0.12;curl=8.4.0)
+PayPal\Core\PPHttpConnection: Adding header Authorization: Basic QVMtQnNwcDNrRGRTZUNpeUMxNUVhcllqb2c1UmIzOTFVVmZZY2sxX0pHS3dpVFhrbWptNnZwb3JqN1JRbkZsaXZ5eDFJem93d0RNMUlTOW46RURBZk1PUnFiYWRlTGh1TGNQclRQUkpXdFQ5QmdHby1JcHNRbGhfajNFTVlBcFNRNTlfZi13cGJoMlJla1RTMHdnSmhNUF9kLWszakZMWnM=
+PayPal\Core\PPHttpConnection: Adding header Accept: */*
+PayPal\Core\PPHttpConnection: Invalid or no certificate authority found - Retrying using bundled CA certs file
+PayPal\Core\PPHttpConnection: Connecting to https://api.sandbox.paypal.com/v1/oauth2/token
+PayPal\Core\PPHttpConnection: Payload grant_type=client_credentials
+PayPal\Core\PPHttpConnection: Adding header User-Agent: PayPalSDK/rest-sdk-php 0.6.0 (lang=PHP;v=8.3.1;bit=64;os=Windows_NT_6.2;machine=AMD64;openssl=3.0.12;curl=8.4.0)
+PayPal\Core\PPHttpConnection: Adding header Authorization: Basic QVMtQnNwcDNrRGRTZUNpeUMxNUVhcllqb2c1UmIzOTFVVmZZY2sxX0pHS3dpVFhrbWptNnZwb3JqN1JRbkZsaXZ5eDFJem93d0RNMUlTOW46RURBZk1PUnFiYWRlTGh1TGNQclRQUkpXdFQ5QmdHby1JcHNRbGhfajNFTVlBcFNRNTlfZi13cGJoMlJla1RTMHdnSmhNUF9kLWszakZMWnM=
+PayPal\Core\PPHttpConnection: Adding header Accept: */*
+PayPal\Core\PPHttpConnection: Invalid or no certificate authority found - Retrying using bundled CA certs file
+PayPal\Core\PPHttpConnection: Connecting to https://api.sandbox.paypal.com/v1/oauth2/token
+PayPal\Core\PPHttpConnection: Payload grant_type=client_credentials
+PayPal\Core\PPHttpConnection: Adding header User-Agent: PayPalSDK/rest-sdk-php 0.6.0 (lang=PHP;v=8.3.1;bit=64;os=Windows_NT_6.2;machine=AMD64;openssl=3.0.12;curl=8.4.0)
+PayPal\Core\PPHttpConnection: Adding header Authorization: Basic QVMtQnNwcDNrRGRTZUNpeUMxNUVhcllqb2c1UmIzOTFVVmZZY2sxX0pHS3dpVFhrbWptNnZwb3JqN1JRbkZsaXZ5eDFJem93d0RNMUlTOW46RURBZk1PUnFiYWRlTGh1TGNQclRQUkpXdFQ5QmdHby1JcHNRbGhfajNFTVlBcFNRNTlfZi13cGJoMlJla1RTMHdnSmhNUF9kLWszakZMWnM=
+PayPal\Core\PPHttpConnection: Adding header Accept: */*
+PayPal\Core\PPHttpConnection: Invalid or no certificate authority found - Retrying using bundled CA certs file
