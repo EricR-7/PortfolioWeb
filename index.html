@@ -2,57 +2,135 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eric's Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Eric Recinos – Portfolio</title>
+    <meta name="description" content="Portfolio of Eric Recinos: projects, prototypes and web development work.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/fontawesome-all.min.css">
     <link rel="stylesheet" href="assets/css/mystyle.css">
 </head>
 <body>
-    <header>
-        <h1 id="my-portfolio-h1">Eric Recinos Portfolio</h1>
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+    <header class="site-header" id="head-doc">
+        <div class="container header-inner">
+            <a class="logo" href="#">ER<span>.</span><h1 id="name">Eric Recinos</h1></a>
+            <nav class="primary-nav" id="navTag" aria-label="Primary">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="nav-toggle-bar"></span>
+                <span class="nav-toggle-bar"></span>
+                <span class="nav-toggle-bar"></span>
+            </button>
+        </div>
     </header>
 
-    <section class="hero">
-        <h2>Welcome to My Portfolio</h2>
-        <p>I'm passionate about building things and showcasing my skills. Explore my projects and get to know me better!</p>
-        <a href="#projects">View My Work</a>
-    </section>
-
-    <section class="about" id="about">
-        <h2>About Me</h2>
-        <p>I am a creative individual with a knack for problem-solving and putting things together. My skills range from HTML to crafting innovative solutions for real world challenges.</p>
-    </section>
-
-    <section class="projects" id="projects">
-        <h2>Projects</h2>
-        <div class="project-grid">
-            <div class="project">
-                <h3>Group Video for Personal Trainer Project</h3>
-                <p>A timer specifically made for group sessions with videos.</p>
-                <p>How to use: Add time slots and input the time. Fill in the Session name once time slots is filled. Save current state and Load previous states (Does not save videos) . Then select up to from 4 to 8 videos for each stations, showing instructions to the group.</p>
-                <p>Used with HTML, CSS and Vanilla JavaScript.</p>
-                <a href="ACPT-Group/ACPT-Group-App.html">View App</a>
+    <main>
+        <section class="hero">
+            <div class="container hero-inner">
+                <h1 class="hero-title">Crafting Practical & User‑Focused Solutions</h1>
+                <p class="hero-sub">I build lean web apps and tools—focusing on clarity, performance, and real world usefulness.</p>
+                <div class="hero-cta">
+                    <a class="btn primary" href="#projects">View Projects</a>
+                    <a class="btn ghost" href="#contact">Get in Touch</a>
+                </div>
             </div>
+        </section>
 
-                <div class="project">
-                <h3>W.I.P Fake store with paypal</h3>
-                <p>Frontend, backend and database.</p>
-                <p>Used with HTML, CSS, PHP and mysqli.</p>
-                <a href="PAYPAL-TEST/index.php">View Store</a>
+        <section class="about section-pad" id="about">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <p class="lead">
+                    I enjoy breaking problems down and assembling clean, maintainable solutions. Comfortable moving across the stack—from semantic HTML & accessible UI patterns to performance‑aware JavaScript. Always iterating, always learning.
+                </p>
+                <ul class="skill-tags">
+                    <li>HTML</li>
+                    <li>CSS / Responsive</li>
+                    <li>JavaScript (Vanilla)</li>
+                    <li>PHP</li>
+                    <li>MySQL</li>
+                    <li>UI Prototyping</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="projects section-pad" id="projects">
+            <div class="container">
+                <h2 class="section-title">Projects</h2>
+                <div class="project-grid">
+                    <article class="project-card">
+                        <div class="project-card-body">
+                            <h3 class="project-title">Group Workout Session Timer</h3>
+                            <p class="project-desc">Custom multi‑station workout timing app supporting warmup, repeats, cooldown, color‑coded phases and video guidance.</p>
+                            <ul class="meta-tags">
+                                <li>HTML</li><li>CSS</li><li>JavaScript</li>
+                            </ul>
+                        </div>
+                        <div class="project-actions">
+                            <a class="project-link" href="./ACPT-Group/ACPT-Group-App.html">Open App <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-card-body">
+                            <h3 class="project-title">Store + PayPal (WIP)</h3>
+                            <p class="project-desc">Lightweight commerce prototype integrating PayPal and basic product flow (in progress).</p>
+                            <ul class="meta-tags">
+                                <li>HTML</li><li>CSS</li><li>PHP</li><li>MySQL</li>
+                            </ul>
+                        </div>
+                        <div class="project-actions">
+                            <span class="badge inprogress">In Development</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact section-pad" id="contact">
+            <div class="container">
+                <h2 class="section-title">Contact</h2>
+                <p class="lead">Interested in collaborating or have an opportunity? Reach out to me and we'll make it happen!</p>
+                <div class="contact-actions">
+                    <a class="btn primary" href="mailto:web-admin@ericrecinos.dev"><i class="fas fa-envelope"></i> Email Me</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="foot-left">
+                <p>&copy; <span id="year"></span> Eric Recinos • Updated: 08/08/25</p>
+            </div>
+            <div class="foot-right">
+                <a href="mailto:web-admin@ericrecinos.dev" aria-label="Email"><i class="fas fa-envelope"></i></a>
             </div>
         </div>
-    </section>
-
-    <footer id="contact">
-        <p>Updated: 03/08/25</p>
-        <p>Contact me: <a href="mailto:web-admin@ericrecinos.dev">Email Eric</a></p>
     </footer>
+
+    <script>
+        // Mobile nav toggle
+        const navToggle = document.querySelector('.nav-toggle');
+        const nav = document.querySelector('.primary-nav');
+        navToggle.addEventListener('click', () => {
+            const open = navToggle.getAttribute('aria-expanded') === 'true';
+            navToggle.setAttribute('aria-expanded', String(!open));
+            document.body.classList.toggle('nav-open');
+        });
+        // Sticky shadow
+        const header = document.querySelector('.site-header');
+        const hero = document.querySelector('.hero');
+        const io = new IntersectionObserver(([e]) => {
+            header.classList.toggle('scrolled', !e.isIntersecting);
+        }, { rootMargin: '-80px 0px 0px 0px' });
+        if(hero) io.observe(hero);
+        // Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
