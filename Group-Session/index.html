@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" type="image/x-icon" href="Icon.png"> <!-- Change later-->
+    <title>Videos Session Timer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <img src="Icon.png">  <!-- Change later-->
+    <div id="customize-page">
+        <h1 style="margin-top: 20px;">Videos Session Timer</h1>
+        <h1 style="margin-top: 20px;">For</h1>
+        <h1 style="margin-top: 20px;">Personal Trainers</h1>
+        <div>
+            <p id="credit">Developed by: <a href="https://ericrecinos.dev" target="_blank">Eric Recinos</a></p>
+            <label for="session-name">Session Name: </label>
+            <input type="text" id="session-name" placeholder="Enter session name" autocomplete="off">
+            <button id="save-session-as">Save</button>
+            <button id="refresh-button">Refresh</button>
+            <div id="load-container">
+                <label for="load-session">Previous session:</label>
+                <select name="load-session" id="load-session">
+                    <option id="load-none" value="None" selected disabled>Default</option>
+                </select>
+                <button id="load-button">Load</button>
+                <button id="delete-button">Delete</button>
+            </div>
+            <button id="rotate-button">Rotate</button>
+            <button id="rotate-back-button">Rotate back to normal</button>
+        </div>
+
+        <div class="timer-container">
+            <h2>Exercise timer</h2>
+            <div id="warmup-container">
+                <div class="exercise">
+                    <input type="number" class="duration-minutes" placeholder="Minutes" onclick="this.select()">
+                    <input type="number" class="duration-seconds" placeholder="Seconds" onclick="this.select()">
+                    <select name="color-coded" class="color-coded">
+                        <option id="color-not-selected" value=" None " disabled> -Select colour- </option>
+                        <option id="color-orange" value="orange" selected> Warm up </option>
+                    </select>
+                    <p>- Start</p>
+                </div>
+            </div>
+
+            <p>_____________________</p>
+
+            <div id="exercise-timer">
+                <!-- Listed name of exercise, duration and colour coded-->
+                <p id="none-p">None</p>
+
+            </div>
+            <p id="X-p">X</p>
+            <p id="p-repeats">Repeats</p>
+            <input type="number" id="duration-repeat" placeholder="Repeats" value="1" onclick="this.select()">
+            <button id="add-timer">Add Status</button>
+
+            <p>_____________________</p>
+            <div id="cooldown-container">
+                <div class="exercise">
+                    <input type="number" class="duration-minutes" placeholder="Minutes" onclick="this.select()">
+                    <input type="number" class="duration-seconds" placeholder="Seconds" onclick="this.select()">
+                    <select name="color-coded" class="color-coded">
+                        <option id="color-not-selected" value=" None " disabled> -Select colour- </option>
+                        <option id="color-dodgerblue" value="DodgerBlue" selected> Cool Down </option>
+                        <option id="color-red" value="red"> Rest </option>
+                    </select>
+                    <p>- End</p>
+                </div>
+            </div>
+            <p id="note-p">*Note: Start/End row will be played only once.</p>
+        </div>
+
+        <div class="right-side-container">
+            <div class="session-container">
+                <div class="group">
+                    <h2>Station 1</h2>
+                    <div id="group-1-exercises">
+                        <!-- Group 1 Exercises -->
+                        <input type="file" class="video-upload" accept="video/*">
+                    </div>
+                </div>
+
+                <div class="group">
+                    <h2>Station 2</h2>
+                    <div id="group-2-exercises">
+                        <!-- Group 2 Exercises -->
+                        <input type="file" class="video-upload" accept="video/*">
+                    </div>
+                </div>
+
+                <div class="group">
+                    <h2>Station 3</h2>
+                    <div id="group-3-exercises">
+                        <!-- Group 3 Exercises -->
+                        <input type="file" class="video-upload" accept="video/*">
+                    </div>
+                </div>
+
+                <div class="group">
+                    <h2>Station 4</h2>
+                    <div id="group-4-exercises">
+                        <!-- Group 4 Exercises -->
+                        <input type="file" class="video-upload" accept="video/*">
+                    </div>
+                </div>
+            </div>
+
+            <div class="extra-station-container">
+                <div id="add-station-group">
+
+                </div>
+            </div>
+
+            <div id="station-add-container">
+                <div id="remove-exercise">
+                    <button id="button-remove">-</button>
+                    <p>Remove Extras</p>
+                </div>
+
+                <div id="add-station">
+                    <button id="button-add-station">+</button>
+                    <p>Add Station</p>
+                </div>
+            </div>
+
+            <div id="go-container">
+                <h3>Total Session Duration: <span id="total-time">0:00</span></h3>
+                <button id="start-workout">GO!</button>
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <p></p>
+
+    </div>
+
+    <div id="workout-page" style="display:none;">
+        <h1 id="workout-page-h1">Workout Session</h1>
+
+        <div id="current-exercise-timer">
+            <div id="group1-timer">0:00</div>
+        </div>
+
+        <div id="stations-container">
+            <div id="video-container-1">
+                <div class="group" id="group1">
+                    <h3>1</h3>
+                    <video id="group-1-video" width="320" muted></video>
+                    <div id="group1-current-exercise">None</div>
+                </div>
+
+                <div class="group" id="group2">
+                    <h3>2</h3>
+                    <video id="group-2-video" width="320" muted></video>
+                    <div id="group2-current-exercise">None</div>
+                </div>
+            </div>
+
+            <div id="video-container-2">
+                <div class="group" id="group3">
+                    <h3>3</h3>
+                    <video id="group-3-video" width="320" muted></video>
+                    <div id="group3-current-exercise">None</div>
+                </div>
+
+                <div class="group" id="group4">
+                    <h3>4</h3>
+                    <video id="group-4-video" width="320" muted></video>
+                    <div id="group4-current-exercise">None</div>
+                </div>
+            </div>
+            <div id="video-container-3">
+
+            </div>
+            <div id="video-container-4">
+
+            </div>
+        </div>
+        <div id="box-timer">
+            <div id="arrow">
+                <div id="arrow-container">
+                    <p id="arrow-text"><img id="arrow-img" src="arrowdown.png"></p>
+                </div>
+            </div>
+
+            <br><br>
+
+            <div id="container-time">
+                <div id="time-bar">
+
+
+                    <!--
+            <div id="blue-bar"></div>
+            <div id="red-bar"></div>
+            <div id="green-bar"></div>
+            <div id="purple-bar"></div>
+            <div id="yellow-bar"></div>
+        -->
+                </div>
+            </div>
+            <input id="timeSlider" type="range" min="0" max="100" value="0" step="1" >
+        </div>
+        <div id="controls-selections">
+            <button id="pause-play">Pause</button>
+            <button id="return-home">Return to Home</button>
+        </div>
+        <h3 id="session-h3">Session Timer: <div id="session-timer">0:00</div>
+        </h3>
+
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
