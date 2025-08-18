@@ -4,6 +4,15 @@
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* Universal body background for all screen sizes */
+body {
+    background: linear-gradient(135deg, #1a1a1a 50%, #2d2d30 50%, #1a1a1a 100%) !important;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
 
 
 @keyframes glow {
@@ -20,10 +29,11 @@
 }
 
 #credit{
-    position: static;
-    margin-left: 72%;
+    position: fixed;
+    margin-left: 50%;
     font-size: 14px;
     opacity: 0.8;
+    margin-top: -15%;
 }
 
 a{
@@ -143,7 +153,9 @@ body{
         zoom: 0.54;
         transform-origin: top left;
         width: 1430px;
-        height: 800px;
+        min-height: 100vh;
+        height: auto;
+        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d30 50%, #1a1a1a 100%);
     }
 }
 
@@ -337,14 +349,17 @@ img:hover {
 #group-6-exercises .video-upload,
 #group-7-exercises .video-upload,
 #group-8-exercises .video-upload {
-    background: transparent;
-    border: transparent;
-    border-radius: 8px;
-    padding: 12px;
+    background: #B8860B;
+    border: 2px solid #8B6914;
+    border-radius: 12px;
+    padding: 16px 20px;
     color: #ffffff;
     width: 100%;
     cursor: pointer;
     transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 16px;
+    box-shadow: none;
 }
 
 #group-1-exercises .video-upload:hover,
@@ -355,7 +370,158 @@ img:hover {
 #group-6-exercises .video-upload:hover,
 #group-7-exercises .video-upload:hover,
 #group-8-exercises .video-upload:hover {
+    background: #DAA520;
+    border: 2px solid #B8860B;
     transform: scale(1.02);
+}
+
+/* Video upload styling when file is selected - individual inputs */
+#group-1-exercises .video-upload:valid,
+#group-2-exercises .video-upload:valid,
+#group-3-exercises .video-upload:valid,
+#group-4-exercises .video-upload:valid,
+#group-5-exercises .video-upload:valid,
+#group-6-exercises .video-upload:valid,
+#group-7-exercises .video-upload:valid,
+#group-8-exercises .video-upload:valid,
+#group-1-exercises .video-upload[value]:not([value=""]),
+#group-2-exercises .video-upload[value]:not([value=""]),
+#group-3-exercises .video-upload[value]:not([value=""]),
+#group-4-exercises .video-upload[value]:not([value=""]),
+#group-5-exercises .video-upload[value]:not([value=""]),
+#group-6-exercises .video-upload[value]:not([value=""]),
+#group-7-exercises .video-upload[value]:not([value=""]),
+#group-8-exercises .video-upload[value]:not([value=""]),
+input[type="file"].video-upload:not(:placeholder-shown),
+input[type="file"].video-upload[files],
+.video-upload.file-selected {
+    background: #4CAF50 !important;
+    border: 2px solid #388e3c !important;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.3) !important;
+}
+
+/* JavaScript-based file selection styling with highest specificity */
+#group-1-exercises input[type="file"].video-upload.file-selected,
+#group-2-exercises input[type="file"].video-upload.file-selected,
+#group-3-exercises input[type="file"].video-upload.file-selected,
+#group-4-exercises input[type="file"].video-upload.file-selected,
+#group-5-exercises input[type="file"].video-upload.file-selected,
+#group-6-exercises input[type="file"].video-upload.file-selected,
+#group-7-exercises input[type="file"].video-upload.file-selected,
+#group-8-exercises input[type="file"].video-upload.file-selected,
+#group-1-exercises .video-upload.file-selected,
+#group-2-exercises .video-upload.file-selected,
+#group-3-exercises .video-upload.file-selected,
+#group-4-exercises .video-upload.file-selected,
+#group-5-exercises .video-upload.file-selected,
+#group-6-exercises .video-upload.file-selected,
+#group-7-exercises .video-upload.file-selected,
+#group-8-exercises .video-upload.file-selected,
+input[type="file"].video-upload.file-selected,
+.video-upload.file-selected {
+    background: #4CAF50 !important;
+    border: 2px solid #388e3c !important;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.3) !important;
+}
+
+/* Force default gold when no file-selected class */
+input[type="file"].video-upload:not(.file-selected) {
+    background: #B8860B !important;
+    border: 2px solid #8B6914 !important;
+    box-shadow: none !important;
+}
+
+/* Ensure default gold styling when no file is selected */
+#group-1-exercises .video-upload:not(:valid):placeholder-shown,
+#group-2-exercises .video-upload:not(:valid):placeholder-shown,
+#group-3-exercises .video-upload:not(:valid):placeholder-shown,
+#group-4-exercises .video-upload:not(:valid):placeholder-shown,
+#group-5-exercises .video-upload:not(:valid):placeholder-shown,
+#group-6-exercises .video-upload:not(:valid):placeholder-shown,
+#group-7-exercises .video-upload:not(:valid):placeholder-shown,
+#group-8-exercises .video-upload:not(:valid):placeholder-shown,
+#group-1-exercises .video-upload:not([value]),
+#group-2-exercises .video-upload:not([value]),
+#group-3-exercises .video-upload:not([value]),
+#group-4-exercises .video-upload:not([value]),
+#group-5-exercises .video-upload:not([value]),
+#group-6-exercises .video-upload:not([value]),
+#group-7-exercises .video-upload:not([value]),
+#group-8-exercises .video-upload:not([value]) {
+    background: #B8860B !important;
+    border: 2px solid #8B6914 !important;
+    box-shadow: none !important;
+}
+
+/* Enhanced Choose File button styling for all devices */
+input[type="file"] {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: #ffffff;
+    border: 2px solid #388e3c;
+    border-radius: 12px;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+    width: auto;
+    min-width: 150px;
+}
+
+input[type="file"]:hover {
+    background: linear-gradient(135deg, #45a049 0%, #388e3c 100%);
+    border-color: #2e7d32;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+input[type="file"]:active {
+    transform: translateY(0px);
+    box-shadow: 0 3px 10px rgba(76, 175, 80, 0.3);
+}
+
+/* iOS specific styling for file inputs */
+@supports (-webkit-touch-callout: none) {
+    input[type="file"] {
+        -webkit-appearance: none;
+        appearance: none;
+        background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+        color: #ffffff;
+        border: 2px solid #388e3c;
+        border-radius: 12px;
+        padding: 12px 20px;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    input[type="file"]::-webkit-file-upload-button {
+        display: none;
+    }
+    
+    input[type="file"]::file-selector-button {
+        display: none;
+    }
+    
+    /* iOS specific video upload file inputs - smaller text */
+    #group-1-exercises input[type="file"],
+    #group-2-exercises input[type="file"],
+    #group-3-exercises input[type="file"],
+    #group-4-exercises input[type="file"],
+    #group-5-exercises input[type="file"],
+    #group-6-exercises input[type="file"],
+    #group-7-exercises input[type="file"],
+    #group-8-exercises input[type="file"] {
+        font-size: 10px !important;
+        padding: 8px 12px !important;
+        line-height: 1.2 !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
 }
 
 #customize-page .group{
@@ -741,6 +907,33 @@ video:hover {
     background-color: DarkMagenta;
 }
 
+/* None value styling for better iOS appearance */
+select option[value="None"], 
+select option[value="none"],
+.color-coded[value="None"],
+.color-coded[value="none"] {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+}
+
+/* iOS specific styling for None option */
+@supports (-webkit-touch-callout: none) {
+    select option[value="None"], 
+    select option[value="none"] {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+        -webkit-appearance: none;
+        appearance: none;
+    }
+}
+
+/* Additional styling for select elements containing None */
+select:has(option[value="None"]:checked),
+select:has(option[value="none"]:checked) {
+    background-color: #000000;
+    color: #ffffff;
+}
+
 #duration-repeat{
     margin-left: 44%;
     text-align: center;
@@ -1103,6 +1296,63 @@ h3 {
     input:hover, select:hover {
         border-color: #555;
     }
+
+    /* Portrait-specific None value styling for iOS */
+    select.color-coded option[value="None"], 
+    select.color-coded option[value="none"],
+    select.color-coded[value="None"],
+    select.color-coded[value="none"],
+    .color-coded option[value="None"],
+    .color-coded option[value="none"] {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+        font-weight: 700 !important;
+    }
+
+    /* Specific styling for color-coded selects with None value in portrait */
+    select.color-coded {
+        background-color: #2a2a2a;
+        color: #ffffff;
+    }
+
+    select.color-coded option {
+        background-color: inherit;
+        color: inherit;
+    }
+
+    select.color-coded option[value="None"],
+    select.color-coded option[value="none"] {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+    }
+
+    /* iOS-specific portrait styling for None option */
+    @supports (-webkit-touch-callout: none) {
+        select.color-coded option[value="None"], 
+        select.color-coded option[value="none"] {
+            background: #000000 !important;
+            color: #ffffff !important;
+            -webkit-appearance: none;
+            appearance: none;
+            font-size: 16px !important;
+            font-weight: 700 !important;
+        }
+
+        /* Force iOS to respect None option styling in portrait */
+        select.color-coded {
+            -webkit-appearance: none;
+            appearance: none;
+        }
+    }
+
+    /* Portrait select element styling when None is selected */
+    select.color-coded:has(option[value="None"]:checked),
+    select.color-coded:has(option[value="none"]:checked) {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+        border: 2px solid #666;
+        font-weight: 700;
+    }
     
     img{
         height: 140px;
@@ -1174,6 +1424,7 @@ h3 {
         border-radius: 12px;
         box-shadow: 0 3px 10px rgba(255, 215, 0, 0.3);
         width: 100%;
+        max-width: 293px;
         border: 2px solid rgba(255, 215, 0, 0.6);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
@@ -1858,14 +2109,17 @@ h3 {
     #group-6-exercises .video-upload,
     #group-7-exercises .video-upload,
     #group-8-exercises .video-upload {
-        background: transparent;
-        border: transparent;
-        border-radius: 8px;
-        padding: 12px;
+        background: #B8860B;
+        border: 2px solid #8B6914;
+        border-radius: 12px;
+        padding: 16px 20px;
         color: #ffffff;
         width: 100%;
         cursor: pointer;
         transition: all 0.3s ease;
+        font-weight: 600;
+        font-size: 16px;
+        box-shadow: none;
     }
 
     #group-1-exercises .video-upload:hover,
@@ -1876,7 +2130,159 @@ h3 {
     #group-6-exercises .video-upload:hover,
     #group-7-exercises .video-upload:hover,
     #group-8-exercises .video-upload:hover {
+        background: #DAA520;
+        border: 2px solid #B8860B;
         transform: scale(1.02);
+    }
+
+    /* Video upload styling when file is selected - portrait orientation */
+    #group-1-exercises .video-upload:valid,
+    #group-2-exercises .video-upload:valid,
+    #group-3-exercises .video-upload:valid,
+    #group-4-exercises .video-upload:valid,
+    #group-5-exercises .video-upload:valid,
+    #group-6-exercises .video-upload:valid,
+    #group-7-exercises .video-upload:valid,
+    #group-8-exercises .video-upload:valid,
+    #group-1-exercises .video-upload[value]:not([value=""]),
+    #group-2-exercises .video-upload[value]:not([value=""]),
+    #group-3-exercises .video-upload[value]:not([value=""]),
+    #group-4-exercises .video-upload[value]:not([value=""]),
+    #group-5-exercises .video-upload[value]:not([value=""]),
+    #group-6-exercises .video-upload[value]:not([value=""]),
+    #group-7-exercises .video-upload[value]:not([value=""]),
+    #group-8-exercises .video-upload[value]:not([value=""]),
+    input[type="file"].video-upload:not(:placeholder-shown),
+    input[type="file"].video-upload[files],
+    .video-upload.file-selected {
+        background: #4CAF50 !important;
+        border: 2px solid #388e3c !important;
+        box-shadow: 0 0 10px rgba(76, 175, 80, 0.3) !important;
+    }
+
+    /* JavaScript-based file selection styling - portrait with highest specificity */
+    #group-1-exercises input[type="file"].video-upload.file-selected,
+    #group-2-exercises input[type="file"].video-upload.file-selected,
+    #group-3-exercises input[type="file"].video-upload.file-selected,
+    #group-4-exercises input[type="file"].video-upload.file-selected,
+    #group-5-exercises input[type="file"].video-upload.file-selected,
+    #group-6-exercises input[type="file"].video-upload.file-selected,
+    #group-7-exercises input[type="file"].video-upload.file-selected,
+    #group-8-exercises input[type="file"].video-upload.file-selected,
+    #group-1-exercises .video-upload.file-selected,
+    #group-2-exercises .video-upload.file-selected,
+    #group-3-exercises .video-upload.file-selected,
+    #group-4-exercises .video-upload.file-selected,
+    #group-5-exercises .video-upload.file-selected,
+    #group-6-exercises .video-upload.file-selected,
+    #group-7-exercises .video-upload.file-selected,
+    #group-8-exercises .video-upload.file-selected,
+    input[type="file"].video-upload.file-selected,
+    .video-upload.file-selected {
+        background: #4CAF50 !important;
+        border: 2px solid #388e3c !important;
+        box-shadow: 0 0 10px rgba(76, 175, 80, 0.3) !important;
+    }
+
+    /* Force default gold when no file-selected class - portrait */
+    input[type="file"].video-upload:not(.file-selected) {
+        background: #B8860B !important;
+        border: 2px solid #8B6914 !important;
+        box-shadow: none !important;
+    }
+
+    /* Ensure default gold styling when no file is selected - portrait */
+    #group-1-exercises .video-upload:not(:valid):placeholder-shown,
+    #group-2-exercises .video-upload:not(:valid):placeholder-shown,
+    #group-3-exercises .video-upload:not(:valid):placeholder-shown,
+    #group-4-exercises .video-upload:not(:valid):placeholder-shown,
+    #group-5-exercises .video-upload:not(:valid):placeholder-shown,
+    #group-6-exercises .video-upload:not(:valid):placeholder-shown,
+    #group-7-exercises .video-upload:not(:valid):placeholder-shown,
+    #group-8-exercises .video-upload:not(:valid):placeholder-shown,
+    #group-1-exercises .video-upload:not([value]),
+    #group-2-exercises .video-upload:not([value]),
+    #group-3-exercises .video-upload:not([value]),
+    #group-4-exercises .video-upload:not([value]),
+    #group-5-exercises .video-upload:not([value]),
+    #group-6-exercises .video-upload:not([value]),
+    #group-7-exercises .video-upload:not([value]),
+    #group-8-exercises .video-upload:not([value]) {
+        background: #B8860B !important;
+        border: 2px solid #8B6914 !important;
+        box-shadow: none !important;
+    }
+
+    /* Enhanced Choose File button styling for portrait orientation */
+    input[type="file"] {
+        background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+        color: #ffffff;
+        border: 2px solid #388e3c;
+        border-radius: 12px;
+        padding: 12px 20px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        width: auto;
+        min-width: 150px;
+    }
+
+    input[type="file"]:hover {
+        background: linear-gradient(135deg, #45a049 0%, #388e3c 100%);
+        border-color: #2e7d32;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+    }
+
+    input[type="file"]:active {
+        transform: translateY(0px);
+        box-shadow: 0 3px 10px rgba(76, 175, 80, 0.3);
+    }
+
+    /* iOS specific styling for file inputs in portrait */
+    @supports (-webkit-touch-callout: none) {
+        input[type="file"] {
+            -webkit-appearance: none;
+            appearance: none;
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: #ffffff;
+            border: 2px solid #388e3c;
+            border-radius: 12px;
+            padding: 12px 20px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+        
+        input[type="file"]::-webkit-file-upload-button {
+            display: none;
+        }
+        
+        input[type="file"]::file-selector-button {
+            display: none;
+        }
+        
+        /* iOS specific video upload file inputs in portrait - smaller text */
+        #group-1-exercises input[type="file"],
+        #group-2-exercises input[type="file"],
+        #group-3-exercises input[type="file"],
+        #group-4-exercises input[type="file"],
+        #group-5-exercises input[type="file"],
+        #group-6-exercises input[type="file"],
+        #group-7-exercises input[type="file"],
+        #group-8-exercises input[type="file"] {
+            font-size: 10px !important;
+            padding: 8px 12px !important;
+            line-height: 1.2 !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+        }
     }    
 
 }
@@ -1888,6 +2294,86 @@ h3 {
     body {
         zoom: 0.27;
         transform-origin: top left;
+    }
+    
+    /* iPhone SE specific file input styling */
+    input[type="file"] {
+        background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%) !important;
+        color: transparent !important;
+        border: 2px solid #388e3c !important;
+        border-radius: 8px !important;
+        padding: 10px 15px !important;
+        font-size: 5px !important;
+        font-weight: 600 !important;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 3px 10px rgba(76, 175, 80, 0.3) !important;
+        width: 100% !important;
+        max-width: 200px !important;
+        min-width: 120px !important;
+        display: block !important;
+        margin: 5px auto !important;
+        -webkit-appearance: none !important;
+        appearance: none !important;
+        outline: none !important;
+        -webkit-tap-highlight-color: transparent !important;
+        position: relative !important;
+        z-index: 10 !important;
+        line-height: 1.2 !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        text-indent: -9999px !important;
+    }
+    
+    /* Add "+" symbol for iPhone SE file inputs */
+    input[type="file"]::before {
+        content: "+" !important;
+        position: absolute !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        color: #ffffff !important;
+        font-size: 24px !important;
+        font-weight: bold !important;
+        text-indent: 0 !important;
+        pointer-events: none !important;
+        z-index: 11 !important;
+    }
+    
+    /* iPhone SE specific video upload styling - taller height */
+    #group-1-exercises .video-upload,
+    #group-2-exercises .video-upload,
+    #group-3-exercises .video-upload,
+    #group-4-exercises .video-upload,
+    #group-5-exercises .video-upload,
+    #group-6-exercises .video-upload,
+    #group-7-exercises .video-upload,
+    #group-8-exercises .video-upload {
+        background: #B8860B !important;
+        border: 2px solid #8B6914 !important;
+        border-radius: 12px !important;
+        padding: 20px 15px !important;
+        color: #ffffff !important;
+        width: 100% !important;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 600 !important;
+        font-size: 14px !important;
+        box-shadow: none !important;
+        min-height: 50px !important;
+        line-height: 1.4 !important;
+        display: block !important;
+        position: relative !important;
+        z-index: 5 !important;
+    }
+    
+    input[type="file"]::-webkit-file-upload-button {
+        display: none !important;
+    }
+    
+    input[type="file"]::file-selector-button {
+        display: none !important;
     }
 }
 
@@ -1946,5 +2432,8 @@ h3 {
     body {
         zoom: 0.46;
         transform-origin: top left;
+        min-height: 100vh;
+        height: auto;
+        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d30 50%, #1a1a1a 100%);
     }
 }

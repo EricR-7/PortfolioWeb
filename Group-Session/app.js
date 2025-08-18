@@ -44,6 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const refreshButton = document.getElementById('refresh-button');
     const timeSlider = document.getElementById("timeSlider");
 
+    const videoUpload = document.getElementsByClassName('video-upload');
+
     //const for save feature only
     const saveVariableMinutes = document.getElementsByClassName('duration-minutes');
     const saveVariableSeconds = document.getElementsByClassName('duration-seconds');
@@ -91,6 +93,25 @@ document.addEventListener('DOMContentLoaded', () => {
     group3Video.src = '';
     group4Video.src = '';
 
+    // Add event listeners to video-upload inputs for color changes
+    for (let i = 0; i < videoUpload.length; i++) {
+        videoUpload[i].addEventListener('change', function() {
+            if (this.files && this.files.length > 0) {
+                // File selected - add green styling
+                this.classList.add('file-selected');
+                // Force style recalculation
+                this.style.backgroundColor = '#4CAF50';
+                this.style.borderColor = '#388e3c';
+            } else {
+                // No file selected - remove green styling (back to gold)
+                this.classList.remove('file-selected');
+                // Reset to CSS default
+                this.style.backgroundColor = '';
+                this.style.borderColor = '';
+            }
+        });
+    }
+
     //Save for save function
     let exerciseTotalCells = 1; //For total amount for each minutes, seconds and color
     let addCellExerciseCount = 0; //For load function to load page
@@ -121,6 +142,24 @@ document.addEventListener('DOMContentLoaded', () => {
             globalCount++;
             console.log(globalCount);
             addStation(addCustomStation, globalCount, 'group' + globalCount, videoContainer3, videoContainer4);
+        }
+        // Add event listeners to video-upload inputs for color changes
+        for (let i = 0; i < videoUpload.length; i++) {
+            videoUpload[i].addEventListener('change', function() {
+                if (this.files && this.files.length > 0) {
+                    // File selected - add green styling
+                    this.classList.add('file-selected');
+                    // Force style recalculation
+                    this.style.backgroundColor = '#4CAF50';
+                    this.style.borderColor = '#388e3c';
+                } else {
+                    // No file selected - remove green styling (back to gold)
+                    this.classList.remove('file-selected');
+                    // Reset to CSS default
+                    this.style.backgroundColor = '';
+                    this.style.borderColor = '';
+                }
+            });
         }
     });
 
@@ -626,6 +665,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let totalGroup2 = 0; //Leave it, might be useful for the future
 
         repeat = parseInt(repeatExercise.value) || 0;
+        
 
         // Calculate total duration for all exercises
         document.querySelectorAll('#exercise-timer .exercise').forEach(exercise => {
@@ -1747,6 +1787,9 @@ document.addEventListener('DOMContentLoaded', () => {
         timeBar.innerHTML = '';
         console.log("Left Workout Page");
     });
+
+
+
 });
 
 
