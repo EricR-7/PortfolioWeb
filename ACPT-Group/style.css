@@ -208,8 +208,8 @@ img{
     height: 140px;
     width: 150px;
     position: absolute;
-    margin-top: 0px;
-    margin-left: 50px;
+    margin-top: 20px;
+    margin-left: 40px;
     border-radius: 15px;
     
     transition: transform 0.3s ease;
@@ -1358,8 +1358,8 @@ h3 {
         height: 140px;
         width: 150px;
         position: absolute;
-        margin-top: 0px;
-        margin-left: 50px;
+        margin-top: 20px;
+        margin-left: 40px;
         border-radius: 15px;
         
         transition: transform 0.3s ease;
