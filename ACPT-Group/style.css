@@ -1361,7 +1361,7 @@ h3 {
         margin-top: 0px;
         margin-left: 50px;
         border-radius: 15px;
-        box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        
         transition: transform 0.3s ease;
     }
 
