@@ -1,26 +1,187 @@
+/* Global animations and transitions */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Universal body background for all screen sizes */
+body {
+    background: linear-gradient(135deg, #000000 50%, #2d2d30 50%, #1a1a1a 100%) !important;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+
+@keyframes glow {
+    0% { box-shadow: 0 0 5px rgba(255, 215, 0, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.6); }
+    100% { box-shadow: 0 0 5px rgba(255, 215, 0, 0.5); }
+}
+
 *{
     margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    animation: fadeIn 0.6s ease-out;
+}
+
+#credit{
+    position: fixed;
+    margin-left: 50%;
+    font-size: 14px;
+    opacity: 0.8;
+    margin-top: -15%;
+}
+
+a{
+    color: #FFD700;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #FFA500;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+.remove-cell{
+    background: linear-gradient(135deg, #FF4444 0%, #CC0000 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 68, 68, 0.3);
+    display: inline;
+    margin: 2px;
+    font-size: 12px;
+}
+
+.remove-cell:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 68, 68, 0.4);
+    background: linear-gradient(135deg, #CC0000 0%, #990000 100%);
 }
 
 /* For landscape */
-@media screen and (min-width: 1400px) {
+@media screen and (min-width: 1400px), 
+       screen and (max-width: 1399px) and (orientation: landscape) {
 
 body{
     margin: auto auto;
     width: 1430px;
     height: 800px;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d30 50%, #1a1a1a 100%);
+    color: #ffffff;
+    padding: 0px;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    padding: 0px;
-    background-color: #000000;
-    color: #ffffff;
+/* Mobile landscape scaling - Device specific zoom levels */
+
+/* Small phones (iPhone SE, etc.) - 667px width */
+@media screen and (max-width: 667px) and (orientation: landscape) {
+    body {
+        zoom: 0.18;
+        transform-origin: top left;
+        width: 1430px;
+        height: 800px;
+    }
+}
+
+/* Standard phones (iPhone 12, Galaxy S21, etc.) - 844px width */
+@media screen and (min-width: 668px) and (max-width: 844px) and (orientation: landscape) {
+    body {
+        zoom: 0.26;
+        transform-origin: top left;
+        width: 1430px;
+        height: 800px;
+    }
+}
+
+/* Large phones (iPhone Pro Max, etc.) - 926px width */
+@media screen and (min-width: 845px) and (max-width: 926px) and (orientation: landscape) {
+    body {
+        zoom: 0.28;
+        transform-origin: top left;
+        width: 1430px;
+        height: 800px;
+    }
+}
+
+/* Small tablets - 1024px width */
+@media screen and (min-width: 927px) and (max-width: 1024px) and (orientation: landscape) {
+    body {
+        zoom: 0.33;
+        transform-origin: top left;
+        width: 1430px;
+        height: 800px;
+    }
+}
+
+/* Large tablets and small laptops - 1366px width */
+@media screen and (min-width: 1025px) and (max-width: 1399px) and (orientation: landscape) {
+    body {
+        zoom: 0.49;
+        transform-origin: top left;
+        width: 1430px;
+        height: 800px;
+    }
+}
+
+/* High-end phones with large screens - iPhone 16 Pro Max, Galaxy S25 Ultra, etc. */
+/* iPhone 16 Pro Max - 1320px width in landscape */
+@media screen and (min-width: 1200px) and (max-width: 1320px) and (orientation: landscape) {
+    body {
+        zoom: 0.46;
+        transform-origin: top left;
+        width: 1430px;
+        height: 800px;
+    }
+}
+
+/* Galaxy S25 Ultra and similar - up to 1440px width in landscape */
+@media screen and (min-width: 1321px) and (max-width: 1440px) and (orientation: landscape) {
+    body {
+        zoom: 0.54;
+        transform-origin: top left;
+        width: 1430px;
+        min-height: 100vh;
+        height: auto;
+        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d30 50%, #1a1a1a 100%);
+    }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1a1a;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    border-radius: 10px;
+    border: 2px solid #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%);
 }
 
 h1, h2, h3 {
     text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 p{
@@ -31,6 +192,16 @@ p{
 input, select{
     font-weight: 600;
     text-align: center;
+    border-radius: 8px;
+    border: 2px solid #333;
+    background-color: #2a2a2a;
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+
+input:hover, select:hover {
+    border-color: #555;
 }
 
 img{
@@ -39,26 +210,52 @@ img{
     position: absolute;
     margin-top: 0px;
     margin-left: 50px;
+    border-radius: 15px;
+    
+    transition: transform 0.3s ease;
+}
+
+img:hover {
+    transform: scale(1.05);
 }
 
 .session-container {
     position: relative;
-    margin-top: -525px;
-    margin-left: 836px;
-    width: 600px;
+    margin-top: 0px;
+    margin-left: 0px;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    gap: 15px;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: -23px;
 }
 
 .timer-container{
-    background-color: gold;
-    color: black;
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    color: #1a1a1a;
     padding: 50px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
     margin-bottom: 40px;
     width: 720px;
+    border: 3px solid rgba(255, 215, 0, 0.6);
+    float: left;
+}
+
+.right-side-container {
+    float: right;
+    width: 650px;
+    margin-top: 0px;
+    margin-right: 20px;
+}
+
+.clearfix::after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
 .timer-container p{
@@ -74,28 +271,272 @@ img{
 }
 
 .group {
-    background-color: gold;
-    color: black;
+    background: #FFD700;
+    color: #1a1a1a;
     margin-bottom: 0px;
-    padding: 4px;
-    border-radius: 50px;
-    box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
-    width: 340px;
+    padding: 2px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+    width: 297px;
+    border: 2px solid rgba(255, 215, 0, 0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.group:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+}
+
+/* Styling for group exercises containers */
+#group-1-exercises,
+#group-2-exercises,
+#group-3-exercises,
+#group-4-exercises,
+#group-5-exercises,
+#group-6-exercises,
+#group-7-exercises,
+#group-8-exercises {
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    min-height: 50px;
+}
+
+#group-1-exercises:hover,
+#group-2-exercises:hover,
+#group-3-exercises:hover,
+#group-4-exercises:hover,
+#group-5-exercises:hover,
+#group-6-exercises:hover,
+#group-7-exercises:hover,
+#group-8-exercises:hover {
+    transform: translateY(-2px);
+}
+
+/* Style for exercise elements inside the containers */
+#group-1-exercises .exercise,
+#group-2-exercises .exercise,
+#group-3-exercises .exercise,
+#group-4-exercises .exercise,
+#group-5-exercises .exercise,
+#group-6-exercises .exercise,
+#group-7-exercises .exercise,
+#group-8-exercises .exercise {
+    border-radius: 8px;
+    padding: 10px;
+    margin: 8px 0;
+    transition: all 0.2s ease;
+}
+
+#group-1-exercises .exercise:hover,
+#group-2-exercises .exercise:hover,
+#group-3-exercises .exercise:hover,
+#group-4-exercises .exercise:hover,
+#group-5-exercises .exercise:hover,
+#group-6-exercises .exercise:hover,
+#group-7-exercises .exercise:hover,
+#group-8-exercises .exercise:hover {
+    transform: translateY(-2px);
+}
+
+/* Style for video upload inputs */
+#group-1-exercises .video-upload,
+#group-2-exercises .video-upload,
+#group-3-exercises .video-upload,
+#group-4-exercises .video-upload,
+#group-5-exercises .video-upload,
+#group-6-exercises .video-upload,
+#group-7-exercises .video-upload,
+#group-8-exercises .video-upload {
+    background: #B8860B;
+    border: 2px solid #8B6914;
+    border-radius: 12px;
+    padding: 16px 20px;
+    color: #ffffff;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    font-size: 16px;
+    box-shadow: none;
+}
+
+#group-1-exercises .video-upload:hover,
+#group-2-exercises .video-upload:hover,
+#group-3-exercises .video-upload:hover,
+#group-4-exercises .video-upload:hover,
+#group-5-exercises .video-upload:hover,
+#group-6-exercises .video-upload:hover,
+#group-7-exercises .video-upload:hover,
+#group-8-exercises .video-upload:hover {
+    background: #DAA520;
+    border: 2px solid #B8860B;
+    transform: scale(1.02);
+}
+
+/* Video upload styling when file is selected - individual inputs */
+#group-1-exercises .video-upload:valid,
+#group-2-exercises .video-upload:valid,
+#group-3-exercises .video-upload:valid,
+#group-4-exercises .video-upload:valid,
+#group-5-exercises .video-upload:valid,
+#group-6-exercises .video-upload:valid,
+#group-7-exercises .video-upload:valid,
+#group-8-exercises .video-upload:valid,
+#group-1-exercises .video-upload[value]:not([value=""]),
+#group-2-exercises .video-upload[value]:not([value=""]),
+#group-3-exercises .video-upload[value]:not([value=""]),
+#group-4-exercises .video-upload[value]:not([value=""]),
+#group-5-exercises .video-upload[value]:not([value=""]),
+#group-6-exercises .video-upload[value]:not([value=""]),
+#group-7-exercises .video-upload[value]:not([value=""]),
+#group-8-exercises .video-upload[value]:not([value=""]),
+input[type="file"].video-upload:not(:placeholder-shown),
+input[type="file"].video-upload[files],
+.video-upload.file-selected {
+    background: #4CAF50 !important;
+    border: 2px solid #388e3c !important;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.3) !important;
+}
+
+/* JavaScript-based file selection styling with highest specificity */
+#group-1-exercises input[type="file"].video-upload.file-selected,
+#group-2-exercises input[type="file"].video-upload.file-selected,
+#group-3-exercises input[type="file"].video-upload.file-selected,
+#group-4-exercises input[type="file"].video-upload.file-selected,
+#group-5-exercises input[type="file"].video-upload.file-selected,
+#group-6-exercises input[type="file"].video-upload.file-selected,
+#group-7-exercises input[type="file"].video-upload.file-selected,
+#group-8-exercises input[type="file"].video-upload.file-selected,
+#group-1-exercises .video-upload.file-selected,
+#group-2-exercises .video-upload.file-selected,
+#group-3-exercises .video-upload.file-selected,
+#group-4-exercises .video-upload.file-selected,
+#group-5-exercises .video-upload.file-selected,
+#group-6-exercises .video-upload.file-selected,
+#group-7-exercises .video-upload.file-selected,
+#group-8-exercises .video-upload.file-selected,
+input[type="file"].video-upload.file-selected,
+.video-upload.file-selected {
+    background: #4CAF50 !important;
+    border: 2px solid #388e3c !important;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.3) !important;
+}
+
+/* Force default gold when no file-selected class */
+input[type="file"].video-upload:not(.file-selected) {
+    background: #B8860B !important;
+    border: 2px solid #8B6914 !important;
+    box-shadow: none !important;
+}
+
+/* Ensure default gold styling when no file is selected */
+#group-1-exercises .video-upload:not(:valid):placeholder-shown,
+#group-2-exercises .video-upload:not(:valid):placeholder-shown,
+#group-3-exercises .video-upload:not(:valid):placeholder-shown,
+#group-4-exercises .video-upload:not(:valid):placeholder-shown,
+#group-5-exercises .video-upload:not(:valid):placeholder-shown,
+#group-6-exercises .video-upload:not(:valid):placeholder-shown,
+#group-7-exercises .video-upload:not(:valid):placeholder-shown,
+#group-8-exercises .video-upload:not(:valid):placeholder-shown,
+#group-1-exercises .video-upload:not([value]),
+#group-2-exercises .video-upload:not([value]),
+#group-3-exercises .video-upload:not([value]),
+#group-4-exercises .video-upload:not([value]),
+#group-5-exercises .video-upload:not([value]),
+#group-6-exercises .video-upload:not([value]),
+#group-7-exercises .video-upload:not([value]),
+#group-8-exercises .video-upload:not([value]) {
+    background: #B8860B !important;
+    border: 2px solid #8B6914 !important;
+    box-shadow: none !important;
+}
+
+/* Enhanced Choose File button styling for all devices */
+input[type="file"] {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: #ffffff;
+    border: 2px solid #388e3c;
+    border-radius: 12px;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+    width: auto;
+    min-width: 150px;
+}
+
+input[type="file"]:hover {
+    background: linear-gradient(135deg, #45a049 0%, #388e3c 100%);
+    border-color: #2e7d32;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+input[type="file"]:active {
+    transform: translateY(0px);
+    box-shadow: 0 3px 10px rgba(76, 175, 80, 0.3);
+}
+
+/* iOS specific styling for file inputs */
+@supports (-webkit-touch-callout: none) {
+    input[type="file"] {
+        -webkit-appearance: none;
+        appearance: none;
+        background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+        color: #ffffff;
+        border: 2px solid #388e3c;
+        border-radius: 12px;
+        padding: 12px 20px;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    input[type="file"]::-webkit-file-upload-button {
+        display: none;
+    }
+    
+    input[type="file"]::file-selector-button {
+        display: none;
+    }
+    
+    /* iOS specific video upload file inputs - smaller text */
+    #group-1-exercises input[type="file"],
+    #group-2-exercises input[type="file"],
+    #group-3-exercises input[type="file"],
+    #group-4-exercises input[type="file"],
+    #group-5-exercises input[type="file"],
+    #group-6-exercises input[type="file"],
+    #group-7-exercises input[type="file"],
+    #group-8-exercises input[type="file"] {
+        font-size: 10px !important;
+        padding: 8px 12px !important;
+        line-height: 1.2 !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
 }
 
 #customize-page .group{
     background-color: gold;
     color: black;
     margin-bottom: 10px;
-    padding: 16px 2px;
-    border-radius: 3px;
-    box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
+    padding: 0px 2px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
     margin-left: 2px;
-    width: 254px;
+    width: 293px;
 }
 
 #customize-page .group h2{
-    padding: 16px 2px;
+    padding: 12px 2px;
 }
 
 .group h3{
@@ -110,16 +551,25 @@ img{
 
 #X-p{
     margin: 0px 0px;
-    margin-left: 0px;
+    margin-left: -8px;
 }
 
 #add-timer{
-    margin-left: 46%;
-    background-color: #98c661;
-    color: #000000;
-    border-color: #86912c;
+    margin-left: 40%;
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: #ffffff;
+    border: none;
     border-radius: 12px;
+    padding: 12px 24px;
     font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+#add-timer:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
 }
 
 #add-station h1{
@@ -133,38 +583,55 @@ img{
 }
 
 #button-remove{
-    background-color: gold;
-    color: black;
+    background: linear-gradient(135deg, #FF4444 0%, #CC0000 100%);
+    color: #ffffff;
     margin-bottom: 20px;
     padding: 10px 45px;
-    border-radius: 5px;
+    border: none;
+    border-radius: 15px;
     font-size: 70px;
     text-align: center;
-    border-color: gold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(255, 68, 68, 0.3);
+}
+
+#button-remove:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(255, 68, 68, 0.4);
+    background: linear-gradient(135deg, #CC0000 0%, #990000 100%);
 }
 
 #button-add-station{
-    background-color: gold;
-    color: black;
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: #ffffff;
     margin-bottom: 20px;
     padding: 10px 40px;
-    border-radius: 5px;
+    border: none;
+    border-radius: 15px;
     font-size: 70px;
     text-align: center;
-    border-color: gold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
+}
+
+#button-add-station:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+    background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
 }
 
 #timeSlider{
     width: 353px;
     height: 30px;
     margin-left: -3px;
-
     appearance: none;
+    border: none;
     background-color: transparent;
-
     position: absolute;
-    margin-top: -36px;
-    }
+    margin-top: -25px;
+}
 
 input[type="range"]::-webkit-slider-thumb{
     -webkit-appearance: none;
@@ -185,8 +652,9 @@ input[type="range"]::-webkit-slider-thumb{
 }
 
 #box-timer{
-    margin-left: 570px;
-    margin-right: 318px;
+    margin: 20px 40%;
+    width: 90%;
+    max-width: 600px;
 }
 
 #container-time{
@@ -198,7 +666,7 @@ input[type="range"]::-webkit-slider-thumb{
     align-items: stretch;
     box-sizing: border-box;
     position: absolute;
-    margin-top: -12px;
+    margin-top: 0px;
 }
 
 #time-bar{
@@ -225,6 +693,7 @@ input[type="range"]::-webkit-slider-thumb{
 #arrow{
     margin-left: -4px !important;
     margin-right: 0;
+    margin-bottom: -35px;
     transition: left 0.1s linear;
 }
 
@@ -278,33 +747,60 @@ input[type="range"]::-webkit-slider-thumb{
 button {
     display: block;
     margin-top: 10px;
-    padding: 10px;
+    padding: 12px 20px;
     margin-left: auto;
     margin-right: auto;
+    background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
+    background: linear-gradient(135deg, #357abd 0%, #2868a3 100%);
 }
 
 .exercise{
     margin: 0px auto;
     margin-left: 15%;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+    padding: 10px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.exercise:hover {
+    transform: translateY(-2px);
 }
 
 .exercise button{
     display: inline;
-    margin: 1px;
-    padding: 1px;    
+    margin: 2px;
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 6px;
 }
 
-#video-container-1, #video-container-2, #video-container-3,
+    #video-container-1, #video-container-2, #video-container-3,
+    #video-container-4{
+        margin-top: 0px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        padding: 15px;
+        border-radius: 15px;
+        margin-bottom: 15px;
+        flex: 1 1 50%;
+        min-width: 300px;
+    }#video-container-3,
 #video-container-4{
-    margin-top: 0px;
-    display: flex;
-    justify-content: space-around;
-}
-
-#video-container-3,
-#video-container-4{
-    margin-bottom: -10px;
+    margin-bottom: 5px;
 }
 
 #videos-note{
@@ -316,16 +812,36 @@ button {
 }
 
 video {
-    max-width: 360px;
-    min-width: 334px;
-    max-height: 270px;
-    min-height: 240px;
+    width: 100%;
+    max-width: 336px;
+    height: auto;
     margin-left: auto;
     margin-right: auto;
-    border-left: 3px solid #000000;
-    border-right: 3px solid #000000;
-    border-bottom: 3px solid #000000;
-    background-color: #000000;
+    border: none;
+    border-radius: 0;
+    background-color: #1a1a1a;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    display: block;
+}
+
+video:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+}
+
+/* Group video styling for workout page */
+#group1-video, #group2-video, #group3-video, #group4-video,
+#group5-video, #group6-video, #group7-video, #group8-video {
+    width: 100%;
+    max-width: 336px;
+    height: auto;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+    display: block;
+    background-color: transparent;
+}
 
 }
 
@@ -338,8 +854,9 @@ video {
 }
 
 .color-coded{
-    background-color: #ffffff;
+    background-color: black;
     font-size: large;
+    padding: 5px 0px;
 }
 
 #warmup-container .exercise:first-child select{
@@ -390,8 +907,35 @@ video {
     background-color: DarkMagenta;
 }
 
+/* None value styling for better iOS appearance */
+select option[value="None"], 
+select option[value="none"],
+.color-coded[value="None"],
+.color-coded[value="none"] {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+}
+
+/* iOS specific styling for None option */
+@supports (-webkit-touch-callout: none) {
+    select option[value="None"], 
+    select option[value="none"] {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+        -webkit-appearance: none;
+        appearance: none;
+    }
+}
+
+/* Additional styling for select elements containing None */
+select:has(option[value="None"]:checked),
+select:has(option[value="none"]:checked) {
+    background-color: #000000;
+    color: #ffffff;
+}
+
 #duration-repeat{
-    margin-left: 46%;
+    margin-left: 44%;
     text-align: center;
     width: 71px;
     margin-top: 6px;
@@ -401,50 +945,74 @@ video {
 
 .duration-minutes, .duration-seconds{
     font-size: large;
-    width: 150px;
+    width: 115px;
+    padding: 5px 0px;
 }
 
 
 #start-workout{
     padding: 20px 150px;
     font-size: 50px;
-    background-color: #02a041;
+    background: linear-gradient(135deg, #4CAF50 0%, #02a041 100%);
+    color: #ffffff;
+    border: none;
     border-radius: 25px;
     font-weight: 700;
-    border-color: darkgreen;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(2, 160, 65, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+#start-workout:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 35px rgba(2, 160, 65, 0.5);
+    background: linear-gradient(135deg, #45a049 0%, #028a37 100%);
+    animation: glow 1s ease-in-out infinite alternate;
 }
 
 #add-station-group{
-    margin-left: 835px;
+    margin-left: 0px;
     margin-top: 0px;
     position: relative;
-    width: 600px;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    
+    gap: 15px;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
 }
 
 #station-add-container{
     display: flex;
     justify-content: space-evenly;
     margin-bottom: 20px;
-    position: absolute;
+    position: relative;
     margin-top: 0px;
-    margin-left: 895px;
-    width: 500px;
+    margin-left: 0px;
+    width: 100%;
+    gap: 15px;
+    padding: 20px;
 }
 
 #go-container{
-    position: absolute;
-    margin-top: 160px;
-    margin-left: 925px;
+    position: relative;
+    margin-top: 0px;
+    margin-left: 0px;
+    padding: 20px;
+    text-align: center;
 }
 
 #go-container h3{
-    position: absolute;
-    margin-top: 125px;
-    margin-left: 70px;
+    position: relative;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-bottom: 20px;
 }
 
 #workout-page {
@@ -453,7 +1021,7 @@ video {
 }
 
 #session-h3{
-    margin-top: -40px;
+    margin-top: -70px;
     margin-left: 70px;
 }
 
@@ -469,7 +1037,7 @@ video {
     flex-direction: row;
     flex-wrap: wrap;
     margin-left: 0px;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
 /* To do Fix stations */
@@ -480,13 +1048,18 @@ video {
     margin-right: 250px;
     margin-bottom: -2.6px;
     border-radius: 25px 25px 0px 0px;
-    background-color: gold;
+    color: #1a1a1a;
+    text-align: center;
+    font-weight: 700;
+    font-size: 18px;
 }
 
 #controls-selections{
-    margin-top: 10px;
+    margin-top: 20px;
     display: flex;
-    flex-direction: row-reverse;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
 }
 
 #group1-current-exercise, #group2-current-exercise, 
@@ -501,12 +1074,13 @@ video {
     margin-left: 0px;
     margin-right: auto;
     max-width: 336px;
-    margin-top: -4px;
+    margin-top: 0px;
     margin-bottom: 10px;
     padding: 4px 50px;
     background-color: #000000;
     color: white;
     box-shadow: 0 7px rgba(0, 0, 0, 0.1);
+    height: 22%;
 }
 
 #group1-timer, #group2-timer{
@@ -519,13 +1093,34 @@ video {
 }
 
 #return-home, #pause-play{
-    background-color: gold;
-    color: black;
-    padding: 10px 40px;
-    border-radius: 5px;
-    font-size: 20px;
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    color: #1a1a1a;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
     text-align: center;
     font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#return-home:hover, #pause-play:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+    background: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%);
+}
+
+#pause-play {
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    color: #ffffff;
+}
+
+#pause-play:hover {
+    background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
 }
 
 #workout-page-h1{
@@ -565,7 +1160,7 @@ h3 {
 }
 
 #none-p{
-    margin-left: 0%;
+    margin-left: -8px;
 }
 
 #load-container{
@@ -575,34 +1170,52 @@ h3 {
 
 #save-session-as, #load-button, #delete-button, #refresh-button, #rotate-button, #rotate-back-button{
     display: inline;
-    padding: 3px;
-    background-color: gold;
-    color: black;
-    border-radius: 5px;
+    padding: 8px 16px;
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    color: #1a1a1a;
+    border: none;
+    border-radius: 8px;
     text-align: center;
-    border-color: gold;
     font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(255, 215, 0, 0.3);
+    margin: 2px;
+}
+
+#save-session-as:hover, #load-button:hover, #refresh-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
 }
 
 #rotate-button{
     position: absolute;
-    background-color: orange;
-    border-color: orange;
+    background: linear-gradient(135deg, #FF8C00 0%, #FF7F00 100%);
+    color: #ffffff;
+    border: none;
     visibility: hidden;
 }
 
 #rotate-back-button{
     position: absolute;
-    background-color: orange;
-    border-color: orange;
+    background: linear-gradient(135deg, #FF8C00 0%, #FF7F00 100%);
+    color: #ffffff;
+    border: none;
     margin-left: 65px;
     visibility: hidden;
 }
 
 #delete-button{
     margin-left: 50px;
-    background-color: red;
-    border-color: red;
+    background: linear-gradient(135deg, #FF4444 0%, #CC0000 100%);
+    color: #ffffff;
+    border: none;
+}
+
+#delete-button:hover {
+    background: linear-gradient(135deg, #CC0000 0%, #990000 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(255, 68, 68, 0.4);
 }
 
 #refresh-button{
@@ -610,30 +1223,58 @@ h3 {
 }
 
 #load-button{
-    background-color: greenyellow;
-    border-color: greenyellow;
+    background: linear-gradient(135deg, #32CD32 0%, #228B22 100%);
+    color: #ffffff;
+    border: none;
 }
 
+#load-button:hover {
+    background: linear-gradient(135deg, #228B22 0%, #006400 100%);
 }
 
 /* For portrait */
-@media screen and (max-width: 1399px) {
+@media screen and (max-width: 1399px) and (orientation: portrait),
+       screen and (min-width: 1400px) and (orientation: portrait) {
     body{
         margin: auto auto;
         width: 1063px;
         height: 1500px;
-        font-family: 'Courier New', Courier, monospace;
-    }
-    
-    body {
-        font-family: Arial, sans-serif;
-        padding: 0px;
-        background-color: #000000;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d30 50%, #1a1a1a 100%);
         color: #ffffff;
+        padding: 0px;
+        min-height: 100vh;
+        overflow-x: hidden;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #1a1a1a;
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+        border-radius: 10px;
+        border: 2px solid #1a1a1a;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%);
+    }
+
+    #credit{
+        position: fixed;
+        margin-left: 70%;
     }
     
     h1, h2, h3 {
         text-align: center;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
     
     p{
@@ -644,6 +1285,73 @@ h3 {
     input, select{
         font-weight: 600;
         text-align: center;
+        border-radius: 8px;
+        border: 2px solid #333;
+        background-color: #2a2a2a;
+        color: #ffffff;
+        transition: all 0.3s ease;
+    }
+
+
+    input:hover, select:hover {
+        border-color: #555;
+    }
+
+    /* Portrait-specific None value styling for iOS */
+    select.color-coded option[value="None"], 
+    select.color-coded option[value="none"],
+    select.color-coded[value="None"],
+    select.color-coded[value="none"],
+    .color-coded option[value="None"],
+    .color-coded option[value="none"] {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+        font-weight: 700 !important;
+    }
+
+    /* Specific styling for color-coded selects with None value in portrait */
+    select.color-coded {
+        background-color: #2a2a2a;
+        color: #ffffff;
+    }
+
+    select.color-coded option {
+        background-color: inherit;
+        color: inherit;
+    }
+
+    select.color-coded option[value="None"],
+    select.color-coded option[value="none"] {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+    }
+
+    /* iOS-specific portrait styling for None option */
+    @supports (-webkit-touch-callout: none) {
+        select.color-coded option[value="None"], 
+        select.color-coded option[value="none"] {
+            background: #000000 !important;
+            color: #ffffff !important;
+            -webkit-appearance: none;
+            appearance: none;
+            font-size: 16px !important;
+            font-weight: 700 !important;
+        }
+
+        /* Force iOS to respect None option styling in portrait */
+        select.color-coded {
+            -webkit-appearance: none;
+            appearance: none;
+        }
+    }
+
+    /* Portrait select element styling when None is selected */
+    select.color-coded:has(option[value="None"]:checked),
+    select.color-coded:has(option[value="none"]:checked) {
+        background-color: #000000 !important;
+        color: #ffffff !important;
+        border: 2px solid #666;
+        font-weight: 700;
     }
     
     img{
@@ -652,21 +1360,48 @@ h3 {
         position: absolute;
         margin-top: 0px;
         margin-left: 50px;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        transition: transform 0.3s ease;
+    }
+
+    img:hover {
+        transform: scale(1.05);
     }
     
     .session-container {
+        position: relative;
+        margin-top: 0px;
+        margin-left: 0px;
+        width: 100%;
         display: flex;
-        justify-content: space-evenly;
-        margin-bottom: 20px;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        gap: 5px;
+        padding: 15px;
+        border-radius: 15px;
+        margin-bottom: -23px;
     }
     
     .timer-container{
-        background-color: gold;
-        color: black;
+        background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+        color: #1a1a1a;
         padding: 50px;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+        box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
         margin-bottom: 40px;
+        border: 3px solid rgba(255, 215, 0, 0.6);
+    }
+
+    .right-side-container {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .clearfix::after {
+        content: "";
+        display: table;
+        clear: both;
     }
     
     .timer-container p{
@@ -682,12 +1417,21 @@ h3 {
     }
     
     .group {
-        background-color: gold;
-        color: black;
-        margin-bottom: 0px;
-        padding: 4px;
-        border-radius: 50px;
-        box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
+        background: #FFD700;
+        color: #1a1a1a;
+        margin-bottom: 5px;
+        padding: 8px;
+        border-radius: 12px;
+        box-shadow: 0 3px 10px rgba(255, 215, 0, 0.3);
+        width: 100%;
+        max-width: 293px;
+        border: 2px solid rgba(255, 215, 0, 0.6);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .group:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
     }
     
     #customize-page .group{
@@ -695,7 +1439,7 @@ h3 {
         color: black;
         margin-bottom: 0px;
         padding: 16px 2px;
-        border-radius: 3px;
+        border-radius: 15px;
         box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
         margin-left: 2px;
     }
@@ -716,16 +1460,25 @@ h3 {
     
     #X-p{
         margin: 0px 0px;
-        margin-left: 0px;
+        margin-left: -8px;
     }
     
     #add-timer{
-        margin-left: 46%;
-        background-color: #98c661;
-        color: #000000;
-        border-color: #86912c;
+        margin-left: 40%;
+        background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+        color: #ffffff;
+        border: none;
         border-radius: 12px;
+        padding: 12px 24px;
         font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+    }
+
+    #add-timer:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
     }
     
     #add-station h1{
@@ -739,38 +1492,55 @@ h3 {
     }
     
     #button-remove{
-        background-color: gold;
-        color: black;
+        background: linear-gradient(135deg, #FF4444 0%, #CC0000 100%);
+        color: #ffffff;
         margin-bottom: 20px;
         padding: 10px 45px;
-        border-radius: 5px;
+        border: none;
+        border-radius: 15px;
         font-size: 70px;
         text-align: center;
-        border-color: gold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 6px 20px rgba(255, 68, 68, 0.3);
+    }
+
+    #button-remove:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 8px 25px rgba(255, 68, 68, 0.4);
+        background: linear-gradient(135deg, #CC0000 0%, #990000 100%);
     }
     
     #button-add-station{
-        background-color: gold;
-        color: black;
+        background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+        color: #ffffff;
         margin-bottom: 20px;
         padding: 10px 40px;
-        border-radius: 5px;
+        border: none;
+        border-radius: 15px;
         font-size: 70px;
         text-align: center;
-        border-color: gold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
+    }
+
+    #button-add-station:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+        background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
     }
 
     #timeSlider{
         width: 353px;
         height: 30px;
         margin-left: -3px;
-
+        border: none;
         appearance: none;
         background-color: transparent;
-
         position: absolute;
-        margin-top: -36px;
-        }
+        margin-top: -25px;
+    }
 
     input[type="range"]::-webkit-slider-thumb{
         -webkit-appearance: none;
@@ -790,8 +1560,9 @@ h3 {
     }
     
     #box-timer{
-        margin-left: 400px;
-        margin-right: 318px;
+        margin: 20px 30%;
+        width: 90%;
+        max-width: 600px;
     }
     
     #container-time{
@@ -803,7 +1574,7 @@ h3 {
         align-items: stretch;
         box-sizing: border-box;
         position: absolute;
-        margin-top: -12px;
+        margin-top: 0px;
     }
     
     #time-bar{
@@ -830,6 +1601,7 @@ h3 {
     #arrow{
         margin-left: -4px !important;
         margin-right: 0;
+        margin-bottom: -35px;
         transition: left 0.1s linear;
     }
     
@@ -883,33 +1655,57 @@ h3 {
     button {
         display: block;
         margin-top: 10px;
-        padding: 10px;
+        padding: 12px 20px;
         margin-left: auto;
         margin-right: auto;
+        background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+        color: #ffffff;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
+    }
+
+    button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
+        background: linear-gradient(135deg, #357abd 0%, #2868a3 100%);
     }
     
     .exercise{
         margin: 0px auto;
         margin-left: 25%;
-        margin-bottom: 5px;
+        margin-bottom: 8px;
+        padding: 10px;
+        border-radius: 10px;
+        transition: all 0.3s ease;
     }
-    
+
+    .exercise:hover {
+        transform: translateY(-2px);
+    }
+
     .exercise button{
         display: inline;
-        margin: 1px;
-        padding: 1px;    
+        margin: 2px;
+        padding: 6px 12px;
+        font-size: 12px;
+        border-radius: 6px;
     }
     
     #video-container-1, #video-container-2, #video-container-3,
     #video-container-4{
         margin-top: 0px;
         display: flex;
-        justify-content: space-around;
-    }
-    
-    #video-container-3,
-    #video-container-4{
-        margin-bottom: -10px;
+        flex-direction: row;
+        justify-content: space-evenly;
+        padding: 15px;
+        border-radius: 15px;
+        margin-bottom: 15px;
+        flex: 1 1 50%;
+        min-width: 400px;
     }
     
     #videos-note{
@@ -921,18 +1717,35 @@ h3 {
     }
     
     video {
-        width: 90%;
-        max-width: 472px;
-        min-width: 430px;
-        max-height: 270px;
-        min-height: 240px;
+        width: 100%;
+        max-width: 336px;
+        height: auto;
         margin-left: auto;
         margin-right: auto;
-        border-left: 3px solid #000000;
-        border-right: 3px solid #000000;
-        border-bottom: 3px solid #000000;
-        background-color: #000000;
+        border: none;
+        border-radius: 0;
+        background-color: #1a1a1a;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+        display: block;
+    }
     
+    video:hover {
+        transform: scale(1.02);
+        box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+    }
+    
+    /* Group video styling for workout page */
+    #group1-video, #group2-video, #group3-video, #group4-video,
+    #group5-video, #group6-video, #group7-video, #group8-video {
+        width: 100%;
+        max-width: 336px;
+        height: auto;
+        border: none;
+        border-radius: 0;
+        margin: 0;
+        display: block;
+        background-color: transparent;
     }
     
     #remove-exercise p{
@@ -946,6 +1759,7 @@ h3 {
     .color-coded{
         background-color: #ffffff;
         font-size: large;
+        padding: 5px 0px;
     }
     
     #warmup-container .exercise:first-child select{
@@ -997,7 +1811,7 @@ h3 {
     }
     
     #duration-repeat{
-        margin-left: 46%;
+        margin-left: 44%;
         text-align: center;
         width: 71px;
         margin-top: 6px;
@@ -1007,63 +1821,107 @@ h3 {
     
     .duration-minutes, .duration-seconds{
         font-size: large;
-        width: 150px;
+        width: 115px;
+        padding: 5px 0px;
     }
     
     
     #start-workout{
         padding: 20px 150px;
         font-size: 50px;
-        background-color: #02a041;
+        background: linear-gradient(135deg, #4CAF50 0%, #02a041 100%);
+        color: #ffffff;
+        border: none;
         border-radius: 25px;
         font-weight: 700;
-        border-color: darkgreen;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 25px rgba(2, 160, 65, 0.4);
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        animation: pulse 2s ease-in-out infinite;
+    }
+
+    #start-workout:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 12px 35px rgba(2, 160, 65, 0.5);
+        background: linear-gradient(135deg, #45a049 0%, #028a37 100%);
+        animation: glow 1s ease-in-out infinite alternate;
     }
     
     #add-station-group{
         display: flex;
-        justify-content: space-evenly;
         margin-bottom: 20px;
+        gap: 5px;
+        padding: 15px;
+        border-radius: 15px;
+        width: 100%;
+        flex-wrap: nowrap;
     }
     
     #station-add-container{
         display: flex;
         justify-content: space-evenly;
         margin-bottom: 20px;
+        gap: 15px;
+        padding: 20px;
+        width: 100%;
     }
     
     #workout-page {
         display: none;
         color: #ffffff;
+        width: 100%;
+        padding: 10px;
+    }
+    
+    #workout-page-h1{
+        font-size: 45px;
+        margin-top: 20px;
+        margin-bottom: 15px;
+        text-align: center;
     }
     
     #session-h3{
-        margin-top: -40px;
-        margin-left: 70px;
+        margin-top: -70px;
+        margin-left: -85px;
+        text-align: center;
+        font-size: 24px;
     }
     
     #stations-container{
         background-color: gold;
-        padding-bottom: 20px;
+        padding: 15px;
         border-radius: 20px;
-        margin-top: 2px;
-        margin-right: 14px;
-        padding-left: 20px;
+        margin: 10px auto;
+        width: 95%;
+        max-width: 1000px;
+        box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+        border: 3px solid rgba(255, 215, 0, 0.6);
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
     }
     
     #current-exercise-timer{
-        margin-top: 30px;
-        margin-left: 250px;
-        margin-right: 250px;
-        margin-bottom: -2.6px;
+        margin: 20px auto;
+        width: 90%;
+        max-width: 600px;
         border-radius: 25px 25px 0px 0px;
-        background-color: gold;
+        color: #1a1a1a;
+        text-align: center;
+        font-weight: 700;
+        font-size: 18px;
     }
     
     #controls-selections{
-        margin-top: 10px;
+        margin-top: 20px;
         display: flex;
-        flex-direction: row-reverse;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px;
     }
     
     #group1-current-exercise, #group2-current-exercise, 
@@ -1071,44 +1929,70 @@ h3 {
     #group5-current-exercise, #group6-current-exercise,
     #group7-current-exercise, #group8-current-exercise{
         text-align: center;
-        font-size: 32px;
+        font-size: 35px;
         font-weight: bolder;
         border-radius: 0px 0px 30px 30px;
-        margin: 0px;
-        margin-left: 0px;
-        margin-right: auto;
+        margin: 0px auto;
         max-width: 336px;
-        margin-top: -4px;
+        margin-top: 0px;
         margin-bottom: 10px;
-        padding: 4px 50px;
+        padding: 8px 20px;
         background-color: #000000;
         color: white;
         box-shadow: 0 7px rgba(0, 0, 0, 0.1);
+        height: 22%;
     }
     
-    #group1-timer, #group2-timer{
+    #group1-timer, #group2-timer, #group3-timer, #group4-timer,
+    #group5-timer, #group6-timer, #group7-timer, #group8-timer{
         text-align: center;
-        font-size: 40px;
+        font-size: 35px;
         font-weight: bolder;
-        padding: 10px;
+        padding: 15px;
         color: #000000;
         border-radius: 25px 25px 0px 0px;
+        background-color: #FFD700;
+        margin: 0 auto;
+        max-width: 400px;
+        margin-bottom: -21px;
     }
     
     #return-home, #pause-play{
-        background-color: gold;
-        color: black;
-        padding: 10px 40px;
-        border-radius: 5px;
-        font-size: 20px;
+        background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+        color: #1a1a1a;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 12px;
+        font-size: 18px;
         text-align: center;
         font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    #return-home:hover, #pause-play:hover {
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+        background: linear-gradient(135deg, #FFA500 0%, #FF8C00 100%);
+    }
+
+    #pause-play {
+        background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+        color: #ffffff;
+    }
+
+    #pause-play:hover {
+        background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
     }
     
     #workout-page-h1{
-        font-size: 60px;
-        margin-top: 30px;
-        margin-bottom: 0px;
+        font-size: 45px;
+        margin-top: 20px;
+        margin-bottom: 15px;
+        text-align: center;
     }
     
     .group #group1{
@@ -1121,13 +2005,17 @@ h3 {
     
     h3 {
         margin-bottom: 10px;
+        text-align: center;
+        font-size: 28px;
+        margin-left: auto;
+        margin-right: auto;
     }
     
     .group h3{
-        font-size: 45px;
-        margin-left: 0px;
+        font-size: 35px;
+        margin-left: auto;
         margin-right: auto;
-        max-width: 430px;
+        max-width: 336px;
         box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.1);
         border-radius: 7px 7px 0px 0px;
         border-top: 3px solid black;
@@ -1135,6 +2023,8 @@ h3 {
         border-right: 3px solid black;
         background-color: black;
         color: white;
+        text-align: center;
+        padding: 8px 0;
     }
     
     #exercise-timer{
@@ -1142,7 +2032,7 @@ h3 {
     }
     
     #none-p{
-        margin-left: 0%;
+        margin-left: -8px;
     }
     
     #load-container{
@@ -1152,44 +2042,398 @@ h3 {
     
     #save-session-as, #load-button, #delete-button, #refresh-button, #rotate-button, #rotate-back-button{
         display: inline;
-        padding: 3px;
-        background-color: gold;
-        color: black;
-        border-radius: 5px;
+        padding: 8px 16px;
+        background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+        color: #1a1a1a;
+        border: none;
+        border-radius: 8px;
         text-align: center;
-        border-color: gold;
         font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 3px 10px rgba(255, 215, 0, 0.3);
+        margin: 2px;
     }
-    
+
+    #save-session-as:hover, #load-button:hover, #refresh-button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+    }
+
     #rotate-button{
         position: absolute;
-        background-color: orange;
-        border-color: orange;
+        background: linear-gradient(135deg, #FF8C00 0%, #FF7F00 100%);
+        color: #ffffff;
+        border: none;
         visibility: hidden;
     }
-    
+
     #rotate-back-button{
         position: absolute;
-        background-color: orange;
-        border-color: orange;
+        background: linear-gradient(135deg, #FF8C00 0%, #FF7F00 100%);
+        color: #ffffff;
+        border: none;
         margin-left: 65px;
         visibility: hidden;
     }
-    
+
     #delete-button{
         margin-left: 50px;
-        background-color: red;
-        border-color: red;
+        background: linear-gradient(135deg, #FF4444 0%, #CC0000 100%);
+        color: #ffffff;
+        border: none;
     }
-    
-    #refresh-button{
-        margin-left: 50px;
+
+    #delete-button:hover {
+        background: linear-gradient(135deg, #CC0000 0%, #990000 100%);
+        transform: translateY(-1px);
+        box-shadow: 0 5px 15px rgba(255, 68, 68, 0.4);
     }
-    
+
     #load-button{
-        background-color: greenyellow;
-        border-color: greenyellow;
+        background: linear-gradient(135deg, #32CD32 0%, #228B22 100%);
+        color: #ffffff;
+        border: none;
+    }
+
+    #load-button:hover {
+        background: linear-gradient(135deg, #228B22 0%, #006400 100%);
+    }
+
+    /* Style for video upload inputs */
+    #group-1-exercises .video-upload,
+    #group-2-exercises .video-upload,
+    #group-3-exercises .video-upload,
+    #group-4-exercises .video-upload,
+    #group-5-exercises .video-upload,
+    #group-6-exercises .video-upload,
+    #group-7-exercises .video-upload,
+    #group-8-exercises .video-upload {
+        background: #B8860B;
+        border: 2px solid #8B6914;
+        border-radius: 12px;
+        padding: 16px 20px;
+        color: #ffffff;
+        width: 100%;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 600;
+        font-size: 16px;
+        box-shadow: none;
+    }
+
+    #group-1-exercises .video-upload:hover,
+    #group-2-exercises .video-upload:hover,
+    #group-3-exercises .video-upload:hover,
+    #group-4-exercises .video-upload:hover,
+    #group-5-exercises .video-upload:hover,
+    #group-6-exercises .video-upload:hover,
+    #group-7-exercises .video-upload:hover,
+    #group-8-exercises .video-upload:hover {
+        background: #DAA520;
+        border: 2px solid #B8860B;
+        transform: scale(1.02);
+    }
+
+    /* Video upload styling when file is selected - portrait orientation */
+    #group-1-exercises .video-upload:valid,
+    #group-2-exercises .video-upload:valid,
+    #group-3-exercises .video-upload:valid,
+    #group-4-exercises .video-upload:valid,
+    #group-5-exercises .video-upload:valid,
+    #group-6-exercises .video-upload:valid,
+    #group-7-exercises .video-upload:valid,
+    #group-8-exercises .video-upload:valid,
+    #group-1-exercises .video-upload[value]:not([value=""]),
+    #group-2-exercises .video-upload[value]:not([value=""]),
+    #group-3-exercises .video-upload[value]:not([value=""]),
+    #group-4-exercises .video-upload[value]:not([value=""]),
+    #group-5-exercises .video-upload[value]:not([value=""]),
+    #group-6-exercises .video-upload[value]:not([value=""]),
+    #group-7-exercises .video-upload[value]:not([value=""]),
+    #group-8-exercises .video-upload[value]:not([value=""]),
+    input[type="file"].video-upload:not(:placeholder-shown),
+    input[type="file"].video-upload[files],
+    .video-upload.file-selected {
+        background: #4CAF50 !important;
+        border: 2px solid #388e3c !important;
+        box-shadow: 0 0 10px rgba(76, 175, 80, 0.3) !important;
+    }
+
+    /* JavaScript-based file selection styling - portrait with highest specificity */
+    #group-1-exercises input[type="file"].video-upload.file-selected,
+    #group-2-exercises input[type="file"].video-upload.file-selected,
+    #group-3-exercises input[type="file"].video-upload.file-selected,
+    #group-4-exercises input[type="file"].video-upload.file-selected,
+    #group-5-exercises input[type="file"].video-upload.file-selected,
+    #group-6-exercises input[type="file"].video-upload.file-selected,
+    #group-7-exercises input[type="file"].video-upload.file-selected,
+    #group-8-exercises input[type="file"].video-upload.file-selected,
+    #group-1-exercises .video-upload.file-selected,
+    #group-2-exercises .video-upload.file-selected,
+    #group-3-exercises .video-upload.file-selected,
+    #group-4-exercises .video-upload.file-selected,
+    #group-5-exercises .video-upload.file-selected,
+    #group-6-exercises .video-upload.file-selected,
+    #group-7-exercises .video-upload.file-selected,
+    #group-8-exercises .video-upload.file-selected,
+    input[type="file"].video-upload.file-selected,
+    .video-upload.file-selected {
+        background: #4CAF50 !important;
+        border: 2px solid #388e3c !important;
+        box-shadow: 0 0 10px rgba(76, 175, 80, 0.3) !important;
+    }
+
+    /* Force default gold when no file-selected class - portrait */
+    input[type="file"].video-upload:not(.file-selected) {
+        background: #B8860B !important;
+        border: 2px solid #8B6914 !important;
+        box-shadow: none !important;
+    }
+
+    /* Ensure default gold styling when no file is selected - portrait */
+    #group-1-exercises .video-upload:not(:valid):placeholder-shown,
+    #group-2-exercises .video-upload:not(:valid):placeholder-shown,
+    #group-3-exercises .video-upload:not(:valid):placeholder-shown,
+    #group-4-exercises .video-upload:not(:valid):placeholder-shown,
+    #group-5-exercises .video-upload:not(:valid):placeholder-shown,
+    #group-6-exercises .video-upload:not(:valid):placeholder-shown,
+    #group-7-exercises .video-upload:not(:valid):placeholder-shown,
+    #group-8-exercises .video-upload:not(:valid):placeholder-shown,
+    #group-1-exercises .video-upload:not([value]),
+    #group-2-exercises .video-upload:not([value]),
+    #group-3-exercises .video-upload:not([value]),
+    #group-4-exercises .video-upload:not([value]),
+    #group-5-exercises .video-upload:not([value]),
+    #group-6-exercises .video-upload:not([value]),
+    #group-7-exercises .video-upload:not([value]),
+    #group-8-exercises .video-upload:not([value]) {
+        background: #B8860B !important;
+        border: 2px solid #8B6914 !important;
+        box-shadow: none !important;
+    }
+
+    /* Enhanced Choose File button styling for portrait orientation */
+    input[type="file"] {
+        background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+        color: #ffffff;
+        border: 2px solid #388e3c;
+        border-radius: 12px;
+        padding: 12px 20px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+        width: auto;
+        min-width: 150px;
+    }
+
+    input[type="file"]:hover {
+        background: linear-gradient(135deg, #45a049 0%, #388e3c 100%);
+        border-color: #2e7d32;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+    }
+
+    input[type="file"]:active {
+        transform: translateY(0px);
+        box-shadow: 0 3px 10px rgba(76, 175, 80, 0.3);
+    }
+
+    /* iOS specific styling for file inputs in portrait */
+    @supports (-webkit-touch-callout: none) {
+        input[type="file"] {
+            -webkit-appearance: none;
+            appearance: none;
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: #ffffff;
+            border: 2px solid #388e3c;
+            border-radius: 12px;
+            padding: 12px 20px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            outline: none;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+        
+        input[type="file"]::-webkit-file-upload-button {
+            display: none;
+        }
+        
+        input[type="file"]::file-selector-button {
+            display: none;
+        }
+        
+        /* iOS specific video upload file inputs in portrait - smaller text */
+        #group-1-exercises input[type="file"],
+        #group-2-exercises input[type="file"],
+        #group-3-exercises input[type="file"],
+        #group-4-exercises input[type="file"],
+        #group-5-exercises input[type="file"],
+        #group-6-exercises input[type="file"],
+        #group-7-exercises input[type="file"],
+        #group-8-exercises input[type="file"] {
+            font-size: 10px !important;
+            padding: 8px 12px !important;
+            line-height: 1.2 !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+        }
     }    
 
+}
 
+/* Portrait zoom adjustments for different device sizes */
+
+/* Small phones (iPhone SE, etc.) - 375px width */
+@media screen and (max-width: 375px) and (orientation: portrait) {
+    body {
+        zoom: 0.27;
+        transform-origin: top left;
+    }
+    
+    /* iPhone SE specific file input styling */
+    input[type="file"] {
+        background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%) !important;
+        color: transparent !important;
+        border: 2px solid #388e3c !important;
+        border-radius: 8px !important;
+        padding: 10px 15px !important;
+        font-size: 5px !important;
+        font-weight: 600 !important;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 3px 10px rgba(76, 175, 80, 0.3) !important;
+        width: 100% !important;
+        max-width: 200px !important;
+        min-width: 120px !important;
+        display: block !important;
+        margin: 5px auto !important;
+        -webkit-appearance: none !important;
+        appearance: none !important;
+        outline: none !important;
+        -webkit-tap-highlight-color: transparent !important;
+        position: relative !important;
+        z-index: 10 !important;
+        line-height: 1.2 !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        text-indent: -9999px !important;
+    }
+    
+    /* Add "+" symbol for iPhone SE file inputs */
+    input[type="file"]::before {
+        content: "+" !important;
+        position: absolute !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        color: #ffffff !important;
+        font-size: 24px !important;
+        font-weight: bold !important;
+        text-indent: 0 !important;
+        pointer-events: none !important;
+        z-index: 11 !important;
+    }
+    
+    /* iPhone SE specific video upload styling - taller height */
+    #group-1-exercises .video-upload,
+    #group-2-exercises .video-upload,
+    #group-3-exercises .video-upload,
+    #group-4-exercises .video-upload,
+    #group-5-exercises .video-upload,
+    #group-6-exercises .video-upload,
+    #group-7-exercises .video-upload,
+    #group-8-exercises .video-upload {
+        background: #B8860B !important;
+        border: 2px solid #8B6914 !important;
+        border-radius: 12px !important;
+        padding: 20px 15px !important;
+        color: #ffffff !important;
+        width: 100% !important;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: 600 !important;
+        font-size: 14px !important;
+        box-shadow: none !important;
+        min-height: 50px !important;
+        line-height: 1.4 !important;
+        display: block !important;
+        position: relative !important;
+        z-index: 5 !important;
+    }
+    
+    input[type="file"]::-webkit-file-upload-button {
+        display: none !important;
+    }
+    
+    input[type="file"]::file-selector-button {
+        display: none !important;
+    }
+}
+
+/* Standard phones (iPhone 12, Galaxy S21, etc.) - 390px-414px width */
+@media screen and (min-width: 376px) and (max-width: 414px) and (orientation: portrait) {
+    body {
+        zoom: 0.30;
+        transform-origin: top left;
+    }
+}
+
+/* Large phones (iPhone Pro Max, etc.) - 428px width */
+@media screen and (min-width: 415px) and (max-width: 428px) and (orientation: portrait) {
+    body {
+        zoom: 0.32;
+        transform-origin: top left;
+    }
+}
+
+/* Small tablets - 768px width */
+@media screen and (min-width: 601px) and (max-width: 768px) and (orientation: portrait) {
+    body {
+        zoom: 0.59;
+        transform-origin: top left;
+    }
+}
+
+/* Large tablets and small laptops - 1024px width */
+@media screen and (min-width: 769px) and (max-width: 1024px) and (orientation: portrait) {
+    body {
+        zoom: 0.82;
+        transform-origin: top left;
+    }
+}
+
+/* High-end phones with large screens in portrait */
+
+/* iPhone 16 Pro Max - 440px width in portrait */
+@media screen and (min-width: 429px) and (max-width: 440px) and (orientation: portrait) {
+    body {
+        zoom: 0.33;
+        transform-origin: top left;
+    }
+}
+
+/* Galaxy S25 Ultra and similar - up to 480px width in portrait */
+@media screen and (min-width: 441px) and (max-width: 480px) and (orientation: portrait) {
+    body {
+        zoom: 0.36;
+        transform-origin: top left;
+    }
+}
+
+/* Extra large phones and foldables - up to 600px width in portrait */
+@media screen and (min-width: 481px) and (max-width: 600px) and (orientation: portrait) {
+    body {
+        zoom: 0.46;
+        transform-origin: top left;
+        min-height: 100vh;
+        height: auto;
+        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d30 50%, #1a1a1a 100%);
+    }
 }

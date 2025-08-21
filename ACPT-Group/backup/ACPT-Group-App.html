@@ -4,19 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
-    <link rel="icon" type="image/x-icon" href="logo_small.jpg"> <!-- Change later-->
-    <title>Videos Session Timer</title>
+    <link rel="icon" type="image/x-icon" href="logo_small.jpg">
+    <title>ACPT - Group Workout App</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <img src="logo_small.jpg">  <!-- Change later-->
+    <img src="logo_small.jpg">
     <div id="customize-page">
-        <h1 style="margin-top: 20px;">Videos Session Timer</h1>
-        <h1 style="margin-top: 20px;">For</h1>
-        <h1 style="margin-top: 20px;">Personal Trainers</h1>
+        <h1 style="margin-top: 20px;">AC - PT</h1>
+        <h1 style="margin-top: 20px;">Group Session App</h1>
+        <h2 style="margin-top: 20px;">Customize Session</h2>
         <div>
-            <p id="credit">Developed by: <a href="https://ericrecinos.dev" target="_blank">Eric Recinos</a></p>
             <label for="session-name">Session Name: </label>
             <input type="text" id="session-name" placeholder="Enter session name" autocomplete="off">
             <button id="save-session-as">Save</button>
@@ -75,68 +74,66 @@
             <p id="note-p">*Note: Start/End row will be played only once.</p>
         </div>
 
-        <div class="right-side-container">
-            <div class="session-container">
-                <div class="group">
-                    <h2>Station 1</h2>
-                    <div id="group-1-exercises">
-                        <!-- Group 1 Exercises -->
-                        <input type="file" class="video-upload" accept="video/*">
-                    </div>
-                </div>
-
-                <div class="group">
-                    <h2>Station 2</h2>
-                    <div id="group-2-exercises">
-                        <!-- Group 2 Exercises -->
-                        <input type="file" class="video-upload" accept="video/*">
-                    </div>
-                </div>
-
-                <div class="group">
-                    <h2>Station 3</h2>
-                    <div id="group-3-exercises">
-                        <!-- Group 3 Exercises -->
-                        <input type="file" class="video-upload" accept="video/*">
-                    </div>
-                </div>
-
-                <div class="group">
-                    <h2>Station 4</h2>
-                    <div id="group-4-exercises">
-                        <!-- Group 4 Exercises -->
-                        <input type="file" class="video-upload" accept="video/*">
-                    </div>
+        <div class="session-container">
+            <div class="group">
+                <h2>Station 1</h2>
+                <div id="group-1-exercises">
+                    <!-- Group 1 Exercises -->
+                    <input type="file" class="video-upload" accept="video/*">
                 </div>
             </div>
 
-            <div class="extra-station-container">
-                <div id="add-station-group">
-
+            <div class="group">
+                <h2>Station 2</h2>
+                <div id="group-2-exercises">
+                    <!-- Group 2 Exercises -->
+                    <input type="file" class="video-upload" accept="video/*">
                 </div>
             </div>
 
-            <div id="station-add-container">
-                <div id="remove-exercise">
-                    <button id="button-remove">-</button>
-                    <p>Remove Extras</p>
-                </div>
-
-                <div id="add-station">
-                    <button id="button-add-station">+</button>
-                    <p>Add Station</p>
+            <div class="group">
+                <h2>Station 3</h2>
+                <div id="group-3-exercises">
+                    <!-- Group 3 Exercises -->
+                    <input type="file" class="video-upload" accept="video/*">
                 </div>
             </div>
 
-            <div id="go-container">
-                <h3>Total Session Duration: <span id="total-time">0:00</span></h3>
-                <button id="start-workout">GO!</button>
+            <div class="group">
+                <h2>Station 4</h2>
+                <div id="group-4-exercises">
+                    <!-- Group 4 Exercises -->
+                    <input type="file" class="video-upload" accept="video/*">
+                </div>
             </div>
         </div>
 
-        <div class="clearfix"></div>
+        <div class="extra-station-container">
+            <div id="add-station-group">
 
-        <p></p>
+            </div>
+
+        </div>
+
+        <div id="station-add-container">
+
+            <div id="remove-exercise">
+                <button id="button-remove">-</button>
+                <p>Remove Extras</p>
+            </div>
+
+            <div id="add-station">
+                <button id="button-add-station">+</button>
+                <p>Add Station</p>
+            </div>
+        </div>
+
+        <div id="go-container">
+            <h3>Total Session Duration: <span id="total-time">0:00</span></h3>
+            <button id="start-workout">GO!</button>
+        </div>
+
+        <p>Updated: 27/3/25</p>
 
     </div>
 
@@ -214,7 +211,12 @@
         </h3>
 
     </div>
+
+
     <script src="app.js"></script>
 </body>
+<footer>
+
+</footer>
 
 </html>
