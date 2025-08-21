@@ -244,6 +244,25 @@ document.addEventListener('DOMContentLoaded', () => {
         loadSession(loadSelectSession.value, savedCellsCount);
         loadSession(loadSelectSession.value, fileInput);
 
+                // Add event listeners to video-upload inputs for color changes
+        for (let i = 0; i < videoUpload.length; i++) {
+            videoUpload[i].addEventListener('change', function() {
+                if (this.files && this.files.length > 0) {
+                    // File selected - add green styling
+                    this.classList.add('file-selected');
+                    // Force style recalculation
+                    this.style.backgroundColor = '#4CAF50';
+                    this.style.borderColor = '#388e3c';
+                } else {
+                    // No file selected - remove green styling (back to gold)
+                    this.classList.remove('file-selected');
+                    // Reset to CSS default
+                    this.style.backgroundColor = '';
+                    this.style.borderColor = '';
+                }
+            });
+        }
+
         //End must refresh
         updateTotalTime();
     });
