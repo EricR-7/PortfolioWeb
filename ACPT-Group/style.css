@@ -823,6 +823,8 @@ video {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
     display: block;
+    -webkit-playsinline: true;
+    object-fit: contain;
 }
 
 video:hover {
@@ -841,6 +843,8 @@ video:hover {
     margin: 0;
     display: block;
     background-color: transparent;
+    -webkit-playsinline: true;
+    object-fit: contain;
 }
 
 }

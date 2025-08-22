@@ -628,7 +628,7 @@ document.addEventListener('DOMContentLoaded', () => {
         createSlot.innerHTML = `
         <div class="group" id="group${count}">
             <h3>${count}</h3>
-            <video id="group-${count}-video" width="320" muted></video>
+            <video id="group-${count}-video" width="320" muted playsinline></video>
             <div id="group${count}-current-exercise">None</div>
         </div>
     `;
