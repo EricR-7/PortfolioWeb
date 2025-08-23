@@ -625,7 +625,7 @@ input[type="file"]:active {
 #timeSlider{
     width: 353px;
     height: 30px;
-    margin-left: -5px;
+    margin-left: -4px;
     appearance: none;
     border: none;
     background-color: transparent;
@@ -1538,7 +1538,7 @@ h3 {
     #timeSlider{
         width: 353px;
         height: 30px;
-        margin-left: -5px;
+        margin-left: -4px;
         border: none;
         appearance: none;
         background-color: transparent;

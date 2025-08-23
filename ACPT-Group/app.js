@@ -1505,8 +1505,8 @@ document.addEventListener('DOMContentLoaded', () => {
             let minutes = parseFloat(warmUp[i].minutes) || 0;
             let seconds = parseFloat(warmUp[i].seconds) || 0;
 
-            let repeated = 1;
-            let combined = (parseFloat(minutes * 60) + parseFloat(seconds)) * repeated;
+            let repeated = repeat;
+            let combined = repeated + (parseFloat(minutes * 60) + parseFloat(seconds)) * repeated;
 
             let pixelOnePercent = maxPixel / 1000;
             let timerDivide = timer / 1000;
@@ -1558,8 +1558,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log('Filling Minutes Divs: ', minutes);
                 console.log('Filling Seconds Divs: ', seconds);
 
-                let repeated = 1;
-                let combined = (parseFloat(minutes * 60) + parseFloat(seconds)) * repeated;
+                let repeated = repeat;
+                let combined = repeated + (parseFloat(minutes * 60) + parseFloat(seconds)) * repeated;
 
                 let paddingInc = (combined * counting) / exerciseTotalCells;
 
@@ -1592,9 +1592,9 @@ document.addEventListener('DOMContentLoaded', () => {
             let minutes = parseFloat(cool[i].minutes) || 0;
             let seconds = parseFloat(cool[i].seconds) || 0;
 
-            let repeated = 1;
+            let repeated = repeat;
 
-            let combined = (parseFloat(minutes * 60) + parseFloat(seconds)) * repeated;
+            let combined = repeated + (parseFloat(minutes * 60) + parseFloat(seconds)) * repeated;
 
             let pixelOnePercent = maxPixel / 1000;
             let timerDivide = timer / 1000;
