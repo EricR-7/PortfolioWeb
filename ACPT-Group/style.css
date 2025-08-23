@@ -208,7 +208,7 @@ img{
     height: 140px;
     width: 150px;
     position: absolute;
-    margin-top: 20px;
+    margin-top: 14px;
     margin-left: 40px;
     border-radius: 15px;
     
@@ -280,6 +280,7 @@ img:hover {
     width: 297px;
     border: 2px solid rgba(255, 215, 0, 0.6);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: -webkit-fill-available;
 }
 
 .group:hover {
@@ -791,13 +792,7 @@ button:hover {
     #video-container-4{
         margin-top: 0px;
         display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-        padding: 15px;
-        border-radius: 15px;
-        margin-bottom: 15px;
-        flex: 1 1 50%;
-        min-width: 300px;
+        justify-content: space-around;
     }#video-container-3,
 #video-container-4{
     margin-bottom: 5px;
@@ -813,6 +808,7 @@ button:hover {
 
 video {
     width: 100%;
+    min-width: 273px;
     max-width: 336px;
     height: auto;
     margin-left: auto;
@@ -824,7 +820,8 @@ video {
     transition: all 0.3s ease;
     display: block;
     -webkit-playsinline: true;
-    object-fit: contain;
+    object-fit: cover;
+    max-height: 300px;
 }
 
 video:hover {
@@ -1041,7 +1038,7 @@ select:has(option[value="none"]:checked) {
     flex-direction: row;
     flex-wrap: wrap;
     margin-left: 0px;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 /* To do Fix stations */
@@ -1080,11 +1077,11 @@ select:has(option[value="none"]:checked) {
     max-width: 336px;
     margin-top: 0px;
     margin-bottom: 10px;
-    padding: 4px 50px;
+    padding: 15px 50px;
     background-color: #000000;
     color: white;
     box-shadow: 0 7px rgba(0, 0, 0, 0.1);
-    height: 22%;
+    height: 25%;
 }
 
 #group1-timer, #group2-timer{
@@ -1362,7 +1359,7 @@ h3 {
         height: 140px;
         width: 150px;
         position: absolute;
-        margin-top: 20px;
+        margin-top: 14px;
         margin-left: 40px;
         border-radius: 15px;
         
@@ -1431,6 +1428,7 @@ h3 {
         max-width: 293px;
         border: 2px solid rgba(255, 215, 0, 0.6);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
+        height: -webkit-fill-available;
     }
 
     .group:hover {
@@ -1722,6 +1720,7 @@ h3 {
     
     video {
         width: 100%;
+        min-width: 273px;
         max-width: 336px;
         height: auto;
         margin-left: auto;
@@ -1732,6 +1731,8 @@ h3 {
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         transition: all 0.3s ease;
         display: block;
+        max-height: 300px;
+        object-fit: cover;
     }
     
     video:hover {
@@ -1933,18 +1934,20 @@ h3 {
     #group5-current-exercise, #group6-current-exercise,
     #group7-current-exercise, #group8-current-exercise{
         text-align: center;
-        font-size: 35px;
+        font-size: 32px;
         font-weight: bolder;
         border-radius: 0px 0px 30px 30px;
-        margin: 0px auto;
+        margin: 0px;
+        margin-left: 0px;
+        margin-right: auto;
         max-width: 336px;
         margin-top: 0px;
         margin-bottom: 10px;
-        padding: 8px 20px;
+        padding: 15px 50px;
         background-color: #000000;
         color: white;
         box-shadow: 0 7px rgba(0, 0, 0, 0.1);
-        height: 22%;
+        height: 25%;
     }
     
     #group1-timer, #group2-timer, #group3-timer, #group4-timer,
