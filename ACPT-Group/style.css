@@ -1467,7 +1467,7 @@ h3 {
     }
     
     #add-timer{
-        margin-left: 40%;
+        margin-left: 44%;
         background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
         color: #ffffff;
         border: none;
@@ -1817,7 +1817,7 @@ h3 {
     }
     
     #duration-repeat{
-        margin-left: 44%;
+        margin-left: 46%;
         text-align: center;
         width: 71px;
         margin-top: 6px;
