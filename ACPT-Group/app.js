@@ -79,6 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
     var warmupTimer;
     var workoutTimer;
     var cooldownTimer;
+    var interval; // Main session timer interval
+    var timerInterval; // Progress tracking timer
 
     let tmpRepeat = 0;
     let stopTimerFunction = false;
@@ -820,6 +822,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Start Workout
     document.getElementById('start-workout').addEventListener('click', () => {
+        // Clear any existing timers before starting new session
+        clearAllTimers();
+        
         saveSession();
         customizePage.style.display = 'none';
         workoutPage.style.display = 'block';
@@ -954,52 +959,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // **Done**
     function playNextExercise() {
-        console.log('playNextExercise called with:', { 
-            repeatFirstCellCount, 
-            currentExercise, 
-            'group1Single': sessionData.group1Single,
-            'group1': sessionData.group1,
-            'group1Cool': sessionData.group1Cool
-        });
-        
         if (repeatFirstCellCount != 1) {
-            console.log('In main workout branch - currentExercise:', currentExercise);
-            console.log('sessionData.group1 length:', sessionData.group1 ? sessionData.group1.length : 'undefined');
-            console.log('sessionData.group1[currentExercise]:', sessionData.group1 ? sessionData.group1[currentExercise] : 'undefined');
-            
             if (currentExercise < sessionData.group1.length || currentExercise < sessionData.group2.length) {
                 if (sessionData.group1[currentExercise]) {
-                    console.log('Starting workout timer with exercise:', sessionData.group1[currentExercise]);
                     //playVideo(group1Video, group1VideoFiles[currentExercise]);
-                    stopTimerFunction = false; // Reset stopTimerFunction for main workout
                     startWorkoutTimer(group1CountTimer, sessionData.group1[currentExercise]);
-                    stopWarmUpFunction = true;
-                } else {
-                    console.error('No exercise data found at index:', currentExercise);
+                    stopWarmUpFunction = false;
                 }
             } else if (repeat > 1) {
-                console.log('Starting repeat workout, remaining repeats:', repeat);
                 repeatWorkout(repeat);
             }
             else {
-                console.log('Starting cooldown phase');
                 endCooldown(group1CountTimer, sessionData.group1Cool[current]);
             }
         }
         else {
-            console.log('Attempting to start warmup with:', sessionData.group1Single[current]);
-            if (sessionData.group1Single && sessionData.group1Single[current]) {
-                startWarmup(group1CountTimer, sessionData.group1Single[current]);
-            } else {
-                console.error('No warmup data available in playNextExercise!');
-                // Fallback: try to go to main workout
-                repeatFirstCellCount = 0;
-                currentExercise = 0;
-                if (sessionData.group1 && sessionData.group1[0]) {
-                    stopTimerFunction = false; // Reset stopTimerFunction for fallback workout
-                    startWorkoutTimer(group1CountTimer, sessionData.group1[0]);
-                }
-            }
+            startWarmup(group1CountTimer, sessionData.group1Single[current]);
         }
 
     }
@@ -1214,6 +1189,40 @@ document.addEventListener('DOMContentLoaded', () => {
             isPaused = true;
             playPauseButton.textContent = 'Play';
         }
+    }
+
+    // Function to clear all active timers
+    function clearAllTimers() {
+        clearInterval(warmupTimer);
+        clearInterval(workoutTimer);
+        clearInterval(cooldownTimer);
+        clearInterval(interval); // Main session timer
+        clearInterval(timerInterval); // Progress tracking timer
+        clearInterval(group1Interval);
+        clearInterval(group2Interval);
+        
+        // Reset timer stop flags
+        stopTimerFunction = false;
+        stopWarmUpFunction = false;
+        stopCoolFunction = false;
+        
+        console.log("All timers cleared");
+    }
+
+    // Function to clear only exercise timers (keep session timer running)
+    function clearExerciseTimers() {
+        clearInterval(warmupTimer);
+        clearInterval(workoutTimer);
+        clearInterval(cooldownTimer);
+        clearInterval(group1Interval);
+        clearInterval(group2Interval);
+        
+        // Reset timer stop flags
+        stopTimerFunction = false;
+        stopWarmUpFunction = false;
+        stopCoolFunction = false;
+        
+        console.log("Exercise timers cleared (session timer kept running)");
     }
 
     //Group session timer DONE!!!
@@ -1707,7 +1716,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function startTimer() {
         exited = false;
         currentTime = 0;
-        let timerInterval = 0;
         let tmp = totalDuration;
         console.log(" Total Duration: ", totalDuration);
         
@@ -1760,10 +1768,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
         let mainWorkoutTime = totalDuration - (warmUpTime + coolDownTime);
         
-        // Clear all existing timers
-        clearInterval(warmupTimer);
-        clearInterval(workoutTimer);
-        clearInterval(cooldownTimer);
+        // Clear only exercise timers (keep session timer running)
+        clearExerciseTimers();
         
         // Update current time to match clicked position
         currentTime = Math.floor(clickedTime);
@@ -1975,6 +1981,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Return to Home
     document.getElementById('return-home').addEventListener('click', () => {
+        // Clear all active timers
+        clearAllTimers();
+        
         stopAllVideos();
         currentExercise = 0;
         totalDuration = 0;
@@ -1989,6 +1998,12 @@ document.addEventListener('DOMContentLoaded', () => {
         group2VideoFiles = [];
         groupTimer = 0;
         exited = true;
+        
+        // Reset display elements
+        group1CountTimer.textContent = `00:00`;
+        sessionTimer.textContent = `00:00`;
+        document.getElementById('group1-timer').style.backgroundColor = "gold";
+        
         updateTotalTime();
         //When clicked home video set to default play
         isPaused = false;
@@ -2000,10 +2015,17 @@ document.addEventListener('DOMContentLoaded', () => {
         arrow.style.paddingLeft = '0px'
         arrow.innerHTML = '<img id="arrow-img" src="arrowdown.png">';
         timeBar.innerHTML = '';
-        console.log("Left Workout Page");
+        console.log("Left Workout Page - All timers cleared");
     });
 
-
+    // Clear all timers when page is unloaded (browser back, refresh, close, etc.)
+    window.addEventListener('beforeunload', () => {
+        clearAllTimers();
+        stopAllVideos();
+        beep.pause();
+        longBeep.pause();
+        console.log("Page unloading - All timers cleared");
+    });
 
 });
 
