@@ -2412,7 +2412,7 @@ h3 {
 /* Large tablets and small laptops - 1024px width */
 @media screen and (min-width: 769px) and (max-width: 1080px) and (orientation: portrait) {
     body {
-        zoom: 0.75;
+        zoom: 0.73;
         transform-origin: top left;
     }
 }
