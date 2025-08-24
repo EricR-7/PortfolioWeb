@@ -281,7 +281,6 @@ img:hover {
     width: 297px;
     border: 2px solid rgba(255, 215, 0, 0.6);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    height: -webkit-fill-available;
 }
 
 .group:hover {
@@ -629,12 +628,33 @@ input[type="file"]:active {
     height: 30px;
     margin-left: -4px;
     appearance: none;
+    -webkit-appearance: none;
     border: none;
     background-color: transparent;
     position: absolute;
     margin-top: -25px;
+    /* Mobile touch improvements */
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    cursor: pointer;
+    /* iOS-specific improvements */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
+/* Webkit (Safari/Chrome) slider track */
+#timeSlider::-webkit-slider-track {
+    background: transparent;
+    height: 30px;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* Webkit (Safari/Chrome) slider thumb */
 input[type="range"]::-webkit-slider-thumb{
     -webkit-appearance: none;
     appearance: none;
@@ -642,8 +662,32 @@ input[type="range"]::-webkit-slider-thumb{
     width: 10px;
     background: url('arrowdown.png');
     background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     border: none;
     cursor: pointer;
+    /* iOS touch improvements */
+    touch-action: manipulation;
+}
+
+/* Firefox slider track */
+#timeSlider::-moz-range-track {
+    background: transparent;
+    height: 30px;
+    border: none;
+}
+
+/* Firefox slider thumb */
+#timeSlider::-moz-range-thumb {
+    height: 16px;
+    width: 10px;
+    background: url('arrowdown.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+    border-radius: 0;
 }
 
 
@@ -690,9 +734,56 @@ input[type="range"]::-webkit-slider-thumb{
     table-layout: fixed;
 }
 
+.time-bar-segment {
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    border: none;
+    margin: 0;
+    padding: 0;
+    /* Mobile touch improvements */
+    min-height: 20px; /* Larger touch target for mobile */
+    -webkit-tap-highlight-color: transparent; /* Remove iOS tap highlight */
+    touch-action: manipulation; /* Optimize for touch */
+}
 
+.time-bar-segment:hover {
+    opacity: 0.8;
+    filter: brightness(1.2);
+}
 
-#arrow{
+/* Mobile touch states */
+.time-bar-segment:active {
+    opacity: 0.6;
+    filter: brightness(1.4);
+}
+
+/* Improved mobile touch target for time bar */
+#time-bar {
+    border: none #ffffff 1px;
+    border-radius: 5px;
+    height: 6px;
+    max-height: 6px;
+    min-height: 6px;
+    width: 345px;
+    max-width: 345px;
+    min-width: 345px;
+    display: flex;
+    align-content: normal;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    contain: content;
+    table-layout: fixed;
+    /* Mobile improvements */
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    /* Add padding for larger touch area */
+    padding: 7px 0; /* This creates a larger touch target while keeping visual appearance */
+    margin: -7px 0; /* Compensate for the padding */
+}
+
+#arrow {
     margin-left: -4px !important;
     margin-right: 0;
     margin-bottom: -35px;
@@ -810,8 +901,8 @@ button:hover {
 
 video {
     width: 100%;
-    min-width: 273px;
-    max-width: 336px;
+    min-width: 232px;
+    max-width: 289px;
     height: auto;
     margin-left: auto;
     margin-right: auto;
@@ -1030,7 +1121,7 @@ select:has(option[value="none"]:checked) {
 
 #stations-container{
     background-color: gold;
-    padding-bottom: 20px;
+    padding-bottom: 60px;
     border-radius: 20px;
     margin-top: 2px;
     margin-right: 14px;
@@ -1430,7 +1521,6 @@ h3 {
         max-width: 293px;
         border: 2px solid rgba(255, 215, 0, 0.6);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-        height: -webkit-fill-available;
     }
 
     .group:hover {
@@ -1722,8 +1812,8 @@ h3 {
     
     video {
         width: 100%;
-        min-width: 273px;
-        max-width: 336px;
+        min-width: 232px;
+        max-width: 289px;
         height: auto;
         margin-left: auto;
         margin-right: auto;
@@ -1910,6 +2000,7 @@ h3 {
         flex-direction: column;
         flex-wrap: wrap;
         justify-content: space-evenly;
+        margin-bottom: 25px;
     }
     
     #current-exercise-timer{
@@ -2407,6 +2498,104 @@ h3 {
     body {
         zoom: 0.59;
         transform-origin: top left;
+    }
+}
+
+/* Mobile touch improvements for all devices */
+@media (pointer: coarse), (hover: none) {
+    /* This targets touch devices specifically */
+    
+    #time-bar {
+        /* Increase touch target size for mobile */
+        min-height: 20px !important;
+        padding: 10px 0 !important;
+        margin: -10px 0 !important;
+    }
+    
+    .time-bar-segment {
+        /* Larger touch targets on mobile */
+        min-height: 20px !important;
+        /* Remove hover effects on touch devices */
+        transition: opacity 0.1s ease;
+    }
+    
+    .time-bar-segment:hover {
+        /* Disable hover on touch devices */
+        opacity: 1;
+        filter: none;
+    }
+    
+    .time-bar-segment:active {
+        /* Provide immediate visual feedback on touch */
+        opacity: 0.5 !important;
+        filter: brightness(1.5) !important;
+        transition: none;
+    }
+    
+    #timeSlider {
+        /* Increase slider height for easier touch interaction */
+        height: 44px !important; /* Apple's recommended minimum touch target size */
+        margin-top: -37px !important;
+        /* Enhanced iOS compatibility */
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+        touch-action: manipulation;
+    }
+    
+    /* iOS-specific range slider improvements */
+    #timeSlider::-webkit-slider-thumb {
+        height: 20px !important;
+        width: 14px !important;
+        /* Larger touch target for iOS */
+        -webkit-appearance: none;
+        appearance: none;
+        background: url('arrowdown.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        border: none;
+        cursor: pointer;
+        touch-action: manipulation;
+    }
+    
+/* iOS Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+    #timeSlider {
+        /* Additional iOS-specific styling */
+        -webkit-appearance: none !important;
+        appearance: none !important;
+        outline: none;
+        background: transparent !important;
+    }
+    
+    #timeSlider::-webkit-slider-track {
+        -webkit-appearance: none !important;
+        appearance: none !important;
+        background: transparent !important;
+        height: 30px;
+    }
+    
+    #timeSlider::-webkit-slider-thumb {
+        -webkit-appearance: none !important;
+        appearance: none !important;
+        height: 16px;
+        width: 10px;
+        background: url('arrowdown.png') no-repeat center;
+        background-size: contain;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+    }
+}
+
+/* Better touch feedback for all interactive elements */
+    button:active,
+    input[type="range"]:active,
+    .clickable:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
     }
 }
 

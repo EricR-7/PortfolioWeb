@@ -87,6 +87,79 @@ document.addEventListener('DOMContentLoaded', () => {
     let insideDivs = false;
     let triggerZero = false;
 
+    // Mobile touch support utility function
+    function addClickAndTouchEvents(element, handler) {
+        // Add regular click event for desktop
+        element.addEventListener('click', handler);
+        
+        // iOS-specific range input handling
+        if (element.type === 'range') {
+            // Use input event for range inputs on mobile devices
+            element.addEventListener('input', (e) => {
+                if (e.isTrusted && window.TouchEvent && 'ontouchstart' in window) {
+                    // Calculate position based on slider value for range inputs
+                    const rect = element.getBoundingClientRect();
+                    const progress = (element.value - element.min) / (element.max - element.min);
+                    const clientX = rect.left + (progress * rect.width);
+                    
+                    const syntheticEvent = {
+                        clientX: clientX,
+                        clientY: rect.top + rect.height / 2,
+                        target: e.target,
+                        currentTarget: e.currentTarget,
+                        preventDefault: () => e.preventDefault(),
+                        stopPropagation: () => e.stopPropagation()
+                    };
+                    
+                    handler(syntheticEvent);
+                }
+            });
+            
+            // Use change event as fallback for range inputs
+            element.addEventListener('change', (e) => {
+                if (window.TouchEvent && 'ontouchstart' in window) {
+                    const rect = element.getBoundingClientRect();
+                    const progress = (element.value - element.min) / (element.max - element.min);
+                    const clientX = rect.left + (progress * rect.width);
+                    
+                    const syntheticEvent = {
+                        clientX: clientX,
+                        clientY: rect.top + rect.height / 2,
+                        target: e.target,
+                        currentTarget: e.currentTarget,
+                        preventDefault: () => e.preventDefault(),
+                        stopPropagation: () => e.stopPropagation()
+                    };
+                    
+                    handler(syntheticEvent);
+                }
+            });
+        } else {
+            // Add touch events for non-range mobile elements
+            element.addEventListener('touchstart', (e) => {
+                e.preventDefault(); // Prevent default touch behavior
+            });
+            
+            element.addEventListener('touchend', (e) => {
+                e.preventDefault(); // Prevent default touch behavior
+                
+                // Create a synthetic event object similar to click event
+                const touch = e.changedTouches[0];
+                const syntheticEvent = {
+                    clientX: touch.clientX,
+                    clientY: touch.clientY,
+                    target: e.target,
+                    currentTarget: e.currentTarget,
+                    preventDefault: () => e.preventDefault(),
+                    stopPropagation: () => e.stopPropagation()
+                };
+                
+                // Call the handler with the synthetic event
+                handler(syntheticEvent);
+            });
+        }
+    }
+
     //Videos set to none
     group1Video.src = '';
     group2Video.src = '';
@@ -752,7 +825,7 @@ document.addEventListener('DOMContentLoaded', () => {
         workoutPage.style.display = 'block';
         sessionData = JSON.parse(sessionStorage.getItem('sessionData'));
         currentExercise = 0;
-        timeSlider.max = totalDuration;
+        timeSlider.max = 100; // Use percentage (0-100) for better iOS compatibility
         timeSlider.value = 0;
         startTimer();
         startSessionTimer(groupTimer);
@@ -881,22 +954,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // **Done**
     function playNextExercise() {
+        console.log('playNextExercise called with:', { 
+            repeatFirstCellCount, 
+            currentExercise, 
+            'group1Single': sessionData.group1Single,
+            'group1': sessionData.group1,
+            'group1Cool': sessionData.group1Cool
+        });
+        
         if (repeatFirstCellCount != 1) {
+            console.log('In main workout branch - currentExercise:', currentExercise);
+            console.log('sessionData.group1 length:', sessionData.group1 ? sessionData.group1.length : 'undefined');
+            console.log('sessionData.group1[currentExercise]:', sessionData.group1 ? sessionData.group1[currentExercise] : 'undefined');
+            
             if (currentExercise < sessionData.group1.length || currentExercise < sessionData.group2.length) {
                 if (sessionData.group1[currentExercise]) {
+                    console.log('Starting workout timer with exercise:', sessionData.group1[currentExercise]);
                     //playVideo(group1Video, group1VideoFiles[currentExercise]);
+                    stopTimerFunction = false; // Reset stopTimerFunction for main workout
                     startWorkoutTimer(group1CountTimer, sessionData.group1[currentExercise]);
-                    stopWarmUpFunction = false;
+                    stopWarmUpFunction = true;
+                } else {
+                    console.error('No exercise data found at index:', currentExercise);
                 }
             } else if (repeat > 1) {
+                console.log('Starting repeat workout, remaining repeats:', repeat);
                 repeatWorkout(repeat);
             }
             else {
+                console.log('Starting cooldown phase');
                 endCooldown(group1CountTimer, sessionData.group1Cool[current]);
             }
         }
         else {
-            startWarmup(group1CountTimer, sessionData.group1Single[current]);
+            console.log('Attempting to start warmup with:', sessionData.group1Single[current]);
+            if (sessionData.group1Single && sessionData.group1Single[current]) {
+                startWarmup(group1CountTimer, sessionData.group1Single[current]);
+            } else {
+                console.error('No warmup data available in playNextExercise!');
+                // Fallback: try to go to main workout
+                repeatFirstCellCount = 0;
+                currentExercise = 0;
+                if (sessionData.group1 && sessionData.group1[0]) {
+                    stopTimerFunction = false; // Reset stopTimerFunction for fallback workout
+                    startWorkoutTimer(group1CountTimer, sessionData.group1[0]);
+                }
+            }
         }
 
     }
@@ -1122,63 +1225,57 @@ document.addEventListener('DOMContentLoaded', () => {
         let timerDivide = 0;
         let pixelOnePercent = 0;
 
-
-
         const permTimer = timer;
-
         let paddingInc = 0;
         let maxPixel = 345;
+        let timeSliderHandlerAdded = false;
 
         arrow.innerHTML = '';
-        //Just in case if i need it again ->  <img id="arrow-img" src="arrowdown.png">
-
 
         interval = setInterval(function () {
+            // Sync with global currentTime
+            timer = duration - currentTime;
+            tmpTimer = timer;
 
-            //Add seek bar COPY FOR OTHER FUNCTIONS and pause function to work with
-            timeSlider.addEventListener("click", (e) => {
-
-                currentTime = parseInt(e.target.value, 10);
-                timer = updateTimerDisplay(totalDuration);
-                tmpTimer = updateTimerDisplay(totalDuration);
-
-                let rect = timeSlider.getBoundingClientRect();
-                let clickX = e.clientX - rect.left; // Click position relative to seek bar
-                let seekBarWidth = rect.width;
-
-                let clickedTime = (clickX / seekBarWidth) * totalDuration; // Convert to time
-                stopTimerFunction = true;
-
-                jumpToExercise(clickedTime);
-
-                if(isPaused == true){
-                    currentExercise++;
+            //Add seek bar functionality - improved version (only once)
+            if (!timeSliderHandlerAdded) {
+                // iOS Safari-friendly implementation for range inputs
+                if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+                    // For mobile devices, use input/change events directly
+                    timeSlider.addEventListener('input', (e) => {
+                        const sliderValue = parseFloat(e.target.value);
+                        const clickedTime = (sliderValue / 100) * totalDuration;
+                        console.log('Time slider moved to:', clickedTime);
+                        jumpToExercise(clickedTime);
+                    });
+                    
+                    timeSlider.addEventListener('change', (e) => {
+                        const sliderValue = parseFloat(e.target.value);
+                        const clickedTime = (sliderValue / 100) * totalDuration;
+                        console.log('Time slider changed to:', clickedTime);
+                        jumpToExercise(clickedTime);
+                    });
+                } else {
+                    // For desktop, use the regular click approach
+                    addClickAndTouchEvents(timeSlider, (e) => {
+                        let rect = timeSlider.getBoundingClientRect();
+                        let clickX = e.clientX - rect.left;
+                        let seekBarWidth = rect.width;
+                        let clickedTime = (clickX / seekBarWidth) * totalDuration;
+                        
+                        console.log('Time slider clicked/touched at:', clickedTime);
+                        jumpToExercise(clickedTime);
+                    });
                 }
-
-                //isPaused == false;
-                //playPauseButton.textContent = 'Pause';
-
-                timeSlider.value = currentTime;
-
-
-            });
+                timeSliderHandlerAdded = true;
+            }
 
             tmpTimer = userPaused(tmpTimer, timer, count, interval);
-
             timer = tmpTimer;
 
-            console.log("Timer original: ", timer);
-
-            pixelOnePercent = maxPixel / 1000;
-
-            timerDivide = permTimer / 1000;
-
-            counting = pixelOnePercent / timerDivide;
-
-            counting = arrowPaused(counting);
-
-            paddingInc += counting;
-            //Timer
+            // Update arrow position based on current time
+            pixelOnePercent = maxPixel / duration;
+            paddingInc = currentTime * pixelOnePercent;
 
             minutes = parseInt(timer / 60, 10);
             seconds = parseInt(timer % 60, 10);
@@ -1195,7 +1292,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentTime = 0;
             });
 
-            if (--timer <= 0) {
+            if (timer <= 0) {
                 var delayInMilliseconds = 1001;
 
                 setTimeout(function () {
@@ -1211,27 +1308,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //Single timer
     function startWorkoutTimer(groupText, group) {
+        console.log('startWorkoutTimer called with:', { groupText, group });
+        
+        if (!group) {
+            console.error('startWorkoutTimer: No group data provided!');
+            return;
+        }
+        
         let totalGroup = 0;
         const Vminutes = parseInt(group.minutes) || 0;
         const Vseconds = parseInt(group.seconds) || 0;
         totalGroup += Vminutes * 60 + Vseconds;
+        
+        console.log('startWorkoutTimer: Calculated total time:', totalGroup, 'seconds for exercise:', { minutes: Vminutes, seconds: Vseconds });
 
         let timer = totalGroup, minutes, seconds;
         let tmpTimer = timer;
         let count = 0;
+        
+        if (totalGroup <= 0) {
+            console.error('startWorkoutTimer: Invalid timer duration:', totalGroup);
+            return;
+        }
+        
+        console.log('startWorkoutTimer: Starting timer with', timer, 'seconds');
+        
         workoutTimer = setInterval(function () {
 
             if (stopTimerFunction == true) {
+                console.log('startWorkoutTimer: Stopped by stopTimerFunction');
                 clearInterval(workoutTimer);
                 timer = 0;
                 stopTimerFunction = false;
-                if(repeatFirstCellCount == 0){
-                    currentExercise--;
-                }
+                return;
             }
+            
             //pause event listener
             tmpTimer = userPaused(tmpTimer, timer, count, workoutTimer);
-
             timer = tmpTimer;
 
             minutes = parseInt(timer / 60, 10);
@@ -1240,12 +1353,12 @@ document.addEventListener('DOMContentLoaded', () => {
             minutes = minutes < 10 ? "0" + minutes : minutes;
             seconds = seconds < 10 ? "0" + seconds : seconds;
 
+            console.log('startWorkoutTimer: Timer tick -', timer, 'seconds remaining, display:', `${minutes}:${seconds}`);
             groupText.textContent = `${minutes}:${seconds}`;
 
             //Color change
             const Vcolor = group.color;
             document.getElementById('group1-timer').style.backgroundColor = Vcolor;
-
 
             document.getElementById('return-home').addEventListener('click', () => {
                 document.getElementById('group1-timer').style.backgroundColor = "gold";
@@ -1343,22 +1456,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     repeatFirstCellCount = 0;
                     playNextExercise();
                 }
-
-                timeSlider.addEventListener("click", (e) => {
-                    if(currentExercise == -1){
-                        let rect = timeSlider.getBoundingClientRect();
-                        let clickX = e.clientX - rect.left; // Click position relative to seek bar
-                        let seekBarWidth = rect.width;
-                        let clickedTime = (clickX / seekBarWidth) * totalDuration; // Convert to time
-                        jumpToExercise(clickedTime);
-                        currentExercise += 1;
-                        stopWarmUpFunction = true;
-                        console.log("Jumping from warm up to -1 patched!");
-                        return;
-                    }
-                    return;
-                });
-
 
             }, 1000);
         }
@@ -1496,130 +1593,113 @@ document.addEventListener('DOMContentLoaded', () => {
         let warmUp = dataWarm;
         let mainRepeats = dataSingles;
         let cool = dataCool;
+        let maxPixel = 345;
+        
+        // Clear existing time bar
+        timeBar.innerHTML = '';
 
+        // Calculate warm-up section
         for (let i = 0; i < warmUp.length; i++) {
             let tmp = warmUp[i].color;
-            let timer = duration;
-            let maxPixel = 345;
-
             let minutes = parseFloat(warmUp[i].minutes) || 0;
             let seconds = parseFloat(warmUp[i].seconds) || 0;
-
-            let repeated = 1;
-            let combined = repeated + (parseFloat(minutes * 60) + parseFloat(seconds)) * repeated;
-
-            let pixelOnePercent = maxPixel / 1000;
-            let timerDivide = timer / 1000;
-            let counting = pixelOnePercent / timerDivide;
-
-            let paddingInc = (combined * counting) / exerciseTotalCells;
-
-            let percentageTime = paddingInc / maxPixel;
-
-            let total = percentageTime * ((exerciseTotalCells) * repeat);
-
-            percentageTime = total;
-
-
+            let exerciseDuration = (minutes * 60) + seconds;
+            
+            // Calculate width as percentage of total duration
+            let widthPercentage = (exerciseDuration / duration) * 100;
+            
             const createDiv = document.createElement('div');
-            createDiv.id = `${tmp}-bar`;
-
-
-            createDiv.style.flex = paddingInc + ' ' + '1' + ' ' + '0' + 'px';
-            createDiv.style.borderLeft = `solid ${tmp} ${paddingInc}px`;
-            createDiv.style.borderRight = `solid ${tmp} ${paddingInc}px`;
+            createDiv.id = `${tmp}-warmup-bar`;
+            createDiv.classList.add('time-bar-segment');
+            createDiv.style.width = widthPercentage + '%';
             createDiv.style.background = tmp;
             createDiv.style.height = '100%';
+            createDiv.style.display = 'inline-block';
+            createDiv.style.boxSizing = 'border-box';
+            createDiv.dataset.exerciseType = 'warmup';
+            createDiv.dataset.exerciseIndex = i;
+            createDiv.dataset.startTime = 0;
+            createDiv.dataset.duration = exerciseDuration;
+            
             timeBar.appendChild(createDiv);
-
         }
 
+        // Calculate main workout section (with repeats)
+        let warmUpTime = 0;
+        if (warmUp.length > 0) {
+            warmUpTime = (parseFloat(warmUp[0].minutes) || 0) * 60 + (parseFloat(warmUp[0].seconds) || 0);
+        }
+        
+        let currentTime = warmUpTime;
+        
         for (let j = 0; j < repeat; j++) {
             for (let i = 0; i < mainRepeats.length; i++) {
                 let tmp = mainRepeats[i].color;
-                let timer = duration;
-                let maxPixel = 345;
-
                 let minutes = parseFloat(mainRepeats[i].minutes || 0);
                 let seconds = parseFloat(mainRepeats[i].seconds || 0);
-
-                let counting = 0;
-                let timerDivide = 0;
-                let pixelOnePercent = 0;
-
-                const permTimer = timer;
-
-                pixelOnePercent = maxPixel / 1000;
-
-                timerDivide = permTimer / 1000;
-
-                counting = pixelOnePercent / timerDivide;
-
-                console.log('Filling Minutes Divs: ', minutes);
-                console.log('Filling Seconds Divs: ', seconds);
-
-                let repeated = 1;
-                let combined = repeated + (parseFloat(minutes * 60) + parseFloat(seconds)) * repeated;
-
-                let paddingInc = (combined * counting) / exerciseTotalCells;
-
-                let percentageTime = paddingInc / maxPixel;
-
-                let total = percentageTime * ((exerciseTotalCells + 2) * repeat);
-
-                percentageTime = total;
-
-                console.log("Repeat padding: " + paddingInc);
-
+                let exerciseDuration = (minutes * 60) + seconds;
+                
+                // Calculate width as percentage of total duration
+                let widthPercentage = (exerciseDuration / duration) * 100;
+                
                 const createDiv = document.createElement('div');
-                createDiv.id = `${tmp}-bar`;
-
-                createDiv.style.flex = paddingInc + ' ' + '1' + ' ' + '0' + 'px';
-                createDiv.style.borderLeft = `solid ${tmp} ${paddingInc}px`;
-                createDiv.style.borderRight = `solid ${tmp} ${paddingInc}px`;
+                createDiv.id = `${tmp}-main-${j}-${i}-bar`;
+                createDiv.classList.add('time-bar-segment');
+                createDiv.style.width = widthPercentage + '%';
                 createDiv.style.background = tmp;
                 createDiv.style.height = '100%';
+                createDiv.style.display = 'inline-block';
+                createDiv.style.boxSizing = 'border-box';
+                createDiv.dataset.exerciseType = 'main';
+                createDiv.dataset.exerciseIndex = i;
+                createDiv.dataset.repeatIndex = j;
+                createDiv.dataset.startTime = currentTime;
+                createDiv.dataset.duration = exerciseDuration;
+                
+                currentTime += exerciseDuration;
                 timeBar.appendChild(createDiv);
-
             }
         }
 
+        // Calculate cool-down section
         for (let i = 0; i < cool.length; i++) {
             let tmp = cool[i].color;
-            let timer = duration;
-            let maxPixel = 345;
-
             let minutes = parseFloat(cool[i].minutes) || 0;
             let seconds = parseFloat(cool[i].seconds) || 0;
-
-            let repeated = 1;
-
-            let combined = repeated + (parseFloat(minutes * 60) + parseFloat(seconds)) * repeated;
-
-            let pixelOnePercent = maxPixel / 1000;
-            let timerDivide = timer / 1000;
-            let counting = pixelOnePercent / timerDivide;
-
-            let paddingInc = (combined * counting) / exerciseTotalCells;
-            let percentageTime = paddingInc / maxPixel;
-
-            let total = percentageTime * ((exerciseTotalCells) * repeat);
-
-            percentageTime = total;
-
-
+            let exerciseDuration = (minutes * 60) + seconds;
+            
+            // Calculate width as percentage of total duration
+            let widthPercentage = (exerciseDuration / duration) * 100;
+            
             const createDiv = document.createElement('div');
-            createDiv.id = `${tmp}-bar`;
-
-
-            createDiv.style.flex = paddingInc + ' ' + '1' + ' ' + '0' + 'px';
-            createDiv.style.borderLeft = `solid ${tmp} ${paddingInc}px`;
-            createDiv.style.borderRight = `solid ${tmp} ${paddingInc}px`;
+            createDiv.id = `${tmp}-cooldown-bar`;
+            createDiv.classList.add('time-bar-segment');
+            createDiv.style.width = widthPercentage + '%';
             createDiv.style.background = tmp;
             createDiv.style.height = '100%';
+            createDiv.style.display = 'inline-block';
+            createDiv.style.boxSizing = 'border-box';
+            createDiv.dataset.exerciseType = 'cooldown';
+            createDiv.dataset.exerciseIndex = i;
+            createDiv.dataset.startTime = currentTime;
+            createDiv.dataset.duration = exerciseDuration;
+            
             timeBar.appendChild(createDiv);
         }
 
+        // Add click listeners to colored divs
+        document.querySelectorAll('.time-bar-segment').forEach(segment => {
+            addClickAndTouchEvents(segment, (e) => {
+                let rect = segment.getBoundingClientRect();
+                let timeBarRect = timeBar.getBoundingClientRect();
+                let clickX = e.clientX - timeBarRect.left; // Click position relative to time bar
+                let timeBarWidth = timeBarRect.width;
+                let clickedTime = (clickX / timeBarWidth) * duration;
+                
+                console.log('Clicked/touched on segment at time:', clickedTime);
+                jumpToExercise(clickedTime);
+            });
+        });
     }
 
     //Slider
@@ -1627,20 +1707,26 @@ document.addEventListener('DOMContentLoaded', () => {
     function startTimer() {
         exited = false;
         currentTime = 0;
-        let interval = 0;
+        let timerInterval = 0;
         let tmp = totalDuration;
         console.log(" Total Duration: ", totalDuration);
-        interval = setInterval(() => {
+        
+        timerInterval = setInterval(() => {
             if (currentTime < tmp && isPaused == false) {
                 currentTime++;
-                timeSlider.value = currentTime;
-                console.log(" Adding more: ", currentTime);
-            } if (currentTime < tmp && isPaused == true) {
-                timeSlider.value = currentTime + 0;
+                // Update slider value as percentage (0-100)
+                timeSlider.value = (currentTime / totalDuration) * 100;
+                console.log(" Current time: ", currentTime);
             }
+            
             if (exited == true) {
                 timeSlider.value = 0;
-                clearInterval(interval);
+                currentTime = 0;
+                clearInterval(timerInterval);
+            }
+
+            if (currentTime >= tmp) {
+                clearInterval(timerInterval);
             }
 
         }, 1000);
@@ -1659,115 +1745,225 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function jumpToExercise(clickedTime) {
-        let warmUpTime = (sessionData.group1Single[current].minutes * 60) + sessionData.group1Single[current].seconds;
-        let coolDownTime = (sessionData.group1Cool[current].minutes * 60) + sessionData.group1Cool[current].seconds;
+        console.log('Jumping to time:', clickedTime);
+        
+        // Calculate section durations
+        let warmUpTime = 0;
+        if (sessionData.group1Single && sessionData.group1Single.length > 0) {
+            warmUpTime = (sessionData.group1Single[0].minutes * 60) + sessionData.group1Single[0].seconds;
+        }
+        
+        let coolDownTime = 0;
+        if (sessionData.group1Cool && sessionData.group1Cool.length > 0) {
+            coolDownTime = (sessionData.group1Cool[0].minutes * 60) + sessionData.group1Cool[0].seconds;
+        }
+        
         let mainWorkoutTime = totalDuration - (warmUpTime + coolDownTime);
-
-        let sessionDataTemp = sessionData.group1.length; // Total exercises in a full cycle
-        let cycleDuration = mainWorkoutTime / tmpRepeat;
-        let currentCycle = Math.floor(clickedTime / cycleDuration); // Find which repeat cycle was clicked
-
-        let timeInCycle = clickedTime % cycleDuration; // Time within that specific cycle
-        let accumulatedTime = 0;
-        let matchedIndex = 0;
-        let newRepeat = 1;
-        let section = "main"; // Tracks which section we're in
-
-
-        //Check if user clicked within Warm-Up
-        if (clickedTime <= warmUpTime) {
+        
+        // Clear all existing timers
+        clearInterval(warmupTimer);
+        clearInterval(workoutTimer);
+        clearInterval(cooldownTimer);
+        
+        // Update current time to match clicked position
+        currentTime = Math.floor(clickedTime);
+        // Update slider value as percentage (0-100)
+        timeSlider.value = (currentTime / totalDuration) * 100;
+        
+        // Check if user clicked within Warm-Up
+        if (clickedTime < warmUpTime) {
+            console.log('Jumping to warmup phase');
+            console.log('Warmup data:', sessionData.group1Single);
+            console.log('Warmup time remaining:', warmUpTime - clickedTime);
+            
             repeatFirstCellCount = 1;
             stopCoolFunction = true;
             stopTimerFunction = true;
-            section = "warmup";
+            stopWarmUpFunction = false;
             currentExercise = 0;
-            newRepeat = tmpRepeat;
-            console.log("Playing:  warmup");
-            setTimeout(() => {
-                clearInterval(warmupTimer);
-                clearInterval(workoutTimer);
-                clearInterval(cooldownTimer);
-                startWarmup(group1CountTimer, sessionData.group1Single[current]);
-                return;
-            }, 1000);
+            repeat = tmpRepeat;
+            
+            // Calculate remaining time in warmup
+            let remainingWarmupTime = warmUpTime - clickedTime;
+            
+            if (sessionData.group1Single && sessionData.group1Single.length > 0) {
+                startWarmupAtTime(group1CountTimer, sessionData.group1Single[0], remainingWarmupTime);
+            } else {
+                console.error('No warmup data available!');
+            }
             return;
         }
-        //Check if user clicked within Cooldown
+        
+        // Check if user clicked within Cooldown
         else if (clickedTime >= (warmUpTime + mainWorkoutTime)) {
+            console.log('Jumping to cooldown phase');
             stopCoolFunction = false;
             stopTimerFunction = true;
-            //currentExercise = 0;
             repeatFirstCellCount = 0;
-            section = "cooldown";
             repeat = 1;
-            console.log("Playing:  cooldown");
-            setTimeout(() => {
-                clearInterval(warmupTimer);
-                clearInterval(workoutTimer);
-                clearInterval(cooldownTimer);
-                endCooldown(group1CountTimer, sessionData.group1Cool[current]);
-                return;
-            }, 1000);
+            
+            // Calculate remaining time in cooldown
+            let remainingCooldownTime = totalDuration - clickedTime;
+            startCooldownAtTime(group1CountTimer, sessionData.group1Cool[0], remainingCooldownTime);
             return;
         }
-
-        // Find the exact exercise within the cycle
-        else if (clickedTime >= warmUpTime && clickedTime <= (warmUpTime + mainWorkoutTime)) {
+        
+        // User clicked within main workout
+        else {
+            console.log('Jumping to main workout phase');
             stopWarmUpFunction = true;
-            insideDivs = true;
             repeatFirstCellCount = 0;
             stopCoolFunction = true;
-            let timeInMain = clickedTime - (warmUpTime);
-            let currentCycle = Math.floor(timeInMain / cycleDuration);
-            let timeInCycle = timeInMain % cycleDuration;
-
-            accumulatedTime = 0;
-
+            
+            let timeInMain = clickedTime - warmUpTime;
+            
+            // Calculate single cycle duration
+            let singleCycleDuration = 0;
+            for (let i = 0; i < sessionData.group1.length; i++) {
+                singleCycleDuration += (sessionData.group1[i].minutes * 60) + sessionData.group1[i].seconds;
+            }
+            
+            // Find which repeat cycle and exercise
+            let currentCycle = Math.floor(timeInMain / singleCycleDuration);
+            let timeInCurrentCycle = timeInMain % singleCycleDuration;
+            
+            // Find the exact exercise within the cycle
+            let accumulatedTime = 0;
+            let targetExerciseIndex = 0;
+            let remainingTimeInExercise = 0;
+            
             for (let i = 0; i < sessionData.group1.length; i++) {
                 let exerciseDuration = (sessionData.group1[i].minutes * 60) + sessionData.group1[i].seconds;
-
-                if (timeInCycle < accumulatedTime + (exerciseDuration / 2)) {
-                    matchedIndex = i;
+                
+                if (timeInCurrentCycle <= accumulatedTime + exerciseDuration) {
+                    targetExerciseIndex = i;
+                    remainingTimeInExercise = (accumulatedTime + exerciseDuration) - timeInCurrentCycle;
                     break;
                 }
-
+                
                 accumulatedTime += exerciseDuration;
             }
-
-            newRepeat = Math.max(tmpRepeat - currentCycle, 1);
-            currentExercise = matchedIndex;
+            
+            // Update global variables
+            currentExercise = targetExerciseIndex;
+            repeat = Math.max(tmpRepeat - currentCycle, 1);
+            
+            console.log('Jumping to exercise', targetExerciseIndex, 'with', remainingTimeInExercise, 'seconds remaining');
+            
+            // Start the exercise with remaining time
+            startWorkoutTimerAtTime(group1CountTimer, sessionData.group1[targetExerciseIndex], remainingTimeInExercise);
         }
-
-
-        //accumulatedTime += warmUpTime;
-        //accumulatedTime += coolDownTime;
-
-
-        // **Ensure we don't skip on the first exercise of a repeat cycle**
-        if (matchedIndex === 0 && timeInCycle < accumulatedTime) {
-            matchedIndex = -1; // Prevents jumping to the next exercise too soon
-            newRepeat = Math.max(newRepeat - 1, 1);
-        } else {
-            matchedIndex = Math.max(matchedIndex - 1, -1); // Standard correction
-        }
-        // Adjust repeat count correctly when in the last cycle
-        repeat = newRepeat;
-
-        currentExercise = matchedIndex + 1;
-
-        console.log("Playing:  singles : ", currentExercise);
-
-        console.log("Jumping to exercise index:", matchedIndex, "Remaining repeats: ", repeat);
-
-        setTimeout(() => {
-            clearInterval(warmupTimer);
-            clearInterval(workoutTimer);
-            clearInterval(cooldownTimer);
-            playNextExercise();
+    }
+    
+    // New function to start warmup at specific time
+    function startWarmupAtTime(groupText, group, remainingTime) {
+        console.log('startWarmupAtTime called with:', { group, remainingTime, stopWarmUpFunction });
+        
+        if (!group) {
+            console.error('No warmup group data provided!');
             return;
-        }, 1000);
-        return;
+        }
+        
+        let timer = Math.ceil(remainingTime);
+        let tmpTimer = timer;
+        stopWarmUpFunction = false;
+        
+        console.log('Starting warmup timer with', timer, 'seconds remaining');
+        
+        warmupTimer = setInterval(function () {
+            tmpTimer = userPaused(tmpTimer, timer, 0, warmupTimer);
+            timer = tmpTimer;
 
+            let minutes = parseInt(timer / 60, 10);
+            let seconds = parseInt(timer % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            groupText.textContent = `${minutes}:${seconds}`;
+            document.getElementById('group1-timer').style.backgroundColor = group.color;
+
+            if (timer === 3) {
+                longBeep.play();
+            }
+
+            if (stopWarmUpFunction == true) {
+                console.log('Warmup stopped by stopWarmUpFunction');
+                clearInterval(warmupTimer);
+                timer = 0;
+                stopWarmUpFunction = false;
+                return;
+            }
+
+            if (--timer <= 0) {
+                console.log('Warmup timer completed, transitioning to next exercise');
+                console.log('Before transition - repeatFirstCellCount:', repeatFirstCellCount, 'currentExercise:', currentExercise);
+                clearInterval(warmupTimer);
+                repeatFirstCellCount = 0;
+                console.log('After setting repeatFirstCellCount to 0, calling playNextExercise...');
+                playNextExercise();
+            }
+        }, 1000);
+    }
+    
+    // New function to start workout at specific time
+    function startWorkoutTimerAtTime(groupText, group, remainingTime) {
+        let timer = Math.ceil(remainingTime);
+        let tmpTimer = timer;
+        
+        workoutTimer = setInterval(function () {
+            tmpTimer = userPaused(tmpTimer, timer, 0, workoutTimer);
+            timer = tmpTimer;
+
+            let minutes = parseInt(timer / 60, 10);
+            let seconds = parseInt(timer % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            groupText.textContent = `${minutes}:${seconds}`;
+            document.getElementById('group1-timer').style.backgroundColor = group.color;
+
+            if (timer === 3) {
+                longBeep.play();
+            }
+
+            if (--timer <= 0) {
+                clearInterval(workoutTimer);
+                currentExercise++;
+                playNextExercise();
+            }
+        }, 1000);
+    }
+    
+    // New function to start cooldown at specific time
+    function startCooldownAtTime(groupText, group, remainingTime) {
+        let timer = Math.ceil(remainingTime);
+        let tmpTimer = timer;
+        
+        cooldownTimer = setInterval(function () {
+            tmpTimer = userPaused(tmpTimer, timer, 0, cooldownTimer);
+            timer = tmpTimer;
+
+            let minutes = parseInt(timer / 60, 10);
+            let seconds = parseInt(timer % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            groupText.textContent = `${minutes}:${seconds}`;
+            document.getElementById('group1-timer').style.backgroundColor = group.color;
+
+            if (timer === 3) {
+                longBeep.play();
+            }
+
+            if (--timer <= 0) {
+                clearInterval(cooldownTimer);
+                stopAllVideos();
+                beep.play();
+            }
+        }, 1000);
     }
 
 
