@@ -72,17 +72,18 @@ a:hover {
 @media screen and (min-width: 1400px), 
        screen and (max-width: 1399px) and (orientation: landscape) {
 
-body{
-    margin: auto auto;
-    width: 1430px;
-    height: 800px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d30 50%, #1a1a1a 100%);
-    color: #ffffff;
-    padding: 0px;
-    min-height: 100vh;
-    overflow-x: hidden;
-}
+    body{
+        margin: auto auto;
+        width: 1430px;
+        height: 800px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d30 50%, #1a1a1a 100%);
+        color: #ffffff;
+        padding: 0px;
+        min-height: 100vh;
+        overflow-x: hidden;
+        zoom: 78%;
+    }
 
 /* Mobile landscape scaling - Device specific zoom levels */
 
