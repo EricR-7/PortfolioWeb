@@ -1463,6 +1463,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (--timer <= 0) {
                     clearInterval(warmupTimer);
                     repeatFirstCellCount = 0;
+                    // Reset all stop flags to ensure proper transition to next exercise
+                    stopTimerFunction = false;
+                    stopWarmUpFunction = false;
+                    stopCoolFunction = false;
                     playNextExercise();
                 }
 
@@ -1785,7 +1789,7 @@ document.addEventListener('DOMContentLoaded', () => {
             repeatFirstCellCount = 1;
             stopCoolFunction = true;
             stopTimerFunction = true;
-            stopWarmUpFunction = false;
+            stopWarmUpFunction = false; // Allow warmup to run
             currentExercise = 0;
             repeat = tmpRepeat;
             
@@ -1803,8 +1807,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Check if user clicked within Cooldown
         else if (clickedTime >= (warmUpTime + mainWorkoutTime)) {
             console.log('Jumping to cooldown phase');
-            stopCoolFunction = false;
+            stopCoolFunction = false; // Allow cooldown to run
             stopTimerFunction = true;
+            stopWarmUpFunction = true;
             repeatFirstCellCount = 0;
             repeat = 1;
             
@@ -1820,6 +1825,7 @@ document.addEventListener('DOMContentLoaded', () => {
             stopWarmUpFunction = true;
             repeatFirstCellCount = 0;
             stopCoolFunction = true;
+            stopTimerFunction = false; // Allow workout timer to run
             
             let timeInMain = clickedTime - warmUpTime;
             
@@ -1877,6 +1883,14 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log('Starting warmup timer with', timer, 'seconds remaining');
         
         warmupTimer = setInterval(function () {
+            if (stopWarmUpFunction == true) {
+                console.log('Warmup stopped by stopWarmUpFunction');
+                clearInterval(warmupTimer);
+                timer = 0;
+                stopWarmUpFunction = false;
+                return;
+            }
+            
             tmpTimer = userPaused(tmpTimer, timer, 0, warmupTimer);
             timer = tmpTimer;
 
@@ -1889,16 +1903,18 @@ document.addEventListener('DOMContentLoaded', () => {
             groupText.textContent = `${minutes}:${seconds}`;
             document.getElementById('group1-timer').style.backgroundColor = group.color;
 
-            if (timer === 3) {
-                longBeep.play();
-            }
-
-            if (stopWarmUpFunction == true) {
-                console.log('Warmup stopped by stopWarmUpFunction');
+            document.getElementById('return-home').addEventListener('click', () => {
                 clearInterval(warmupTimer);
                 timer = 0;
-                stopWarmUpFunction = false;
-                return;
+                currentTime = 0;
+                groupText.textContent = `00:00`;
+                beep.pause();
+                longBeep.pause();
+                console.log("Left workout page from warmup");
+            });
+
+            if (timer === 3) {
+                longBeep.play();
             }
 
             if (--timer <= 0) {
@@ -1906,7 +1922,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log('Before transition - repeatFirstCellCount:', repeatFirstCellCount, 'currentExercise:', currentExercise);
                 clearInterval(warmupTimer);
                 repeatFirstCellCount = 0;
-                console.log('After setting repeatFirstCellCount to 0, calling playNextExercise...');
+                // Reset all stop flags to ensure proper transition to next exercise
+                stopTimerFunction = false;
+                stopWarmUpFunction = false;
+                stopCoolFunction = false;
+                console.log('After setting repeatFirstCellCount to 0 and resetting flags, calling playNextExercise...');
                 playNextExercise();
             }
         }, 1000);
@@ -1914,10 +1934,27 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // New function to start workout at specific time
     function startWorkoutTimerAtTime(groupText, group, remainingTime) {
+        console.log('startWorkoutTimerAtTime called with:', { group, remainingTime });
+        
+        if (!group) {
+            console.error('startWorkoutTimerAtTime: No group data provided!');
+            return;
+        }
+        
         let timer = Math.ceil(remainingTime);
         let tmpTimer = timer;
         
+        console.log('Starting workout timer with', timer, 'seconds remaining');
+        
         workoutTimer = setInterval(function () {
+            if (stopTimerFunction == true) {
+                console.log('startWorkoutTimerAtTime: Stopped by stopTimerFunction');
+                clearInterval(workoutTimer);
+                timer = 0;
+                stopTimerFunction = false;
+                return;
+            }
+            
             tmpTimer = userPaused(tmpTimer, timer, 0, workoutTimer);
             timer = tmpTimer;
 
@@ -1930,11 +1967,23 @@ document.addEventListener('DOMContentLoaded', () => {
             groupText.textContent = `${minutes}:${seconds}`;
             document.getElementById('group1-timer').style.backgroundColor = group.color;
 
+            document.getElementById('return-home').addEventListener('click', () => {
+                document.getElementById('group1-timer').style.backgroundColor = "gold";
+                clearInterval(workoutTimer);
+                timer = 0;
+                currentTime = 0;
+                groupText.textContent = `00:00`;
+                beep.pause();
+                longBeep.pause();
+                console.log("Left workout page from workout timer");
+            });
+
             if (timer === 3) {
                 longBeep.play();
             }
 
             if (--timer <= 0) {
+                console.log('Workout timer completed, moving to next exercise');
                 clearInterval(workoutTimer);
                 currentExercise++;
                 playNextExercise();
@@ -1944,10 +1993,27 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // New function to start cooldown at specific time
     function startCooldownAtTime(groupText, group, remainingTime) {
+        console.log('startCooldownAtTime called with:', { group, remainingTime });
+        
+        if (!group) {
+            console.error('startCooldownAtTime: No group data provided!');
+            return;
+        }
+        
         let timer = Math.ceil(remainingTime);
         let tmpTimer = timer;
         
+        console.log('Starting cooldown timer with', timer, 'seconds remaining');
+        
         cooldownTimer = setInterval(function () {
+            if (stopCoolFunction == true) {
+                console.log('Cooldown stopped by stopCoolFunction');
+                clearInterval(cooldownTimer);
+                timer = 0;
+                stopCoolFunction = false;
+                return;
+            }
+            
             tmpTimer = userPaused(tmpTimer, timer, 0, cooldownTimer);
             timer = tmpTimer;
 
@@ -1960,11 +2026,19 @@ document.addEventListener('DOMContentLoaded', () => {
             groupText.textContent = `${minutes}:${seconds}`;
             document.getElementById('group1-timer').style.backgroundColor = group.color;
 
+            document.getElementById('return-home').addEventListener('click', () => {
+                clearInterval(cooldownTimer);
+                beep.pause();
+                longBeep.pause();
+                console.log("Left workout page from cooldown");
+            });
+
             if (timer === 3) {
                 longBeep.play();
             }
 
             if (--timer <= 0) {
+                console.log('Cooldown timer completed');
                 clearInterval(cooldownTimer);
                 stopAllVideos();
                 beep.play();
