@@ -82,7 +82,7 @@ a:hover {
         padding: 0px;
         min-height: 100vh;
         overflow-x: hidden;
-        zoom: 76%;
+        zoom: 75%;
     }
 
 /* Mobile landscape scaling - Device specific zoom levels */
