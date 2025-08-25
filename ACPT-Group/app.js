@@ -832,7 +832,10 @@ document.addEventListener('DOMContentLoaded', () => {
         currentExercise = 0;
         timeSlider.max = 100; // Use percentage (0-100) for better iOS compatibility
         timeSlider.value = 0;
-        startTimer();
+        // Delay both timers by 1 second to prevent skipping
+        setTimeout(() => {
+            startTimer();
+        }, 1000);
         startSessionTimer(groupTimer);
         fillTimeBar(sessionData.group1Single, sessionData.group1, sessionData.group1Cool, groupTimer);
         beep.play();
@@ -1241,78 +1244,86 @@ document.addEventListener('DOMContentLoaded', () => {
 
         arrow.innerHTML = '';
 
-        interval = setInterval(function () {
-            // Sync with global currentTime
-            timer = duration - currentTime;
-            tmpTimer = timer;
+        // Display initial time immediately before starting interval
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        sessionTimer.textContent = `${minutes}:${seconds}`;
 
-            //Add seek bar functionality - improved version (only once)
-            if (!timeSliderHandlerAdded) {
-                // iOS Safari-friendly implementation for range inputs
-                if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
-                    // For mobile devices, use input/change events directly
-                    timeSlider.addEventListener('input', (e) => {
-                        const sliderValue = parseFloat(e.target.value);
-                        const clickedTime = (sliderValue / 100) * totalDuration;
-                        console.log('Time slider moved to:', clickedTime);
-                        jumpToExercise(clickedTime);
-                    });
-                    
-                    timeSlider.addEventListener('change', (e) => {
-                        const sliderValue = parseFloat(e.target.value);
-                        const clickedTime = (sliderValue / 100) * totalDuration;
-                        console.log('Time slider changed to:', clickedTime);
-                        jumpToExercise(clickedTime);
-                    });
-                } else {
-                    // For desktop, use the regular click approach
-                    addClickAndTouchEvents(timeSlider, (e) => {
-                        let rect = timeSlider.getBoundingClientRect();
-                        let clickX = e.clientX - rect.left;
-                        let seekBarWidth = rect.width;
-                        let clickedTime = (clickX / seekBarWidth) * totalDuration;
+        // Delay the entire timer by 1 second
+        setTimeout(() => {
+            interval = setInterval(function () {
+            // Make session timer count down independently like exercise timers
+            // This ensures both timers behave the same way
+
+                //Add seek bar functionality - improved version (only once)
+                if (!timeSliderHandlerAdded) {
+                    // iOS Safari-friendly implementation for range inputs
+                    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+                        // For mobile devices, use input/change events directly
+                        timeSlider.addEventListener('input', (e) => {
+                            const sliderValue = parseFloat(e.target.value);
+                            const clickedTime = (sliderValue / 100) * totalDuration;
+                            console.log('Time slider moved to:', clickedTime);
+                            jumpToExercise(clickedTime);
+                        });
                         
-                        console.log('Time slider clicked/touched at:', clickedTime);
-                        jumpToExercise(clickedTime);
-                    });
+                        timeSlider.addEventListener('change', (e) => {
+                            const sliderValue = parseFloat(e.target.value);
+                            const clickedTime = (sliderValue / 100) * totalDuration;
+                            console.log('Time slider changed to:', clickedTime);
+                            jumpToExercise(clickedTime);
+                        });
+                    } else {
+                        // For desktop, use the regular click approach
+                        addClickAndTouchEvents(timeSlider, (e) => {
+                            let rect = timeSlider.getBoundingClientRect();
+                            let clickX = e.clientX - rect.left;
+                            let seekBarWidth = rect.width;
+                            let clickedTime = (clickX / seekBarWidth) * totalDuration;
+                            
+                            console.log('Time slider clicked/touched at:', clickedTime);
+                            jumpToExercise(clickedTime);
+                        });
+                    }
+                    timeSliderHandlerAdded = true;
                 }
-                timeSliderHandlerAdded = true;
-            }
 
-            tmpTimer = userPaused(tmpTimer, timer, count, interval);
-            timer = tmpTimer;
+                tmpTimer = userPaused(tmpTimer, timer, count, interval);
+                timer = tmpTimer;
 
-            // Update arrow position based on current time
-            pixelOnePercent = maxPixel / duration;
-            paddingInc = currentTime * pixelOnePercent;
+                pixelOnePercent = maxPixel / duration;
+                paddingInc = currentTime * pixelOnePercent;
 
-            minutes = parseInt(timer / 60, 10);
-            seconds = parseInt(timer % 60, 10);
+                minutes = parseInt((duration - currentTime) / 60, 10);
+                seconds = parseInt((duration - currentTime) % 60, 10);
 
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
 
-            sessionTimer.textContent = `${minutes}:${seconds}`;
-            arrow.style.paddingLeft = paddingInc + 'px';
+                sessionTimer.textContent = `${minutes}:${seconds}`;
+                arrow.style.paddingLeft = paddingInc + 'px';
 
-            document.getElementById('return-home').addEventListener('click', () => {
-                clearInterval(interval);
-                timer = 0;
-                currentTime = 0;
-            });
-
-            if (timer <= 0) {
-                var delayInMilliseconds = 1001;
-
-                setTimeout(function () {
+                document.getElementById('return-home').addEventListener('click', () => {
                     clearInterval(interval);
-                    sessionTimer.textContent = "Session Completed!";
-                    group1CountTimer.textContent = " 🏁 COMPLETE 🏁 ";
-                    arrow.textContent = " 🏁 ";
-                    group1CountTimer.style.backgroundColor = "gold";
-                }, delayInMilliseconds);
-            }
-        }, 1000);
+                    timer = 0;
+                    currentTime = 0;
+                });
+
+                if (currentTime >= duration) {
+                    var delayInMilliseconds = 1001;
+
+                    setTimeout(function () {
+                        clearInterval(interval);
+                        sessionTimer.textContent = "Session Completed!";
+                        group1CountTimer.textContent = " 🏁 COMPLETE 🏁 ";
+                        arrow.textContent = " 🏁 ";
+                        group1CountTimer.style.backgroundColor = "gold";
+                    }, delayInMilliseconds);
+                }
+            }, 1000);
+        }, 1000); // Close the setTimeout that wraps the entire timer
     }
 
     //Single timer
